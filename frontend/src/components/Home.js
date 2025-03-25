@@ -137,6 +137,7 @@ const Home = () => {
                         width: mdScreen ? 300 : 350,
                         boxSizing: 'border-box',
                         display:  "block", 
+                        position: "absolute",
                     },
                     }}
                     variant="persistent"
