@@ -137,7 +137,7 @@ const Home = () => {
                         width: mdScreen ? 300 : 350,
                         boxSizing: 'border-box',
                         display:  "block", 
-                        position: matches ? "unset" : "absolute",
+                        position: matches ? "unset" : "fixed",
                         display: (matches && !drawerOpen) ? "none" : "unset"
                     },
                     }}
