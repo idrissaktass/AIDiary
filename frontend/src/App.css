@@ -1,6 +1,7 @@
 .app {
   background-color: #de6f1814;
   min-height: 100vh;
+  flex: 1;
 }
 
 .App-logo {
