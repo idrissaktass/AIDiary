@@ -137,6 +137,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
               variant="outlined"
               value={text}
               onChange={(e) => setText(e.target.value)}
+              disabled={saving} 
             />
           </motion.div>
         ) : (

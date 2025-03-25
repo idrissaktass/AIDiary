@@ -124,7 +124,7 @@ const WeeklyAnalysis = () => {
                 >
                     <Typography variant="h6">Haftalık Analizi Al</Typography>
                 </Button>
-                {loadingAnalysis && <Typography>Yükleniyor...</Typography>}
+                {loadingAnalysis && <CircularProgress />}
 
                 {weeklyAnalysis && (
                     <Grid mt={3} mb={5} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"rgb(0 255 37 / 16%)"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
