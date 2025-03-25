@@ -50,7 +50,6 @@ const Login = () => {
           <Button color="secondary" onClick={() => navigate("/signup")}>Kayıt Ol</Button>
         </Box>
         </Grid>
-        <Footer/>
     </Grid>
   );
 };

@@ -167,7 +167,6 @@ const WeeklyAnalysis = () => {
                     <Typography>Henüz haftalık analiz yapılmamış.</Typography>
                 )}
             </Grid>
-            <Footer/>
         </Grid>
     );
 };

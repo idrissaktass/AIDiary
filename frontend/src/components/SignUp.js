@@ -75,7 +75,6 @@ const SignUp = () => {
           <Button color="secondary" onClick={() => navigate("/login")}>Giriş Yap</Button>
         </Box>
       </Grid>
-      <Footer/>
     </Grid>
   );
 };

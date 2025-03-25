@@ -160,7 +160,6 @@ const Diaries = () => {
         </Button>
       </Grid>
     </Grid>
-    <Footer/>
   </>
   );
 };

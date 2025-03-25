@@ -156,7 +156,6 @@ const Home = () => {
             ) : (
                 <Login onLogin={() => setIsLoggedIn(true)} />
             )}
-            <Footer/>
         </Grid>
     );
 };
