@@ -117,7 +117,7 @@ const WeeklyAnalysis = () => {
                     variant="contained"
                     color="primary"
                     onClick={handleWeeklyAnalysis}
-                    disabled={loading || !canAnalyze}
+                    disabled={loading || !canAnalyze || weeklyAnalysis}
                 >
                     <Typography variant="h6">Haftalık Analizi Al</Typography>
                 </Button>
@@ -125,21 +125,22 @@ const WeeklyAnalysis = () => {
 
                 {weeklyAnalysis && (
                     <Grid mt={3} mb={5} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
-                        <Typography variant="h6">Haftalık Ruh Hali Analizi:</Typography>
-                        <Typography>{weeklyAnalysis}</Typography>
+                        <Typography variant="h6" mb={2}>Haftalık Ruh Hali Analizi</Typography>
+                        <Typography sx={{backgroundColor:"rgba(128, 0, 0, 0.04)"}}>{weeklyAnalysis}</Typography>
                     </Grid>
-                )}
-
-                {!canAnalyze && (
-                    <Typography color="error">Haftalık analiz için yeterli giriş yapılmadı.</Typography>
                 )}
             </Grid>
             <Grid container justifyContent={"center"} mt={10} gap={2}>
                 <Grid size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }}>
                   <Typography variant="h6">Haftalık Analizler</Typography>
                 </Grid>
+                <Grid size={{xs:12}}>  
+                    {!canAnalyze && (
+                        <Typography color="error">Haftalık analiz için yeterli giriş yapılmadı.</Typography>
+                    )}
+                </Grid>
                 {!loading && weeklyAnalyses.length > 0 && (
-                    <Grid container justifyContent={"center"} size={{xs:12}}>
+                    <Grid container justifyContent={"center"} size={{xs:12}} gap={2}>
                         {weeklyAnalyses.map((analysis) => (
                             <Grid mt={1} mb={5} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} flexDirection={"column"} padding={"20px 30px 20px 30px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"} item key={analysis.id} xs={12} sm={6} md={4}>
                                 <Typography variant="body2" mb={1}>{new Date(analysis.date).toLocaleDateString()}</Typography>

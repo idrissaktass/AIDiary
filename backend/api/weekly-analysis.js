@@ -66,7 +66,7 @@ export default async function handler(req, res) {
         model: 'gpt-3.5-turbo',
         messages: [
           { role: 'system', content: 'Sen bir ruh hali analizcisinsin.' },
-          { role: 'user', content: `Lütfen bu 3 ruh hali analizini gözden geçir ve genel bir ruh hali değerlendirmesi yap. ${moodTexts}` },
+          { role: 'user', content: `Lütfen bu 3 ruh hali analizini gözden geçir ve genel bir ruh hali değerlendirmesi yap. Değerlendirmeyi sunarken bir mesaja cevap verir gibi sunma, rapor gibi yaz. ${moodTexts}` },
         ],
       });
 
