@@ -142,8 +142,10 @@ const WeeklyAnalysis = () => {
                     )}
                 </Grid>
                 {loading ? (
-                    <Grid container justifyContent={"center"} size={{xs:12}}>
-                        <CircularProgress />
+                    <Grid container justifyContent={"center"} width={"100%"}>
+                        <Grid item size={{xs:12}} display={"flex"} justifyContent={"center"}>
+                            <CircularProgress />
+                        </Grid>
                     </Grid>
                 ) : (
                     weeklyAnalyses.length > 0 && (
