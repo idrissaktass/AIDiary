@@ -20,11 +20,11 @@ const Footer = () => {
     };
 
     return(
-        <Grid position={"relative"} bottom={0} width={"100%"} bgcolor={"#172544"} display={"flex"} mt={5} justifyContent={"space-between"} height={"50px"} alignItems={"center"} p={"30px"}>
+        <Grid position={"relative"} bottom={0} width={"100%"} bgcolor={"#172544"} display={"flex"} justifyContent={"space-between"} height={"50px"} alignItems={"center"} p={"30px"}>
           <Typography onClick={handleLanding} fontSize={"20px"} fontWeight={"700"} color="#de7618" sx={{ cursor: "pointer" }}>
             Diary AI
           </Typography>
-          <Typography onClick={handleHome} fontSize={"20px"} fontWeight={"700"} color="white" sx={{ cursor: "pointer" }}>
+          <Typography onClick={handleHome} fontSize={"16px"} fontWeight={"600"} color="white" sx={{ cursor: "pointer" }}>
             Home
           </Typography>
         </Grid>

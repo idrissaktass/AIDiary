@@ -67,6 +67,11 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
                 <MenuIcon />
               </IconButton>
               <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
+                {username && (
+                  <MenuItem>
+                    <Typography fontSize={"18px"}>{username}</Typography>
+                  </MenuItem>
+                )}
                 <MenuItem onClick={() => { handleClick(); setAnchorEl(null); }}>
                   <Typography fontSize={"18px"}>Anlat Bakalım</Typography>
                 </MenuItem>
@@ -78,7 +83,7 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
                 </MenuItem>
                 {location.pathname === "/home" && (
                   <MenuItem onClick={() => { onToggleDrawer(!drawerOpen); setAnchorEl(null); }}>
-                    <Typography fontSize={"18px"}>{drawerOpen ? "Close Diary List" : "Open Diary List"}</Typography>
+                    <Typography fontSize={"18px"}>Geçmiş</Typography>
                   </MenuItem>
                 )}
                 <MenuItem onClick={onLogout}>
