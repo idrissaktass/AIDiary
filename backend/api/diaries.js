@@ -45,7 +45,7 @@ export default async function handler(req, res) {
         console.log("Token:", token);
         const decoded = jwt.verify(token, "12ksdfm230r4r9k3049k2w4prf");
         console.log("Decoded token:", decoded);
-        const userId = decoded.id;
+        const userId = decoded.userId;
         console.log("User ID:", userId);
   
         // Fetch the user's diary entries from the database
