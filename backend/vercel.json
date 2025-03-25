@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://diary-ai1.vercel.app"
+          "value": "https://diary-ai-0.vercel.app"
         },
         {
           "key": "Access-Control-Allow-Methods",
