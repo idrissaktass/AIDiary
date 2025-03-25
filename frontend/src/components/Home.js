@@ -138,6 +138,7 @@ const Home = () => {
                         boxSizing: 'border-box',
                         display:  "block", 
                         position: matches ? "unset" : "absolute",
+                        display: (matches && !drawerOpen) ? "none" : "unset"
                     },
                     }}
                     variant="persistent"
