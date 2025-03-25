@@ -126,7 +126,7 @@ const WeeklyAnalysis = () => {
                 {loadingAnalysis && <Typography>Yükleniyor...</Typography>}
 
                 {weeklyAnalysis && (
-                    <Grid mt={3} mb={5} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"rgba(128, 0, 0, 0.04)"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
+                    <Grid mt={3} mb={5} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"rgb(0 255 37 / 16%)"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
                         <Typography variant="h6" mb={2}>Haftalık Ruh Hali Analizi</Typography>
                         <Typography>{weeklyAnalysis}</Typography>
                     </Grid>
@@ -141,20 +141,25 @@ const WeeklyAnalysis = () => {
                         <Typography color="error">Haftalık analiz için yeterli giriş yapılmadı.</Typography>
                     )}
                 </Grid>
-                {!loading && weeklyAnalyses.length > 0 && (
-                    <Grid container justifyContent={"center"} size={{xs:12}} gap={1}>
-                        {weeklyAnalyses.map((analysis) => (
-                            <Grid mt={1} mb={3} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} flexDirection={"column"} padding={"20px 30px 20px 30px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"} item key={analysis.id} xs={12} sm={6} md={4}>
-                                <Typography variant="body2" mb={1}>{new Date(analysis.date).toLocaleDateString()}</Typography>
-                                <Typography variant="body1">{expandedAnalysis === analysis.id ? analysis.analysis : `${analysis.analysis.split(".").slice(0, 1).join(".")}...`}</Typography>
-                                <Button onClick={() => handleToggleAnalysis(analysis.id)}>
-                                    {expandedAnalysis === analysis.id ? "Kapat" : "Tamamını Gör"}
-                                </Button>
-                            </Grid>
-                        ))}
+                {loading ? (
+                    <Grid container justifyContent={"center"} size={{xs:12}}>
+                        <CircularProgress />
                     </Grid>
+                ) : (
+                    weeklyAnalyses.length > 0 && (
+                        <Grid container justifyContent={"center"} size={{xs:12}} gap={1}>
+                            {weeklyAnalyses.map((analysis) => (
+                                <Grid mt={1} mb={3} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} flexDirection={"column"} padding={"20px 30px 20px 30px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"} item key={analysis.id} xs={12} sm={6} md={4}>
+                                    <Typography variant="body2" mb={1}>{new Date(analysis.date).toLocaleDateString()}</Typography>
+                                    <Typography variant="body1">{expandedAnalysis === analysis.id ? analysis.analysis : `${analysis.analysis.split(".").slice(0, 1).join(".")}...`}</Typography>
+                                    <Button onClick={() => handleToggleAnalysis(analysis.id)}>
+                                        {expandedAnalysis === analysis.id ? "Kapat" : "Tamamını Gör"}
+                                    </Button>
+                                </Grid>
+                            ))}
+                        </Grid>
+                    )
                 )}
-
                 {!loading && weeklyAnalyses.length === 0 && (
                     <Typography>Henüz haftalık analiz yapılmamış.</Typography>
                 )}
