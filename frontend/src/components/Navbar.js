@@ -6,6 +6,14 @@ import { Link } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useNavigate, useLocation } from "react-router-dom";
 import './Navbar.css'; 
+import { styled } from "@mui/system";
+
+const StyledMenu = styled(Menu)(({ theme }) => ({
+  top:"65px",
+  color:"white",
+  borderRadius:"0px 0px 5px 5px",
+  background:"linear-gradient(to right, #142535, #0f1a26)",
+}));
 
 const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) => {
   const isMobile = useMediaQuery("(max-width:900px)");
@@ -66,7 +74,7 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
               <IconButton color="inherit" onClick={handleMenuOpen}>
                 <MenuIcon />
               </IconButton>
-              <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
+              <StyledMenu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
                 {username && (
                   <MenuItem>
                     <Typography fontSize={"18px"}>{username}</Typography>
@@ -89,7 +97,7 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
                 <MenuItem onClick={onLogout}>
                   <Typography fontSize={"18px"}>Çıkış Yap</Typography>
                 </MenuItem>
-              </Menu>
+              </StyledMenu>
             </>
           ) : (
             <>
@@ -113,11 +121,11 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
                   <ArrowDropDownIcon />
                 </Button>
               )}
-              <Menu anchorEl={userMenuEl} sx={{top:"65px", color:"white", borderRadius:"0px 0px 5px 5px", background: "linear-gradient(to right, #142535, #0f1a26)"}} open={Boolean(userMenuEl)} onClose={handleUserMenuClose}>
+              <StyledMenu anchorEl={userMenuEl} open={Boolean(userMenuEl)} onClose={handleUserMenuClose}>
                 <MenuItem onClick={onLogout}>
                   <Typography fontSize={"18px"}>Çıkış Yap</Typography>
                 </MenuItem>
-              </Menu>
+              </StyledMenu>
             </>
           )}
         </Toolbar>
