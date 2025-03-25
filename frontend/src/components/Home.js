@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import DiaryEntry from "./DiaryEntry";
 import DiaryList from "./DiaryList";
 import Login from "./Login";
-import { Container, CircularProgress, Button, Drawer } from "@mui/material";
+import { Container, CircularProgress, Button, Drawer, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Grid } from '@mui/system';
 import Navbar from "./Navbar"; 
@@ -145,6 +145,22 @@ const Home = () => {
                     anchor="right"
                     open={drawerOpen || !matches} 
                 >
+                    {matches && (
+                        <Button
+                            onClick={handleDrawerClose}
+                            sx={{
+                                position: "absolute",
+                                top: 10,
+                                right: 10,
+                                color: "#fff",
+                                backgroundColor: "transparent",
+                                border: "none",
+                                cursor: "pointer",
+                            }}
+                        >
+                            <Typography color={"red"}>X</Typography>
+                        </Button>
+                    )}
                     {loadingEntries ? (
                         <Grid container justifyContent="center" alignItems="center" style={{ height: "100%" }}>
                             <CircularProgress />
