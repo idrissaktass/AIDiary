@@ -133,7 +133,7 @@ const WeeklyAnalysis = () => {
                     </Grid>
                 )}
             </Grid>
-            <Grid container justifyContent={"center"} mt={2} gap={2}>
+            <Grid container justifyContent={"center"} mt={4} gap={2}>
                 <Grid size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }}>
                   <Typography variant="h6">Haftalık Analizler</Typography>
                 </Grid>
