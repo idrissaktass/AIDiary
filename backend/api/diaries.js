@@ -47,7 +47,7 @@ export default async function handler(req, res) {
   
         // Fetch the user's diary entries from the database
         const entries = await Diary.find({ userId }).sort({ date: -1 });
-        console.log("entries", entries)
+        console.log("user", userId)
         res.json(entries);
       } catch (error) {
         res.status(500).json({ error: 'Failed to retrieve diaries.' });
