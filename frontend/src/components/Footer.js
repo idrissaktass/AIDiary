@@ -20,7 +20,7 @@ const Footer = () => {
     };
 
     return(
-        <Grid position={"absolute"} bottom={0} width={"100%"} bgcolor={"#172544"} display={"flex"} justifyContent={"space-between"} height={"50px"} alignItems={"center"} p={"30px"}>
+        <Grid position={"static"} bottom={0} width={"100%"} bgcolor={"#172544"} display={"flex"} justifyContent={"space-between"} height={"50px"} alignItems={"center"} p={"30px"}>
           <Typography onClick={handleLanding} fontSize={"20px"} fontWeight={"700"} color="#de7618" sx={{ cursor: "pointer" }}>
             Diary AI
           </Typography>
