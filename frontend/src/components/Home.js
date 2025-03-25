@@ -110,7 +110,7 @@ const Home = () => {
     const handleDrawerClose = () => {
         setDrawerOpen(false);
     };
-    
+
     return (
         <Grid container justifyContent={"center"} width={"100%"} minHeight={"100vh"}>
             {isLoggedIn && (
@@ -155,8 +155,8 @@ const Home = () => {
                             onClick={handleDrawerClose}
                             sx={{
                                 position: "absolute",
-                                top: 10,
-                                right: 10,
+                                top: 100,
+                                right: 100,
                                 backgroundColor: "transparent",
                                 border: "none",
                                 cursor: "pointer",
