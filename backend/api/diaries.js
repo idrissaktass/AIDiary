@@ -4,7 +4,7 @@ import Cors from 'cors';
 import User from '../models/User';
 // CORS configuration
 const cors = Cors({
-  origin: 'https://diary-ai-seven.vercel.app',
+  origin: 'https://diary-ai-0.vercel.app',
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
       }
     } else if (req.method === 'OPTIONS') {
       // Handle OPTIONS preflight requests
-      res.setHeader('Access-Control-Allow-Origin', 'https://diary-ai-seven.vercel.app');
+      res.setHeader('Access-Control-Allow-Origin', 'https://diary-ai-0.vercel.app');
       res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, PUT, PATCH, POST, DELETE');
       res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
       res.status(204).end(); // No content for OPTIONS method

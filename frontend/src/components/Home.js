@@ -33,7 +33,7 @@ const Home = () => {
 
     const fetchUserInfo = async (token) => {
         try {
-            const response = await fetch("https://diary-ai-server.vercel.app/api/user", {
+            const response = await fetch("https://ai-diary-backend-gamma.vercel.app/api/user", {
                 method: "GET",
                 headers: { "Authorization": `Bearer ${token}` }
             });
@@ -54,7 +54,7 @@ const Home = () => {
     const fetchEntries = async (token) => {
         setLoadingEntries(true); 
         try {
-            const res = await axios.get("https://diary-ai-server.vercel.app/api/diaries", {
+            const res = await axios.get("https://ai-diary-backend-gamma.vercel.app/api/diaries", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

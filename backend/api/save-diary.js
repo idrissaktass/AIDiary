@@ -5,7 +5,7 @@ import dbConnect from '../utils/dbConnect'; // dbConnect'i dahil et
 
 // CORS middleware'ini sadece belirli metodlar ve kökenle sınırlamak
 const cors = Cors({
-  origin: 'https://diary-ai-seven.vercel.app', // Güvenli bir origin belirleyin
+  origin: 'https://diary-ai-0.vercel.app', // Güvenli bir origin belirleyin
   methods: ['POST', 'OPTIONS'], // Sadece kullanılan metodları dahil edin
   allowedHeaders: ['Content-Type', 'Authorization'], // Yalnızca gerekli başlıklar
   credentials: true, // Gerekliyse kullanıcı kimlik doğrulama bilgilerini taşı
@@ -28,7 +28,7 @@ export default async function handler(req, res) {
 
   if (req.method === 'OPTIONS') {
     // Handle OPTIONS preflight requests
-    res.setHeader('Access-Control-Allow-Origin', 'https://diary-ai-seven.vercel.app');
+    res.setHeader('Access-Control-Allow-Origin', 'https://diary-ai-0.vercel.app');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.status(204).end(); // No content for OPTIONS method

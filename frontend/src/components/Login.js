@@ -13,7 +13,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("https://diary-ai-server.vercel.app/api/login", { username, password });
+      const res = await axios.post("https://ai-diary-backend-gamma.vercel.app/api/login", { username, password });
       localStorage.setItem("token", res.data.token);
       navigate("/home");
     } catch (err) {

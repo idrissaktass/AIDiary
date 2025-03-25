@@ -30,7 +30,7 @@ const SignUp = () => {
     }
 
     try {
-      await axios.post("https://diary-ai-server.vercel.app/api/signup", { username, email, password });
+      await axios.post("https://ai-diary-backend-gamma.vercel.app/api/signup", { username, email, password });
       alert("Kayıt başarılı, lütfen giriş yapın.")
       navigate("/login");
     } catch (err) {

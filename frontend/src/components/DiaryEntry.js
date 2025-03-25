@@ -31,7 +31,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
   const fetchMostRecentMood = async () => {
     setLoadingRecentMood(true); 
     try {
-      const res = await axios.get("https://diary-ai-server.vercel.app/api/diaries", {
+      const res = await axios.get("https://ai-diary-backend-gamma.vercel.app/api/diaries", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -56,7 +56,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
     setLoading(true);  
     try {
       const res = await axios.post(
-        "https://diary-ai-server.vercel.app/api/analyze-mood",
+        "https://ai-diary-backend-gamma.vercel.app/api/analyze-mood",
         { text },
         {
           headers: {
@@ -83,7 +83,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
     try {
       console.log('try')
       const res = await axios.post(
-        "https://diary-ai-server.vercel.app/api/save-diary",
+        "https://ai-diary-backend-gamma.vercel.app/api/save-diary",
         { text, mood, token, userId: selectedDiary ? selectedDiary.userId : null },
         {
           headers: {

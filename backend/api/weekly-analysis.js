@@ -13,7 +13,7 @@ const openai = new OpenAI({
 
 // CORS configuration
 const cors = Cors({
-  origin: 'https://diary-ai-seven.vercel.app', // Add your frontend URL here
+  origin: 'https://diary-ai-0.vercel.app', // Add your frontend URL here
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,

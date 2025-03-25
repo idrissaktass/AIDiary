@@ -27,7 +27,7 @@ const WeeklyAnalysis = () => {
 
     const fetchWeeklyAnalyses = async (token) => {
         try {
-            const response = await axios.get("https://diary-ai-server.vercel.app/api/weekly-analyses", {
+            const response = await axios.get("https://ai-diary-backend-gamma.vercel.app/api/weekly-analyses", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -42,7 +42,7 @@ const WeeklyAnalysis = () => {
 
     const fetchUserInfo = async (token) => {
         try {
-            const response = await fetch("https://diary-ai-server.vercel.app/api/user", {
+            const response = await fetch("https://ai-diary-backend-gamma.vercel.app/api/user", {
                 method: "GET",
                 headers: { "Authorization": `Bearer ${token}` }
             });
@@ -65,7 +65,7 @@ const WeeklyAnalysis = () => {
         try {
             const token = localStorage.getItem("token");
             const response = await axios.post(
-                "https://diary-ai-server.vercel.app/api/weekly-analysis",
+                "https://ai-diary-backend-gamma.vercel.app/api/weekly-analysis",
                 {},
                 {
                     headers: {
