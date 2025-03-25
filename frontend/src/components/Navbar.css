@@ -1,8 +1,6 @@
 .navbar {
-    position: relative;
     z-index: 1;
     height: 65px;
-    position: absolute !important;
   }
   
   .video-navbar {

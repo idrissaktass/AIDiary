@@ -13,6 +13,7 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
   const [userMenuEl, setUserMenuEl] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const isHomePage = location.pathname === "/home";
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -47,7 +48,7 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
   };
 
   return (
-    <AppBar position="static" color="transparent" sx={{ zIndex: "999" }} className="navbar">
+    <AppBar position={isHomePage ? "absolute" : "static"} color="transparent" sx={{ zIndex: "999" }} className="navbar">
       <div className="video-navbar">
         <video className="video-nav" autoPlay loop muted>
           <source src="/assets/background.mp4" type="video/mp4" />
