@@ -120,7 +120,7 @@ const Home = () => {
 
             {isLoggedIn ? (
                 <Grid container justifyContent={{xs:"center", sm:"center", md:"start", lg:"center"}} width={"100%"}>
-                    <Grid size={{xs:12, sm:11, md:8.5, lg:8.5}} display={"flex"} justifyContent={"center"} paddingTop={{xs:"12%", sm:"10%", md:"8%", lg:"5%"}}>
+                    <Grid size={{xs:12, sm:11, md:8.5, lg:8.5}} display={"flex"} justifyContent={"center"} paddingTop={{xs:"15%", sm:"10%", md:"8%", lg:"5%"}}>
                         {selectedDiary ? (
                             <DiaryEntry token={localStorage.getItem("token")} selectedDiary={selectedDiary} />
                         ) : (
