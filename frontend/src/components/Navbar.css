@@ -1,0 +1,32 @@
+.navbar {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .video-navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    transform: scaleX(-1); 
+  }
+  
+  .video-nav {
+    transform: scaleY(-1); 
+    object-fit: cover; 
+    width: 100%;
+    height: 100%;
+  }
+  
+  .MuiAppBar-root {
+    background-color: transparent; 
+    color: white;
+    box-shadow: none; 
+  }
+  
+  .MuiToolbar-root {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  

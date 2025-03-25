@@ -1,0 +1,163 @@
+import React, { useState, useEffect } from "react";
+import { Button, Typography } from "@mui/material";
+import axios from "axios";
+import Navbar from "./Navbar";
+import { Grid } from '@mui/system';
+import { useNavigate } from "react-router-dom";
+
+const WeeklyAnalysis = () => {
+    const [weeklyAnalysis, setWeeklyAnalysis] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [canAnalyze, setCanAnalyze] = useState(true); 
+    const [isLoggedIn, setIsLoggedIn] = useState(null);
+    const [username, setUsername] = useState(""); 
+    const navigate = useNavigate();
+    const [weeklyAnalyses, setWeeklyAnalyses] = useState([]);
+    const [expandedAnalysis, setExpandedAnalysis] = useState(null); 
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            fetchUserInfo(token);
+            fetchWeeklyAnalyses(token);  
+        } else {
+            setIsLoggedIn(false);
+        }
+    }, []);
+
+    const fetchWeeklyAnalyses = async (token) => {
+        try {
+            const response = await axios.get("https://diary-ai-server.vercel.app/api/weekly-analyses", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            setWeeklyAnalyses(response.data);
+        } catch (error) {
+            console.error("Haftalık analizler alınırken hata oluştu:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const fetchUserInfo = async (token) => {
+        try {
+            const response = await fetch("https://diary-ai-server.vercel.app/api/user", {
+                method: "GET",
+                headers: { "Authorization": `Bearer ${token}` }
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setUsername(data.username);
+                setIsLoggedIn(true);
+            } else {
+                setIsLoggedIn(false);
+            }
+        } catch (error) {
+            console.error("Kullanıcı bilgisi alınırken hata oluştu:", error);
+            setIsLoggedIn(false);
+        }
+    };
+
+    const handleWeeklyAnalysis = async () => {
+        setLoading(true);
+        try {
+            const token = localStorage.getItem("token");
+            const response = await axios.post(
+                "https://diary-ai-server.vercel.app/api/weekly-analysis",
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            setWeeklyAnalysis(response.data.weeklyAnalysis);
+        } catch (error) {
+            console.error("Error fetching weekly analysis", error);
+            if (error.response && error.response.status === 400) {
+                setCanAnalyze(false);
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        setIsLoggedIn(false);
+        navigate("/login");
+    };
+
+    const handleToggleAnalysis = (id) => {
+        if (expandedAnalysis === id) {
+            setExpandedAnalysis(null); 
+        } else {
+            setExpandedAnalysis(id); 
+        }
+    };
+
+    console.log("xd", weeklyAnalyses)
+
+    return (
+        <Grid bgcolor={"#de6f1814"} minHeight={"100vh"}>
+            <Navbar username={username} onLogout={handleLogout} />
+            <Grid container size={{ xs: 12, sm: 10, md: 8 }} display={"flex"} flexDirection={"column"} alignItems={"center"} mt={5} gap={2}>
+                <Grid my={3} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
+                    <Typography variant="body1" mb={2} textAlign={"start"}>
+                        Bu sayfa, son üç girişinizin analizini sunar. Ruh halinizi daha iyi anlayabilmek için yazdığınız her notu dikkate alır.
+                    </Typography>
+                    <Typography variant="body1" textAlign={"start"}>
+                        Bu özellik, ruh halinizi düzenli olarak takip etmenizi sağlar. Haftalık analizler, duygu durumunuzu anlamada yardımcı olabilir.
+                    </Typography>
+                </Grid>
+                <Button
+                    sx={{ width: "fit-content", backgroundColor: "#1764b0" }}
+                    variant="contained"
+                    color="primary"
+                    onClick={handleWeeklyAnalysis}
+                    disabled={loading || !canAnalyze}
+                >
+                    <Typography variant="h6">Haftalık Analizi Al</Typography>
+                </Button>
+                {loading && <Typography>Yükleniyor...</Typography>}
+
+                {weeklyAnalysis && (
+                    <Grid mt={3} mb={5} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
+                        <Typography variant="h6">Haftalık Ruh Hali Analizi:</Typography>
+                        <Typography>{weeklyAnalysis}</Typography>
+                    </Grid>
+                )}
+
+                {!canAnalyze && (
+                    <Typography color="error">Haftalık analiz için yeterli giriş yapılmadı.</Typography>
+                )}
+            </Grid>
+            <Grid container justifyContent={"center"} mt={10} gap={2}>
+                <Grid size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }}>
+                  <Typography variant="h6">Haftalık Analizler</Typography>
+                </Grid>
+                {!loading && weeklyAnalyses.length > 0 && (
+                    <Grid container justifyContent={"center"} size={{xs:12}}>
+                        {weeklyAnalyses.map((analysis) => (
+                            <Grid mt={1} mb={5} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} flexDirection={"column"} padding={"20px 30px 20px 30px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"} item key={analysis.id} xs={12} sm={6} md={4}>
+                                <Typography variant="body2" mb={1}>{new Date(analysis.date).toLocaleDateString()}</Typography>
+                                <Typography variant="body1">{expandedAnalysis === analysis.id ? analysis.analysis : `${analysis.analysis.split(".").slice(0, 1).join(".")}...`}</Typography>
+                                <Button onClick={() => handleToggleAnalysis(analysis.id)}>
+                                    {expandedAnalysis === analysis.id ? "Kapat" : "Tamamını Gör"}
+                                </Button>
+                            </Grid>
+                        ))}
+                    </Grid>
+                )}
+
+                {!loading && weeklyAnalyses.length === 0 && (
+                    <Typography>Henüz haftalık analiz yapılmamış.</Typography>
+                )}
+            </Grid>
+        </Grid>
+    );
+};
+
+export default WeeklyAnalysis;
