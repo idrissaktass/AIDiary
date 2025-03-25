@@ -142,7 +142,7 @@ const Home = () => {
                         width: mdScreen ? 300 : 350,
                         boxSizing: 'border-box',
                         display:  "block", 
-                        position: matches ? "unset" : "fixed",
+                        position: "absolute",
                         display: (matches && !drawerOpen) ? "none" : "unset"
                     },
                     }}
@@ -155,14 +155,14 @@ const Home = () => {
                             onClick={handleDrawerClose}
                             sx={{
                                 position: "absolute",
-                                top: 100,
-                                right: 100,
+                                top: "70px",
+                                right: "-15px",
                                 backgroundColor: "transparent",
                                 border: "none",
                                 cursor: "pointer",
                             }}
                         >
-                            <Typography color={"red"}>X</Typography>
+                            <Typography sx={{backgroundColor:"#ad1f1f", padding:"1px 5px 1px 5px", borderRadius:"3px"}} fontSize={"15px"} color={"white"}>X</Typography>
                         </Button>
                     )}
                     {loadingEntries ? (
