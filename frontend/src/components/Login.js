@@ -23,7 +23,7 @@ const Login = () => {
   };
 
   return (
-    <Grid container justifyContent={"center"} minHeight={"calc(100vh - 115px)"}>
+    <Grid container justifyContent={"center"} minHeight={"calc(100vh - 60px)"}>
       <Navbar/>
         <Grid mt={5} paddingTop={{xs:"15%", sm:"10%", md:"8%", lg:"5%"}}>
           <Typography variant="h4" gutterBottom>Giriş Yap</Typography>

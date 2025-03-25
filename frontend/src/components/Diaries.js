@@ -89,7 +89,7 @@ const Diaries = () => {
 };
 
   return (
-    <Grid  minHeight={"calc(100vh - 115px)"} paddingBottom={7}>
+    <Grid  minHeight={"calc(100vh - 60px)"} paddingBottom={7}>
     <Navbar username={username} onLogout={handleLogout} />
     <Grid container spacing={3} direction="column" alignItems="center" py={5}>
       <Typography variant="h4" gutterBottom>
