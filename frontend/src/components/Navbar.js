@@ -81,6 +81,9 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
                     <Typography fontSize={"18px"}>{drawerOpen ? "Close Diary List" : "Open Diary List"}</Typography>
                   </MenuItem>
                 )}
+                <MenuItem onClick={onLogout}>
+                  <Typography fontSize={"18px"}>Çıkış Yap</Typography>
+                </MenuItem>
               </Menu>
             </>
           ) : (
