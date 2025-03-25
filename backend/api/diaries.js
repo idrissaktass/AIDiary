@@ -42,7 +42,7 @@ export default async function handler(req, res) {
       try {
         console.log("try")
         // Verify token and extract user ID
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, "12ksdfm230r4r9k3049k2w4prf");
         const userId = decoded.id;
   
         // Fetch the user's diary entries from the database
