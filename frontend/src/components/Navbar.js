@@ -13,7 +13,7 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
   const [userMenuEl, setUserMenuEl] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const isHomePage = location.pathname === "/home";
+  const isHomePage = location.pathname === "/home" || location.pathname === "/signup" || location.pathname === "/login";
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);

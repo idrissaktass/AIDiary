@@ -112,7 +112,7 @@ const Home = () => {
     };
 
     return (
-        <Grid container justifyContent={"center"} width={"100%"} minHeight={"100vh"}>
+        <Grid container justifyContent={"center"} width={"100%"} minHeight={"calc(100vh - 115px)"}>
             {isLoggedIn && (
                 <Navbar 
                 onLogout={handleLogout} 

@@ -1,6 +1,6 @@
 .app {
   background-color: #de6f1814;
-  min-height: 100vh;
+  min-height: calc(100vh - 115px);  /* Subtract 115px from 100vh */
   flex: 1;
 }
 
