@@ -4,6 +4,7 @@ import axios from "axios";
 import { Grid } from '@mui/system';
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 const Diaries = () => {
   const [diaries, setDiaries] = useState([]);
@@ -159,6 +160,7 @@ const Diaries = () => {
         </Button>
       </Grid>
     </Grid>
+    <Footer/>
   </>
   );
 };

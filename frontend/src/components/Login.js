@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Grid } from '@mui/system';
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -49,6 +50,7 @@ const Login = () => {
           <Button color="secondary" onClick={() => navigate("/signup")}>Kayıt Ol</Button>
         </Box>
         </Grid>
+        <Footer/>
     </Grid>
   );
 };

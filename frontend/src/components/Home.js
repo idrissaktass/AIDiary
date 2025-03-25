@@ -9,6 +9,7 @@ import Navbar from "./Navbar";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Footer from "./Footer";
 
 const Home = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -155,6 +156,7 @@ const Home = () => {
             ) : (
                 <Login onLogin={() => setIsLoggedIn(true)} />
             )}
+            <Footer/>
         </Grid>
     );
 };

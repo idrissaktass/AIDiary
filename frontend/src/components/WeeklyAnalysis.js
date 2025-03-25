@@ -4,6 +4,7 @@ import axios from "axios";
 import Navbar from "./Navbar";
 import { Grid } from '@mui/system';
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 const WeeklyAnalysis = () => {
     const [weeklyAnalysis, setWeeklyAnalysis] = useState(null);
@@ -166,6 +167,7 @@ const WeeklyAnalysis = () => {
                     <Typography>Henüz haftalık analiz yapılmamış.</Typography>
                 )}
             </Grid>
+            <Footer/>
         </Grid>
     );
 };
