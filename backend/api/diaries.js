@@ -2,6 +2,7 @@ import Diary from '../models/Diary';
 import jwt from 'jsonwebtoken';
 import Cors from 'cors';
 import User from '../models/User';
+
 // CORS configuration
 const cors = Cors({
   origin: 'https://diary-ai-0.vercel.app',
@@ -27,22 +28,19 @@ export default async function handler(req, res) {
     await runMiddleware(req, res, cors);
   
     if (req.method === 'GET') {
-      const { username } = req.query;  // Get username from query params
+      const token = req.headers.authorization?.split(' ')[1]; // Extract token
   
-      if (!username) {
-        return res.status(403).send('Username is required.');
+      if (!token) {
+        return res.status(403).send('Token is required.');
       }
   
       try {
-        // Assuming you're fetching the user from the database using username
-        const user = await User.findOne({ username });
+        // Verify token and extract user ID
+        const decoded = jwt.verify(token, "12ksdfm230r4r9k3049k2w4prf");
+        const userId = decoded.id;
   
-        if (!user) {
-          return res.status(404).send('User not found');
-        }
-  
-        // Now fetch the diaries based on userId
-        const entries = await Diary.find({ userId: user._id }).sort({ date: -1 });
+        // Fetch the user's diary entries
+        const entries = await Diary.find({ userId }).sort({ date: -1 });
         res.json(entries);
       } catch (error) {
         res.status(500).json({ error: 'Failed to retrieve diaries.' });
@@ -56,5 +54,4 @@ export default async function handler(req, res) {
     } else {
       res.status(405).end(`Method ${req.method} Not Allowed`);
     }
-  }
-  
+}
