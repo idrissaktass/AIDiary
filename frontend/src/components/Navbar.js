@@ -113,7 +113,7 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
                   <ArrowDropDownIcon />
                 </Button>
               )}
-              <Menu anchorEl={userMenuEl} open={Boolean(userMenuEl)} onClose={handleUserMenuClose}>
+              <Menu anchorEl={userMenuEl} sx={{top:"65px", color:"white", borderRadius:"0px 0px 5px 5px", background: "linear-gradient(to right, #142535, #0f1a26)"}} open={Boolean(userMenuEl)} onClose={handleUserMenuClose}>
                 <MenuItem onClick={onLogout}>
                   <Typography fontSize={"18px"}>Çıkış Yap</Typography>
                 </MenuItem>
