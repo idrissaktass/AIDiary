@@ -94,13 +94,13 @@ const Home = () => {
         navigate("/home")
     };
 
-    // if (isLoggedIn === null) {
-    //     return (
-    //     <Container style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
-    //         <CircularProgress />
-    //     </Container>
-    //     );
-    // }
+    if (isLoggedIn === null) {
+        return (
+        <Container style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
+            <CircularProgress />
+        </Container>
+        );
+    }
 
     const handleDiarySave = (newDiary) => {
         setEntries((prevEntries) => [newDiary, ...prevEntries]);

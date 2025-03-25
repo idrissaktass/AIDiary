@@ -40,9 +40,9 @@ const SignUp = () => {
   };
 
   return (
-    <Grid container justifyContent={"center"}>
+    <Grid container justifyContent={"center"} >
       <Navbar />
-      <Grid mt={5}>
+      <Grid mt={5} paddingTop={{xs:"12%", sm:"10%", md:"8%", lg:"5%"}}>
         <Typography variant="h4" gutterBottom>Kayıt Ol</Typography>
         {error && <Typography color="error" mb={2}>{error}</Typography>}
         <TextField

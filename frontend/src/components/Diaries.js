@@ -91,7 +91,7 @@ const Diaries = () => {
   return (
     <>
     <Navbar username={username} onLogout={handleLogout} />
-    <Grid container spacing={3} direction="column" alignItems="center" py={5}>
+    <Grid container spacing={3} direction="column" alignItems="center" paddingBottom={5} paddingTop={{xs:"12%", sm:"10%", md:"8%", lg:"5%"}}>
       <Typography variant="h4" gutterBottom>
         Günlüklerim
       </Typography>

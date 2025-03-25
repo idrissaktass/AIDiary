@@ -106,7 +106,7 @@ const WeeklyAnalysis = () => {
     return (
         <Grid bgcolor={"#de6f1814"} minHeight={"100vh"}>
             <Navbar username={username} onLogout={handleLogout} />
-            <Grid container size={{ xs: 12, sm: 10, md: 8 }} display={"flex"} flexDirection={"column"} alignItems={"center"} mt={5} gap={2}>
+            <Grid paddingTop={{xs:"12%", sm:"10%", md:"8%", lg:"5%"}} container size={{ xs: 12, sm: 10, md: 8 }} display={"flex"} flexDirection={"column"} alignItems={"center"} mt={5} gap={2}>
                 <Grid my={3} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
                     <Typography variant="body1" mb={2} textAlign={"start"}>
                         Bu sayfa, son üç girişinizin analizini sunar. Ruh halinizi daha iyi anlayabilmek için yazdığınız her notu dikkate alır.
