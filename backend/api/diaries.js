@@ -32,6 +32,7 @@ export default async function handler(req, res) {
     await dbConnect();
   
     if (req.method === 'GET') {
+      console.log("girdi")
       const token = req.headers.authorization?.split(' ')[1]; // Extract token
   
       if (!token) {
@@ -39,12 +40,14 @@ export default async function handler(req, res) {
       }
   
       try {
+        console.log("try")
         // Verify token and extract user ID
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const userId = decoded.id;
   
         // Fetch the user's diary entries from the database
         const entries = await Diary.find({ userId }).sort({ date: -1 });
+        console.log("entries", entries)
         res.json(entries);
       } catch (error) {
         res.status(500).json({ error: 'Failed to retrieve diaries.' });
