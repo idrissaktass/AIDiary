@@ -175,7 +175,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
                   </Button>
               )}
           </Grid>
-          {!selectedDiary && !mood && loadingRecentMood ? ( // Display loading indicator while fetching recent mood
+          {loadingRecentMood ? ( // Display loading indicator while fetching recent mood
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -185,7 +185,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
                 <CircularProgress />
               </Grid>
             </motion.div>
-          ) : selectedDiary && recentMood && (
+          ) : (!selectedDiary && recentMood) && (
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
