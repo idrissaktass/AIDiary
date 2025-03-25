@@ -40,7 +40,7 @@ const SignUp = () => {
   };
 
   return (
-    <Grid container justifyContent={"center"} >
+    <Grid container justifyContent={"center"}  minHeight={"100vh"}>
       <Navbar />
       <Grid mt={5}>
         <Typography variant="h4" gutterBottom>Kayıt Ol</Typography>
