@@ -87,6 +87,7 @@ const Home = () => {
 
     const handleDiaryClick = (entry) => {
         setSelectedDiary(entry);
+        setDrawerOpen(false);
     };
 
     const handleNewDiary = () => {
