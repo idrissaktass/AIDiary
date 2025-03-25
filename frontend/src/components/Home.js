@@ -52,6 +52,7 @@ const Home = () => {
     };
 
     const fetchEntries = async (token) => {
+        console.log(localStorage.getItem("token"));
         setLoadingEntries(true); 
         try {
             const res = await axios.get("https://ai-diary-backend-gamma.vercel.app/api/diaries", {
