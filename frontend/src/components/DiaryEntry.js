@@ -185,7 +185,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
                 <CircularProgress />
               </Grid>
             </motion.div>
-          ) : recentMood && (
+          ) : selectedDiary && recentMood && (
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
