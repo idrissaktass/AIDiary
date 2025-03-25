@@ -14,6 +14,7 @@ const WeeklyAnalysis = () => {
     const navigate = useNavigate();
     const [weeklyAnalyses, setWeeklyAnalyses] = useState([]);
     const [expandedAnalysis, setExpandedAnalysis] = useState(null); 
+    const [loadingAnalysis, setLoadingAnalaysis] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -26,6 +27,7 @@ const WeeklyAnalysis = () => {
     }, []);
 
     const fetchWeeklyAnalyses = async (token) => {
+        setLoading(true);
         try {
             const response = await axios.get("https://ai-diary-backend-gamma.vercel.app/api/weekly-analyses", {
                 headers: {
@@ -61,7 +63,7 @@ const WeeklyAnalysis = () => {
     };
 
     const handleWeeklyAnalysis = async () => {
-        setLoading(true);
+        setLoadingAnalaysis(true);
         try {
             const token = localStorage.getItem("token");
             const response = await axios.post(
@@ -80,7 +82,7 @@ const WeeklyAnalysis = () => {
                 setCanAnalyze(false);
             }
         } finally {
-            setLoading(false);
+            setLoadingAnalaysis(false);
         }
     };
 
@@ -117,20 +119,20 @@ const WeeklyAnalysis = () => {
                     variant="contained"
                     color="primary"
                     onClick={handleWeeklyAnalysis}
-                    disabled={loading || !canAnalyze || weeklyAnalysis}
+                    disabled={loadingAnalysis || !canAnalyze || weeklyAnalysis}
                 >
                     <Typography variant="h6">Haftalık Analizi Al</Typography>
                 </Button>
-                {loading && <Typography>Yükleniyor...</Typography>}
+                {loadingAnalysis && <Typography>Yükleniyor...</Typography>}
 
                 {weeklyAnalysis && (
-                    <Grid mt={3} mb={5} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
+                    <Grid mt={3} mb={5} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"rgba(128, 0, 0, 0.04)"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
                         <Typography variant="h6" mb={2}>Haftalık Ruh Hali Analizi</Typography>
-                        <Typography sx={{backgroundColor:"rgba(128, 0, 0, 0.04)"}}>{weeklyAnalysis}</Typography>
+                        <Typography>{weeklyAnalysis}</Typography>
                     </Grid>
                 )}
             </Grid>
-            <Grid container justifyContent={"center"} mt={10} gap={2}>
+            <Grid container justifyContent={"center"} mt={2} gap={2}>
                 <Grid size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }}>
                   <Typography variant="h6">Haftalık Analizler</Typography>
                 </Grid>
