@@ -106,6 +106,11 @@ const Home = () => {
         setEntries((prevEntries) => [newDiary, ...prevEntries]);
         fetchEntries(localStorage.getItem("token"));
     };
+
+    const handleDrawerClose = () => {
+        setDrawerOpen(false);
+    };
+    
     return (
         <Grid container justifyContent={"center"} width={"100%"} minHeight={"100vh"}>
             {isLoggedIn && (
@@ -152,7 +157,6 @@ const Home = () => {
                                 position: "absolute",
                                 top: 10,
                                 right: 10,
-                                color: "#fff",
                                 backgroundColor: "transparent",
                                 border: "none",
                                 cursor: "pointer",
