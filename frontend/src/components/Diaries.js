@@ -89,7 +89,7 @@ const Diaries = () => {
 };
 
   return (
-    <>
+    <Grid  minHeight={"100vh"}>
     <Navbar username={username} onLogout={handleLogout} />
     <Grid container spacing={3} direction="column" alignItems="center" py={5}>
       <Typography variant="h4" gutterBottom>
@@ -160,7 +160,7 @@ const Diaries = () => {
         </Button>
       </Grid>
     </Grid>
-  </>
+  </Grid>
   );
 };
 
