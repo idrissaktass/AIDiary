@@ -2,6 +2,7 @@ import Diary from '../models/Diary';
 import jwt from 'jsonwebtoken';
 import Cors from 'cors';
 import User from '../models/User';
+import dbConnect from '../utils/dbConnect';
 
 // CORS configuration
 const cors = Cors({
@@ -26,6 +27,9 @@ const runMiddleware = (req, res, fn) => {
 export default async function handler(req, res) {
     // Run CORS middleware
     await runMiddleware(req, res, cors);
+    
+    // Connect to the database
+    await dbConnect();
   
     if (req.method === 'GET') {
       const token = req.headers.authorization?.split(' ')[1]; // Extract token
@@ -36,10 +40,10 @@ export default async function handler(req, res) {
   
       try {
         // Verify token and extract user ID
-        const decoded = jwt.verify(token, "12ksdfm230r4r9k3049k2w4prf");
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const userId = decoded.id;
   
-        // Fetch the user's diary entries
+        // Fetch the user's diary entries from the database
         const entries = await Diary.find({ userId }).sort({ date: -1 });
         res.json(entries);
       } catch (error) {
