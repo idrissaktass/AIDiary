@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextField, Button, Typography, Container, Box } from "@mui/material";
+import { TextField, Button, Typography, Container, Box, CircularProgress } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Grid } from '@mui/system';
@@ -11,14 +11,18 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
+    setLoading(true);
     try {
       const res = await axios.post("https://ai-diary-backend-gamma.vercel.app/api/login", { username, password });
       localStorage.setItem("token", res.data.token);
       navigate("/home");
     } catch (err) {
       setError("Giriş başarısız!");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -46,7 +50,7 @@ const Login = () => {
           style={{ marginBottom: 20 }}
         />
         <Box display="flex" justifyContent="space-between">
-          <Button variant="contained" color="primary" onClick={handleLogin}>Giriş Yap</Button>
+          <Button variant="contained" color="primary" onClick={handleLogin}>{loading ? <CircularProgress color="white" sx={{width:"22px !important", height:"22px !important"}}/> : "Giriş Yap" }</Button>
           <Button color="secondary" onClick={() => navigate("/signup")}>Kayıt Ol</Button>
         </Box>
         </Grid>

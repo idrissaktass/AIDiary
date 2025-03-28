@@ -114,7 +114,6 @@ const Home = () => {
 
     return (
         <Grid container justifyContent={"center"} width={"100%"} minHeight={"calc(100vh - 60px)"}>
-            {isLoggedIn && (
                 <Navbar 
                 onLogout={handleLogout} 
                 onNewDiary={handleNewDiary} 
@@ -122,9 +121,7 @@ const Home = () => {
                 drawerOpen={drawerOpen} 
                 username={username}
                 />
-            )}
 
-            {isLoggedIn ? (
                 <Grid container justifyContent={{xs:"center", sm:"center", md:"start", lg:"center"}} width={"100%"}>
                     <Grid size={{xs:12, sm:11, md:8.5, lg:8.5}} display={"flex"} justifyContent={"center"} paddingTop={{xs:"15%", sm:"10%", md:"8%", lg:"5%"}}>
                         {selectedDiary ? (
@@ -176,9 +173,7 @@ const Home = () => {
                 </Drawer>
 
                 </Grid>
-            ) : (
-                <Login onLogin={() => setIsLoggedIn(true)} />
-            )}
+
         </Grid>
     );
 };

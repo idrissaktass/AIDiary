@@ -30,36 +30,41 @@ export default async function handler(req, res) {
 
   if (req.method === 'POST') {
     const { username, email, password } = req.body;
-
+  
     try {
       await dbConnect();
-
-      // Check if the email already exists
+  
+      // Email ve Kullanıcı Adı Kontrolü
       const existingUser = await User.findOne({ email });
       if (existingUser) {
-        return res.status(400).json({ error: "Bu email zaten kayıtlı." });
+        return res.status(400).json({ error: "email zaten var" });
       }
-
-      // Hash the password before saving
+  
+      const existingUsername = await User.findOne({ username });
+      if (existingUsername) {
+        return res.status(400).json({ error: "username zaten var" });
+      }
+  
+      // Şifreyi hash'le
       const hashedPassword = await bcrypt.hash(password, 10);
-
-      // Create a new user
+  
+      // Kullanıcı oluştur
       const newUser = new User({ username, email, password: hashedPassword });
       await newUser.save();
-
-      // Generate a JWT token
+  
+      // JWT Token oluştur
       const token = jwt.sign(
         { userId: newUser._id, username: newUser.username },
         "12ksdfm230r4r9k3049k2w4prf",
         { expiresIn: '5d' }
       );
-
-      // Return success response with token
+  
       res.status(201).json({ message: 'User created successfully', token });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
-  } else if (req.method === 'OPTIONS') {
+  }
+   else if (req.method === 'OPTIONS') {
     // Handle OPTIONS preflight requests
     res.setHeader('Access-Control-Allow-Origin', 'https://diary-ai-0.vercel.app');
     res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, PUT, PATCH, POST, DELETE');

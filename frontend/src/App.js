@@ -24,7 +24,7 @@ function AppContent() {
         <Route path="/diaries" element={<PrivateRoute><Diaries /></PrivateRoute>} />
       </Routes>
 
-      {!hideFooterRoutes.includes(location.pathname) && <Footer />}
+      {!hideFooterRoutes.includes(location.pathname) && <Footer/>}
     </div>
   );
 }

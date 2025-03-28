@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextField, Button, Typography, Container, Box } from "@mui/material";
+import { TextField, Button, Typography, CircularProgress, Box } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Grid } from '@mui/system';
@@ -12,21 +12,26 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleSignUp = async () => {
+    setLoading(true);
     if (username.length < 6) {
       setError("Kullanıcı adı en az 6 karakter olmalı.");
+      setLoading(false);
       return;
     }
 
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (!emailRegex.test(email)) {
       setError("Geçerli bir email adresi girin.");
+      setLoading(false);
       return;
     }
 
     if (password.length < 6) {
       setError("Şifre en az 6 karakter olmalı.");
+      setLoading(false);
       return;
     }
 
@@ -34,8 +39,21 @@ const SignUp = () => {
       await axios.post("https://ai-diary-backend-gamma.vercel.app/api/signup", { username, email, password });
       alert("Kayıt başarılı, lütfen giriş yapın.")
       navigate("/login");
-    } catch (err) {
-      setError("Kayıt sırasında bir hata oluştu.");
+    }  catch (err) {
+      if (err.response && err.response.data && err.response.data.error) {
+        if (err.response.data.error === "email zaten var") {
+          setError("Bu email zaten kullanılıyor.");
+        } else if (err.response.data.error === "username zaten var") {
+          setError("Bu kullanıcı adı zaten kullanılıyor.");
+        }
+         else {
+          setError(err.response.data.error);
+        }
+      } else {
+        setError("Kayıt sırasında bir hata oluştu.");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -71,7 +89,7 @@ const SignUp = () => {
           style={{ marginBottom: 20 }}
         />
         <Box display="flex" justifyContent="space-between">
-          <Button variant="contained" color="primary" onClick={handleSignUp}>Kayıt Ol</Button>
+          <Button variant="contained" color="primary" onClick={handleSignUp}>{loading ? <CircularProgress color="white" sx={{width:"22px !important", height:"22px !important"}}/> : "Kayıt Ol" }</Button>
           <Button color="secondary" onClick={() => navigate("/login")}>Giriş Yap</Button>
         </Box>
       </Grid>
