@@ -44,17 +44,27 @@ export default async function handler(req, res) {
     try {
       const decoded = jwt.verify(token, "12ksdfm230r4r9k3049k2w4prf");
 
-      // OpenAI request to analyze mood
+      // OpenAI request to analyze mood, happiness, and stress
       const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
           { role: 'system', content: 'Sen bir ruh hali analizcisinsin.' },
-          { role: "user", content: `Bu girdinin ruh hali nedir? Bir terapist gibi sade bir dil ile biraz ayrintili acikla ve tavsiyeler ver. Mümkünse analizin sonuna bir quote ekle. Eğer anlamsız bir kelime veya anlamsız cumleler yazılmışsa analiz etme ve "Anladıysam arap olayım" yaz.: ${text}` },
+          { role: "user", content: `Bu girdinin ruh hali nedir? Bir terapist gibi sade bir dil ile biraz ayrıntılı açıklama yap ve tavsiyeler ver. Mümkünse analizin sonuna bir quote ekle. Eğer anlamsız bir kelime veya anlamsız cümleler yazılmışsa analiz etme ve "Anladıysam arap olayım" yaz. Ayrıca, bu yazıya bir mutluluk ve stres puanı ver. Mutluluk puanı 1-10 arasında, stres puanı da 1-10 arasında olmalıdır. İşte yazı: ${text}` },
         ],
       });
 
-      // Return the mood analysis
-      res.json({ mood: response.choices[0].message.content });
+      // Extract the mood, happiness score, and stress score from the response
+      const analysis = response.choices[0].message.content;
+      const happinessScore = extractHappinessScore(analysis);  // Custom function to extract score
+      const stressScore = extractStressScore(analysis);        // Custom function to extract score
+
+      // Return the mood analysis and scores
+      res.json({ 
+        mood_analysis: analysis, 
+        happiness_score: happinessScore, 
+        stress_score: stressScore
+      });
+
     } catch (error) {
       res.status(500).json({ error: 'AI request failed.' });
     }
@@ -69,3 +79,17 @@ export default async function handler(req, res) {
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
+
+// Helper functions to extract happiness and stress scores from the AI response
+function extractHappinessScore(analysis) {
+  // Extracts happiness score from the analysis (you may adjust this regex to match the actual AI response format)
+  const match = analysis.match(/Mutluluk Skoru: (\d+\/10)/);
+  return match ? parseInt(match[1].split('/')[0]) : null;
+}
+
+function extractStressScore(analysis) {
+  // Extracts stress score from the analysis (similar to happiness score extraction)
+  const match = analysis.match(/Stres Skoru: (\d+\/10)/);
+  return match ? parseInt(match[1].split('/')[0]) : null;
+}
+

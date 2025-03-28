@@ -66,12 +66,14 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
           },
         }
       );
-      console.log("xxxx", res.data)
+      
+      console.log("AI Response:", res.data);
+
       setShowMood(false);  
       setTimeout(() => {  
-        setMood(res.data.mood);
-        setHappinessScore(res.data.happinessScore);
-        setStressScore(res.data.stressScore);
+        setMood(res.data.mood_analysis);  
+        setHappinessScore(res.data.happiness_score);  
+        setStressScore(res.data.stress_score);  
         setShowMood(true); 
         setLoading(false);  
       }, 500);
