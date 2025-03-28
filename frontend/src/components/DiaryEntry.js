@@ -66,12 +66,13 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
           },
         }
       );
-      console.log("xxxx", res.data)
+      console.log("AI Response:", res.data); // Konsolda yanıtı tam olarak kontrol edin
+  
       setShowMood(false);  
       setTimeout(() => {  
-        setMood(res.data.mood);
-        setHappinessScore(res.data.happinessScore);
-        setStressScore(res.data.stressScore);
+        setMood(res.data.mood_analysis);  // Ruh halini burada alıyoruz
+        setHappinessScore(res.data.happiness_score);  // Mutluluk skorunu burada alıyoruz
+        setStressScore(res.data.stress_score);  // Stres skorunu burada alıyoruz
         setShowMood(true); 
         setLoading(false);  
       }, 500);
@@ -81,6 +82,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
       setLoading(false);
     }
   };
+  
 
   const saveDiary = async () => {
     setSaving(true);  
