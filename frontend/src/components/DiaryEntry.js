@@ -66,9 +66,9 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
           },
         }
       );
+      console.log("xxxx", res.data)
       setShowMood(false);  
       setTimeout(() => {  
-        setMood(res.data.mood);
         setMood(res.data.mood);
         setHappinessScore(res.data.happinessScore);
         setStressScore(res.data.stressScore);
