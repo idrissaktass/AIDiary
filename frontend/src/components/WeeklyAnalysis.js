@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 import { Grid } from '@mui/system';
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from '@mui/x-charts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from '@mui/x-charts';
 
 const WeeklyAnalysis = () => {
     const [weeklyAnalysis, setWeeklyAnalysis] = useState(null);
@@ -168,7 +168,6 @@ const WeeklyAnalysis = () => {
                 return (
                   <Grid item key={period}>
                     <Typography variant="h6">{period.charAt(0).toUpperCase() + period.slice(1)} Happiness and Stress Scores</Typography>
-                    <ResponsiveContainer width="100%" height={300}>
                       <LineChart data={chartData}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="date" />
@@ -178,7 +177,6 @@ const WeeklyAnalysis = () => {
                         <Line type="monotone" dataKey="happinessScore" stroke="#8884d8" />
                         <Line type="monotone" dataKey="stressScore" stroke="#82ca9d" />
                       </LineChart>
-                    </ResponsiveContainer>
                   </Grid>
                 );
               })}
