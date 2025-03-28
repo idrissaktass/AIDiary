@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import { Grid } from '@mui/system';
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from '@mui/x-charts';
 
 const WeeklyAnalysis = () => {
     const [weeklyAnalysis, setWeeklyAnalysis] = useState(null);
@@ -16,6 +17,7 @@ const WeeklyAnalysis = () => {
     const [weeklyAnalyses, setWeeklyAnalyses] = useState([]);
     const [expandedAnalysis, setExpandedAnalysis] = useState(null); 
     const [loadingAnalysis, setLoadingAnalaysis] = useState(false);
+    const [diaryEntries, setDiaryEntries] = useState([]);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -87,6 +89,49 @@ const WeeklyAnalysis = () => {
         }
     };
 
+    const fetchDiaryEntries = async (token) => {
+        try {
+          const response = await axios.get("https://ai-diary-backend-gamma.vercel.app/api/diaries", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setDiaryEntries(response.data);
+        } catch (error) {
+          console.error("Diary entries fetching failed:", error);
+        }
+      };
+
+      const filterDiaryEntriesByPeriod = (entries, period) => {
+        const now = new Date();
+        const filteredEntries = entries.filter((entry) => {
+          const entryDate = new Date(entry.date);
+          switch (period) {
+            case "weekly":
+              return entryDate >= new Date(now.setDate(now.getDate() - 7));
+            case "monthly":
+              return entryDate >= new Date(now.setMonth(now.getMonth() - 1));
+            case "yearly":
+              return entryDate >= new Date(now.setFullYear(now.getFullYear() - 1));
+            default:
+              return true;
+          }
+        });
+        return filteredEntries;
+      };
+    
+      // Function to prepare data for the chart (happiness score over time)
+      const prepareChartData = (entries, period) => {
+        const filteredEntries = filterDiaryEntriesByPeriod(entries, period);
+        const chartData = filteredEntries.map((entry) => ({
+          date: new Date(entry.date).toLocaleDateString(),
+          happinessScore: entry.happinessScore,
+          stressScore: entry.stressScore,
+        }));
+        return chartData;
+      };
+    
+
     const handleLogout = () => {
         localStorage.removeItem("token");
         setIsLoggedIn(false);
@@ -104,7 +149,7 @@ const WeeklyAnalysis = () => {
     console.log("xd", weeklyAnalyses)
 
     return (
-        <Grid bgcolor={"#de6f1814"} minHeight={"calc(100vh - 50px)"} paddingBottom={7}>
+        <Grid bgcolor={"#de6f1814"} minHeight={"calc(100vh - 60px)"} paddingBottom={7}>
             <Navbar username={username} onLogout={handleLogout} />
             <Grid container size={{ xs: 12, sm: 10, md: 8 }} display={"flex"} flexDirection={"column"} alignItems={"center"} mt={5} gap={2}>
                 <Grid my={3} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
@@ -115,6 +160,30 @@ const WeeklyAnalysis = () => {
                         Bu özellik, ruh halinizi düzenli olarak takip etmenizi sağlar. Haftalık analizler, duygu durumunuzu anlamada yardımcı olabilir.
                     </Typography>
                 </Grid>
+                          <Grid size={{ xs: 12 }}>
+            {/* Graphs */}
+            <Grid container justifyContent={"center"} gap={2}>
+              {["weekly", "monthly", "yearly"].map((period) => {
+                const chartData = prepareChartData(diaryEntries, period);
+                return (
+                  <Grid item key={period}>
+                    <Typography variant="h6">{period.charAt(0).toUpperCase() + period.slice(1)} Happiness and Stress Scores</Typography>
+                    <ResponsiveContainer width="100%" height={300}>
+                      <LineChart data={chartData}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="date" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Line type="monotone" dataKey="happinessScore" stroke="#8884d8" />
+                        <Line type="monotone" dataKey="stressScore" stroke="#82ca9d" />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </Grid>
                 <Button
                     sx={{ width: "fit-content", backgroundColor: "#1764b0" }}
                     variant="contained"
