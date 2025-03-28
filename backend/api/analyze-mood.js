@@ -51,7 +51,7 @@ export default async function handler(req, res) {
           { role: 'system', content: 'Sen bir ruh hali analizcisinsin.' },
           { 
             role: "user", 
-            content: `Bu girdinin ruh hali nedir? Bir terapist gibi sade bir dil ile ayrıntılı açıklama yap ve birçok tavsiyeler ver. Mümkünse analizin sonuna bir quote ekle. Eğer anlamsız bir kelime veya anlamsız cümleler yazılmışsa "Anladıysam arap olayım" yaz. Ayrıca günlüğe mutluluk puanı ve stres puanı ver ancak önce mood analizini yaz, alt satıra "Happiness Score: skor/10", ve bir alt satıra "Stress Score: skor/10" ver. Sadece şu formatta cevap ver:
+            content: `Bu girdinin ruh hali nedir? Bir terapist gibi sade bir dil ile ayrıntılı açıklama yap ve birçok tavsiyeler ver. Mümkünse analizin sonuna alıntı ekle. Eğer anlamsız bir kelime veya anlamsız cümleler yazılmışsa "Anladıysam arap olayım" yaz. Ayrıca günlüğe mutluluk puanı ve stres puanı ver ancak önce mood analizini yaz, alt satıra "Happiness Score: skor/10", ve bir alt satıra "Stress Score: skor/10" ver. Sadece şu formatta cevap ver:
 
             - Mood Analysis: [mood description]
             - Happiness Score: [score between 1 and 10]
