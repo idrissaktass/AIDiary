@@ -54,6 +54,7 @@ export default async function handler(req, res) {
 
       // Fetch the latest 3 diary entries
       const threeEntries = await Diary.find({ userId: decoded.userId }).sort({ date: -1 }).limit(3);
+      console.log("last entries", threeEntries)
       if (threeEntries.length < 3) {
         return res.status(400).send('Need 3 diary entries for weekly analysis.');
       }
