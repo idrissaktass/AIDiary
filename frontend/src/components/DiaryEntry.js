@@ -15,7 +15,9 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
   const [severity, setSeverity] = useState("success"); 
   const [saving, setSaving] = useState(false); 
   const [loadingRecentMood, setLoadingRecentMood] = useState(false);
-
+  const [happinessScore, setHappinessScore] = useState(null);
+  const [stressScore, setStressScore] = useState(null);
+  
   useEffect(() => {
     if (selectedDiary) {
       setText(selectedDiary.text);
@@ -67,6 +69,9 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
       setShowMood(false);  
       setTimeout(() => {  
         setMood(res.data.mood);
+        setMood(res.data.mood);
+        setHappinessScore(res.data.happinessScore);
+        setStressScore(res.data.stressScore);
         setShowMood(true); 
         setLoading(false);  
       }, 500);
@@ -84,7 +89,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
       console.log('try')
       const res = await axios.post(
         "https://ai-diary-backend-gamma.vercel.app/api/save-diary",
-        { text, mood, token, userId: selectedDiary ? selectedDiary.userId : null },
+        { text, mood, happinessScore, stressScore, token, userId: selectedDiary ? selectedDiary.userId : null },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -157,11 +162,20 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.2 }}
           >
-            <Typography variant="body1" bgcolor={"#8000000a"} padding={"30px"} mt={2} textAlign={"start"}>
-              Ruh Halin: {mood}
-            </Typography>
+            <Grid bgcolor={"#8000000a"} padding={"30px"} mt={2} textAlign={"start"}>
+              <Typography variant="body1">
+                Ruh Halin: {mood}
+              </Typography>
+              <Typography variant="body1" mt={1}>
+                Mutluluk Skoru: {happinessScore}/10
+              </Typography>
+              <Typography variant="body1" mt={1}>
+                Stres Skoru: {stressScore}/10
+              </Typography>
+            </Grid>
           </motion.div>
         )}
+
         
         <Grid display={"flex"} gap={2} my={5} justifyContent={"center"} width={"100%"}>
               {!mood && (

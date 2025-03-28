@@ -36,7 +36,7 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
-    const { text, mood, token } = req.body;
+    const { text, mood, happinessScore, stressScore, token } = req.body;
 
     if (!token) {
       return res.status(403).send('Token is required.');
@@ -51,6 +51,8 @@ export default async function handler(req, res) {
       const newDiary = new Diary({
         text,
         mood,
+        happinessScore, // Mutluluk skoru
+        stressScore,    // Stres skoru
         userId: decoded.userId,
       });
 
