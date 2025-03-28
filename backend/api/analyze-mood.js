@@ -49,14 +49,28 @@ export default async function handler(req, res) {
         model: 'gpt-3.5-turbo',
         messages: [
           { role: 'system', content: 'Sen bir ruh hali analizcisinsin.' },
-          { role: "user", content: `Bu girdinin ruh hali nedir? Bir terapist gibi sade bir dil ile biraz ayrıntılı açıklama yap ve tavsiyeler ver. Mümkünse analizin sonuna bir quote ekle. Eğer anlamsız bir kelime veya anlamsız cümleler yazılmışsa analiz etme ve "Anladıysam arap olayım" yaz. Ayrıca, bu yazıya bir mutluluk ve stres puanı ver. Mutluluk puanı 1-10 arasında, stres puanı da 1-10 arasında olmalıdır. İşte yazı: ${text}` },
+          { 
+            role: "user", 
+            content: `Bu girdinin ruh hali nedir? Bir terapist gibi sade bir dil ile biraz ayrıntılı açıklama yap ve tavsiyeler ver. Mümkünse analizin sonuna bir quote ekle. Eğer anlamsız bir kelime veya anlamsız cümleler yazılmışsa analiz etme ve "Anladıysam arap olayım" yaz. Ayrıca, mutluluk ve stres puanlarını yalnızca sayısal olarak ver. "Mutluluk Skoru: 7/10, Stres Skoru: 3/10" gibi açıklamalar istemiyorum. Sadece şu formatta cevap ver: 
+
+            - Mood Analysis: [mood description]
+            - Happiness Score: [score between 1 and 10]
+            - Stress Score: [score between 1 and 10]
+            
+            İşte yazı: ${text}`
+          },
         ],
       });
 
-      // Extract the mood, happiness score, and stress score from the response
+      // Extract mood analysis, happiness score, and stress score from the response
       const analysis = response.choices[0].message.content;
-      const happinessScore = extractHappinessScore(analysis);  // Custom function to extract score
-      const stressScore = extractStressScore(analysis);        // Custom function to extract score
+
+      // Match for the happiness and stress scores
+      const happinessScoreMatch = analysis.match(/Happiness Score: (\d+)/);
+      const stressScoreMatch = analysis.match(/Stress Score: (\d+)/);
+
+      const happinessScore = happinessScoreMatch ? parseInt(happinessScoreMatch[1]) : null;
+      const stressScore = stressScoreMatch ? parseInt(stressScoreMatch[1]) : null;
 
       // Return the mood analysis and scores
       res.json({ 
@@ -79,17 +93,3 @@ export default async function handler(req, res) {
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
-
-// Helper functions to extract happiness and stress scores from the AI response
-function extractHappinessScore(analysis) {
-  // Extracts happiness score from the analysis (you may adjust this regex to match the actual AI response format)
-  const match = analysis.match(/Mutluluk Skoru: (\d+\/10)/);
-  return match ? parseInt(match[1].split('/')[0]) : null;
-}
-
-function extractStressScore(analysis) {
-  // Extracts stress score from the analysis (similar to happiness score extraction)
-  const match = analysis.match(/Stres Skoru: (\d+\/10)/);
-  return match ? parseInt(match[1].split('/')[0]) : null;
-}
-
