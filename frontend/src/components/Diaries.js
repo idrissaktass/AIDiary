@@ -57,6 +57,7 @@ const Diaries = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+        console.log("diaries", response.data)
         setDiaries(response.data);
         setTotalPages(Math.ceil(response.data.length / diariesPerPage)); 
       } catch (error) {
