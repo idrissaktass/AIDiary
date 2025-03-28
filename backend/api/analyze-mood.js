@@ -69,6 +69,7 @@ export default async function handler(req, res) {
         ],
         response_format: "json",
       });
+      
       console.log("ai response", response.choices[0].message.content)
       // Return the response JSON
       res.json(JSON.parse(response.choices[0].message.content));
