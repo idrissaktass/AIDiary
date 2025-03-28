@@ -29,6 +29,7 @@ const runMiddleware = (req, res, fn) => {
 };
 
 export default async function handler(req, res) {
+  // Run CORS middleware
   await runMiddleware(req, res, cors);
   await dbConnect();
 
@@ -43,50 +44,27 @@ export default async function handler(req, res) {
     try {
       const decoded = jwt.verify(token, "12ksdfm230r4r9k3049k2w4prf");
 
-      // OpenAI API request for mood analysis, happiness & stress score
+      // OpenAI request to analyze mood
       const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
           { role: 'system', content: 'Sen bir ruh hali analizcisinsin.' },
-          { 
-            role: "user", 
-            content: `Aşağıdaki günlük girdisini analiz et:
-            - Bu girdinin ruh hali nedir? Bir terapist gibi sade bir dil ile biraz ayrintili acikla ve tavsiyeler ver.Eğer anlamsız bir kelime veya anlamsız cumleler yazılmışsa analiz etme ve "Anladıysam arap olayım" yaz.
-            - 10 üzerinden bir mutluluk skoru ver (0: çok mutsuz, 10: çok mutlu). Olumlu içerikler ve güzel şeyler üzerinden değerlendir.
-            - 10 üzerinden bir stres skoru ver (0: hiç stresli değil, 10: çok stresli). Olumsuz şeyler ve stres verici düşünceler üzerinden değerlendir.
-            - Son olarak, mümkünse analizin sonuna bir quote ekle. 
-
-            Günlük: "${text}"
-            
-            Yanıtını sadece şu JSON formatında ver:
-            {
-              "mood_analysis": "<ruh hali açıklaması>",
-              "happiness_score": <mutluluk skoru>,
-              "stress_score": <stres skoru>,
-              "quote": "<motivasyon sözü>"
-            }`
-          },
+          { role: "user", content: `Bu girdinin ruh hali nedir? Bir terapist gibi sade bir dil ile biraz ayrintili acikla ve tavsiyeler ver. Mümkünse analizin sonuna bir quote ekle. Eğer anlamsız bir kelime veya anlamsız cumleler yazılmışsa analiz etme ve "Anladıysam arap olayım" yaz.: ${text}` },
         ],
-        response_format: "json",
       });
-      
-      console.log("OpenAI Response:", response.choices[0].message.content);
 
-      // JSON formatındaki veriyi ayrıştıralım
-      const moodData = JSON.parse(response.choices[0].message.content);
-      
-      // Bu veriyi döndürelim
-      res.json(moodData);
+      // Return the mood analysis
+      res.json({ mood: response.choices[0].message.content });
     } catch (error) {
-      console.error('AI request failed:', error);
       res.status(500).json({ error: 'AI request failed.' });
     }
   } else if (req.method === 'OPTIONS') {
     res.setHeader('Access-Control-Allow-Origin', 'https://diary-ai-0.vercel.app');
     res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, PUT, PATCH, POST, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.status(204).end();
+    res.status(204).end(); // No content for OPTIONS method
   } else {
+    // Method not allowed for anything other than POST or OPTIONS
     res.setHeader('Allow', ['POST', 'OPTIONS']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
