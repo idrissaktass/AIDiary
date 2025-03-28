@@ -100,11 +100,6 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
               <Button color="inherit" sx={{ textTransform: "none" }} onClick={() => handleNavigation("/diaries")}>
                 <Typography variant="h6">Anlattıklarım</Typography>
               </Button>
-              {location.pathname === "/home" && (
-                <Button color="inherit" sx={{ textTransform: "none" }} onClick={() => onToggleDrawer(!drawerOpen)}>
-                  <Typography variant="h6">Geçmiş</Typography>
-                </Button>
-              )}
               <IconButton color="inherit" onClick={handleMenuOpen}>
                 <AccountCircleIcon />
               </IconButton>
