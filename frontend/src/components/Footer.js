@@ -20,7 +20,7 @@ const Footer = () => {
     };
 
     return(
-        <Grid position={"relative"} bottom={0} width={"100%"} sx={{background:"linear-gradient(to right,rgb(10, 19, 31), #294d71, #101e2d)"}} display={"flex"} justifyContent={"space-between"} height={"50px"} alignItems={"center"} p={"30px"}>
+        <Grid position={"relative"} bottom={0} width={"100%"} sx={{background:"linear-gradient(to right,rgb(10, 19, 31), #294d71, #101e2d)"}} display={"flex"} justifyContent={"space-between"} alignItems={"center"} p={"10px 30px 10px 30px"}>
           <Typography onClick={handleLanding} fontSize={"20px"} fontWeight={"700"} color="#de7618" sx={{ cursor: "pointer" }}>
             Diary AI
           </Typography>

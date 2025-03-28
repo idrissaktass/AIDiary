@@ -113,7 +113,7 @@ const Home = () => {
     };
 
     return (
-        <Grid container justifyContent={"center"} width={"100%"} minHeight={"calc(100vh - 60px)"}>
+        <Grid container justifyContent={"center"} width={"100%"} minHeight={"calc(100vh - 50px)"}>
                 <Navbar 
                 onLogout={handleLogout} 
                 onNewDiary={handleNewDiary} 

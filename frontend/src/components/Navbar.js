@@ -1,62 +1,44 @@
 import React, { useState } from "react";
-import { AppBar, Toolbar, Button, Typography, Container, IconButton, Menu, MenuItem } from "@mui/material";
+import { AppBar, Toolbar, Button, Typography, Container, IconButton, Drawer, List, ListItem, ListItemText, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { Link } from "react-router-dom";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import { useNavigate, useLocation } from "react-router-dom";
-import './Navbar.css'; 
-import { styled } from "@mui/system";
-
-const StyledMenu = styled(Menu)(({ theme }) => ({
-  top:"65px",
-  color:"white",
-  borderRadius:"0px 0px 5px 5px",
-  background:"linear-gradient(to right, #142535, #0f1a26)",
-}));
+import useMediaQuery from "@mui/material/useMediaQuery";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import "./Navbar.css";
 
 const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) => {
   const isMobile = useMediaQuery("(max-width:900px)");
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [userMenuEl, setUserMenuEl] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const isHomePage = location.pathname === "/home" || location.pathname === "/signup" || location.pathname === "/login";
+  const isHomePage = ["/home", "/signup", "/login"].includes(location.pathname);
+  const [drawerOpenState, setDrawerOpenState] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+      return;
+    }
+    setDrawerOpenState(open);
+  };
+
+  const handleNavigation = (path) => {
+    navigate(path);
+    setDrawerOpenState(false);
+  };
 
   const handleMenuOpen = (event) => {
+    if(!username) {
+      handleNavigation("/login")
+    }
     setAnchorEl(event.currentTarget);
   };
 
-  const handleUserMenuOpen = (event) => {
-    setUserMenuEl(event.currentTarget);
-  };
-
-  const handleUserMenuClose = () => {
-    setUserMenuEl(null);
-  };
-
-  const handleClick = () => {
-    if (location.pathname === "/home") {
-      window.location.reload();
-    } else {
-      navigate("/home");
-    }
-  };
-
-  const handleWeek = () => {
-    navigate("/weekly-analysis");
-  };
-
-  const handleDiaries = () => {
-    navigate("/diaries");
-  };
-
-  const handleLanding = () => {
-    navigate("/");
+  const handleMenuClose = () => {
+    setAnchorEl(null);
   };
 
   return (
-    <AppBar position={isHomePage ? "absolute" : "static"} color="transparent" sx={{ zIndex: "999" }} className="navbar">
+    <AppBar position={isHomePage ? "absolute" : "static"} color="transparent" sx={{ zIndex: 999 }} className="navbar">
       <div className="video-navbar">
         <video className="video-nav" autoPlay loop muted>
           <source src="/assets/background.mp4" type="video/mp4" />
@@ -65,67 +47,73 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
       </div>
       <Container maxWidth="xl">
         <Toolbar sx={{ color: "white" }}>
-          <Typography onClick={handleLanding} fontSize={"24px"} fontWeight={"800"} color="#de7618" sx={{ flexGrow: 1, cursor: "pointer" }}>
+          <Typography onClick={() => handleNavigation("/")} fontSize="24px" fontWeight="800" color="#de7618" sx={{ flexGrow: 1, cursor: "pointer" }}>
             Diary AI
           </Typography>
 
           {isMobile ? (
             <>
-              <IconButton color="inherit" onClick={handleMenuOpen}>
+              <IconButton color="inherit" onClick={toggleDrawer(true)}>
                 <MenuIcon />
               </IconButton>
-              <StyledMenu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
-                {username && (
-                  <MenuItem>
-                    <Typography fontSize={"18px"}>{username}</Typography>
-                  </MenuItem>
-                )}
-                <MenuItem onClick={() => { handleClick(); setAnchorEl(null); }}>
-                  <Typography fontSize={"18px"}>Anlat Bakalım</Typography>
-                </MenuItem>
-                <MenuItem onClick={handleWeek}>
-                  <Typography fontSize={"18px"}>Haftalık Analiz</Typography>
-                </MenuItem>
-                <MenuItem onClick={handleDiaries}>
-                  <Typography fontSize={"18px"}>Anlattıklarım</Typography>
-                </MenuItem>
-                {location.pathname === "/home" && (
-                  <MenuItem onClick={() => { onToggleDrawer(!drawerOpen); setAnchorEl(null); }}>
-                    <Typography fontSize={"18px"}>Geçmiş</Typography>
-                  </MenuItem>
-                )}
-                <MenuItem onClick={onLogout}>
-                  <Typography fontSize={"18px"}>Çıkış Yap</Typography>
-                </MenuItem>
-              </StyledMenu>
+              <Drawer anchor="right" open={drawerOpenState} onClose={toggleDrawer(false)}>
+                <List>
+                  <ListItem button onClick={() => handleNavigation("/home")}>
+                    <ListItemText primary="Anlat Bakalım" />
+                  </ListItem>
+                  <ListItem button onClick={() => handleNavigation("/weekly-analysis")}>
+                    <ListItemText primary="Haftalık Analiz" />
+                  </ListItem>
+                  <ListItem button onClick={() => handleNavigation("/diaries")}>
+                    <ListItemText primary="Anlattıklarım" />
+                  </ListItem>
+                  {location.pathname === "/home" && (
+                    <ListItem button onClick={() => { onToggleDrawer(!drawerOpen); setDrawerOpenState(false); }}>
+                      <ListItemText primary="Geçmiş" />
+                    </ListItem>
+                  )}
+                  {username && (
+                    <ListItem>
+                      <ListItemText primary={username} />
+                    </ListItem>
+                  )}
+                  {username ? (
+                    <ListItem button onClick={onLogout}>
+                      <ListItemText primary="Çıkış Yap" />
+                    </ListItem>
+                  ) : (
+                    <ListItem button onClick={() => handleNavigation("/login")}>
+                      <ListItemText primary="Giriş Yap" />
+                    </ListItem>
+                  )}
+                </List>
+              </Drawer>
             </>
           ) : (
             <>
-              <Button color="inherit" sx={{ textTransform: "none" }} onClick={handleClick}>
-                <Typography fontSize={"20px"} fontWeight={"700"}>Anlat Bakalım</Typography>
+              <Button color="inherit" sx={{ textTransform: "none" }} onClick={() => handleNavigation("/home")}>
+                <Typography variant="h6">Anlat Bakalım</Typography>
               </Button>
-              <Button color="inherit" sx={{ textTransform: "none" }} onClick={handleWeek}>
-                <Typography fontSize={"20px"} fontWeight={"700"}>Haftalık Analiz</Typography>
+              <Button color="inherit" sx={{ textTransform: "none" }} onClick={() => handleNavigation("/weekly-analysis")}>
+                <Typography variant="h6">Haftalık Analiz</Typography>
               </Button>
-              <Button color="inherit" sx={{ textTransform: "none" }} onClick={handleDiaries}>
-                <Typography fontSize={"20px"} fontWeight={"700"}>Anlattıklarım</Typography>
+              <Button color="inherit" sx={{ textTransform: "none" }} onClick={() => handleNavigation("/diaries")}>
+                <Typography variant="h6">Anlattıklarım</Typography>
               </Button>
-              {/* Kullanıcı adı ve dropdown */}
-              {username && (
-                  <Button
-                  color="inherit"
-                  sx={{ textTransform: "none", display: "flex", alignItems: "center" }}
-                  onClick={handleUserMenuOpen}
-                >
-                  <Typography fontSize={"18px"} fontWeight={"600"}>{username}</Typography>
-                  <ArrowDropDownIcon />
+              {location.pathname === "/home" && (
+                <Button color="inherit" sx={{ textTransform: "none" }} onClick={() => onToggleDrawer(!drawerOpen)}>
+                  <Typography variant="h6">Geçmiş</Typography>
                 </Button>
               )}
-              <StyledMenu anchorEl={userMenuEl} open={Boolean(userMenuEl)} onClose={handleUserMenuClose}>
-                <MenuItem onClick={onLogout}>
-                  <Typography fontSize={"18px"}>Çıkış Yap</Typography>
-                </MenuItem>
-              </StyledMenu>
+              <IconButton color="inherit" onClick={handleMenuOpen}>
+                <AccountCircleIcon />
+              </IconButton>
+              {username && (
+                <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
+                  <MenuItem>{username}</MenuItem>
+                  <MenuItem onClick={onLogout}>Çıkış Yap</MenuItem>
+                </Menu>
+              )}
             </>
           )}
         </Toolbar>
