@@ -53,6 +53,7 @@ export default async function handler(req, res) {
             role: "user", 
             content: `Bu girdinin ruh hali nedir? Bir terapist gibi sade bir dil ile biraz ayrıntılı açıklama yap ve tavsiyeler ver. Mümkünse analizin sonuna bir quote ekle. Eğer anlamsız bir kelime veya anlamsız cümleler yazılmışsa analiz etme ve "Anladıysam arap olayım" yaz. Ayrıca, mutluluk ve stres puanlarını yalnızca sayısal olarak ver. "Mutluluk Skoru: 7/10, Stres Skoru: 3/10" gibi açıklamalar istemiyorum. Sadece şu formatta cevap ver:
 
+            - Mood Analysis: [mood description]
             - Happiness Score: [score between 1 and 10]
             - Stress Score: [score between 1 and 10]
             
@@ -72,7 +73,7 @@ export default async function handler(req, res) {
       const stressScore = stressScoreMatch ? parseInt(stressScoreMatch[1]) : null;
 
       // If the mood analysis contains scores inside, extract them out and clean the analysis
-      const cleanAnalysis = analysis.replace(/Happiness Score: \d+\/10/, '').replace(/Stress Score: \d+\/10/, '').trim();
+      const cleanAnalysis = analysis.replace(/- Mood Analysis: /, '').replace(/Happiness Score: \d+\/10/, '').replace(/Stress Score: \d+\/10/, '').trim();
 
       // Return the cleaned mood analysis and separate scores
       res.json({ 
