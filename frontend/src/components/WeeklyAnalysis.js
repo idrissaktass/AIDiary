@@ -169,8 +169,8 @@ const WeeklyAnalysis = () => {
                                     ? { data: happinessData, label: "Mutluluk Skoru", color: "green" }
                                     : { data: stressData, label: "Stres Skoru", color: "red" }
                             ]}
-                            width={600}
-                            height={400}
+                            width={400}
+                            height={300}
                         />
                     </Grid>
                 </Grid>
@@ -180,16 +180,16 @@ const WeeklyAnalysis = () => {
                         <LineChart
                             xAxis={[{ data: xAxisData, scaleType: 'point' }]}
                             series={[{ data: happinessData, label: "Mutluluk Skoru", color: "green" }]}
-                            width={600}
-                            height={400}
+                            width={500}
+                            height={350}
                         />
                     </Grid>
                     <Grid>
                         <LineChart
                             xAxis={[{ data: xAxisData, scaleType: 'point' }]}
                             series={[{ data: stressData, label: "Stres Skoru", color: "red" }]}
-                            width={600}
-                            height={400}
+                            width={500}
+                            height={350}
                         />
                     </Grid>
                 </Grid>
