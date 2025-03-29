@@ -18,6 +18,7 @@ const WeeklyAnalysis = () => {
     const [expandedAnalysis, setExpandedAnalysis] = useState(null); 
     const [loadingAnalysis, setLoadingAnalaysis] = useState(false);
     const [diaries, setDiaries] = useState([]);
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
         const token = localStorage.getItem("token");
