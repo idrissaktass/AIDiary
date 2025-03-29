@@ -148,116 +148,118 @@ const WeeklyAnalysis = () => {
     return (
         <Grid bgcolor={"#de6f1814"} minHeight={"calc(100vh - 50px)"} paddingBottom={7}>
             <Navbar username={username} onLogout={handleLogout} />
-            <Grid container size={{ xs: 12, sm: 10, md: 8 }} display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"} mt={5} gap={2}>
-            <Typography variant="h6">Grafikler</Typography>
-            {isMobile ? (
-                <Grid>
-                    <FormControl>
-                        <InputLabel>Grafik Türü</InputLabel>
-                        <Select
-                            value={selectedGraph}
-                            onChange={(e) => setSelectedGraph(e.target.value)}
-                        >
-                            <MenuItem value="happiness">Mutluluk</MenuItem>
-                            <MenuItem value="stress">Stres</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <Grid>
-                        <LineChart
-                            xAxis={[{ data: xAxisData, scaleType: "point" }]}
-                            yAxis={[{ min: 0, max: 10, tickValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
-                            series={[
-                                selectedGraph === "happiness"
-                                    ? { data: happinessData, label: "Mutluluk Skoru", color: "green" }
-                                    : { data: stressData, label: "Stres Skoru", color: "red" }
-                            ]}
-                            width={isXSMobile ? 360 : 400}
-                            height={300}
-                        />
+            {loading ? (
+                <Grid container justifyContent={"center"} width={"100%"} alignItems="center">
+                    <Grid item size={{xs:12}} display={"flex"} justifyContent={"center"} alignItems="center">
+                        <CircularProgress />
                     </Grid>
-                </Grid>
+                </Grid> 
             ) : (
-                <Grid size={{xs:12}} display={"flex"} justifyContent={"ccenter"} alignItems={"center"} gap={2}>
-                    <Grid>
-                        <LineChart
-                            xAxis={[{ data: xAxisData, scaleType: 'point' }]}
-                            yAxis={[{ min: 0, max: 10, tickValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
-                            series={[{ data: happinessData, label: "Mutluluk Skoru", color: "green" }]}
-                            width={500}
-                            height={350}
-                        />
-                    </Grid>
-                    <Grid>
-                        <LineChart
-                            xAxis={[{ data: xAxisData, scaleType: 'point' }]}
-                            yAxis={[{ min: 0, max: 10, tickValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
-                            series={[{ data: stressData, label: "Stres Skoru", color: "red" }]}
-                            width={500}
-                            height={350}
-                        />
-                    </Grid>
-                </Grid>
-            )}
-                <Grid my={3} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
-                    <Typography variant="body1" mb={2} textAlign={"start"}>
-                        Bu sayfa, son üç girişinizin analizini sunar. Ruh halinizi daha iyi anlayabilmek için yazdığınız her notu dikkate alır.
-                    </Typography>
-                    <Typography variant="body1" textAlign={"start"}>
-                        Bu özellik, ruh halinizi düzenli olarak takip etmenizi sağlar. Haftalık analizler, duygu durumunuzu anlamada yardımcı olabilir.
-                    </Typography>
-                </Grid>
-                <Button
-                    sx={{ width: "fit-content", backgroundColor: "#1764b0" }}
-                    variant="contained"
-                    color="primary"
-                    onClick={handleWeeklyAnalysis}
-                    disabled={loadingAnalysis || !canAnalyze || weeklyAnalysis}
-                >
-                    <Typography variant="h6">Haftalık Analizi Al</Typography>
-                </Button>
-                {loadingAnalysis && <CircularProgress />}
-
-                {weeklyAnalysis && (
-                    <Grid mt={3} mb={5} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"rgb(0 255 37 / 16%)"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
-                        <Typography variant="h6" mb={2}>Haftalık Ruh Hali Analizi</Typography>
-                        <Typography>{weeklyAnalysis}</Typography>
-                    </Grid>
-                )}
-            </Grid>
-            <Grid container justifyContent={"center"} mt={4} gap={2}>
-                <Grid size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }}>
-                  <Typography variant="h6">Haftalık Analizler</Typography>
-                </Grid>
-                <Grid size={{xs:12}}>  
-                    {!canAnalyze && (
-                        <Typography color="error">Haftalık analiz için yeterli giriş yapılmadı.</Typography>
-                    )}
-                </Grid>
-                {loading ? (
-                    <Grid container justifyContent={"center"} width={"100%"}>
-                        <Grid item size={{xs:12}} display={"flex"} justifyContent={"center"}>
-                            <CircularProgress />
-                        </Grid>
-                    </Grid>
-                ) : (
-                    weeklyAnalyses.length > 0 && (
-                        <Grid container justifyContent={"center"} size={{xs:12}} gap={1}>
-                            {weeklyAnalyses.map((analysis) => (
-                                <Grid mt={1} mb={3} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} flexDirection={"column"} padding={"20px 30px 20px 30px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"} item key={analysis.id} xs={12} sm={6} md={4}>
-                                    <Typography variant="body2" mb={1}>{new Date(analysis.date).toLocaleDateString()}</Typography>
-                                    <Typography variant="body1">{expandedAnalysis === analysis.id ? analysis.analysis : `${analysis.analysis.split(".").slice(0, 1).join(".")}...`}</Typography>
-                                    <Button onClick={() => handleToggleAnalysis(analysis.id)}>
-                                        {expandedAnalysis === analysis.id ? "Kapat" : "Tamamını Gör"}
-                                    </Button>
+                <>
+                    <Grid container size={{ xs: 12, sm: 10, md: 8 }} display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"} mt={5} gap={2}>
+                        <Typography variant="h6">Grafikler</Typography>
+                        {isMobile ? (
+                            <Grid>
+                                <FormControl>
+                                    <InputLabel>Grafik Türü</InputLabel>
+                                    <Select
+                                        value={selectedGraph}
+                                        onChange={(e) => setSelectedGraph(e.target.value)}
+                                    >
+                                        <MenuItem value="happiness">Mutluluk</MenuItem>
+                                        <MenuItem value="stress">Stres</MenuItem>
+                                    </Select>
+                                </FormControl>
+                                <Grid>
+                                    <LineChart
+                                        xAxis={[{ data: xAxisData, scaleType: "point" }]}
+                                        yAxis={[{ min: 0, max: 10, tickValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
+                                        series={[
+                                            selectedGraph === "happiness"
+                                                ? { data: happinessData, label: "Mutluluk Skoru", color: "green" }
+                                                : { data: stressData, label: "Stres Skoru", color: "red" }
+                                        ]}
+                                        width={isXSMobile ? 360 : 400}
+                                        height={300}
+                                    />
                                 </Grid>
-                            ))}
+                            </Grid>
+                        ) : (
+                            <Grid size={{xs:12}} display={"flex"} justifyContent={"ccenter"} alignItems={"center"} gap={2}>
+                                <Grid>
+                                    <LineChart
+                                        xAxis={[{ data: xAxisData, scaleType: 'point' }]}
+                                        yAxis={[{ min: 0, max: 10, tickValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
+                                        series={[{ data: happinessData, label: "Mutluluk Skoru", color: "green" }]}
+                                        width={500}
+                                        height={350}
+                                    />
+                                </Grid>
+                                <Grid>
+                                    <LineChart
+                                        xAxis={[{ data: xAxisData, scaleType: 'point' }]}
+                                        yAxis={[{ min: 0, max: 10, tickValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
+                                        series={[{ data: stressData, label: "Stres Skoru", color: "red" }]}
+                                        width={500}
+                                        height={350}
+                                    />
+                                </Grid>
+                            </Grid>
+                        )}
+                            <Grid my={3} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
+                                <Typography variant="body1" mb={2} textAlign={"start"}>
+                                    Bu sayfa, son üç girişinizin analizini sunar. Ruh halinizi daha iyi anlayabilmek için yazdığınız her notu dikkate alır.
+                                </Typography>
+                                <Typography variant="body1" textAlign={"start"}>
+                                    Bu özellik, ruh halinizi düzenli olarak takip etmenizi sağlar. Haftalık analizler, duygu durumunuzu anlamada yardımcı olabilir.
+                                </Typography>
+                            </Grid>
+                            <Button
+                                sx={{ width: "fit-content", backgroundColor: "#1764b0" }}
+                                variant="contained"
+                                color="primary"
+                                onClick={handleWeeklyAnalysis}
+                                disabled={loadingAnalysis || !canAnalyze || weeklyAnalysis}
+                            >
+                                <Typography variant="h6">Haftalık Analizi Al</Typography>
+                            </Button>
+                            {loadingAnalysis && <CircularProgress />}
+
+                            {weeklyAnalysis && (
+                                <Grid mt={3} mb={5} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"rgb(0 255 37 / 16%)"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
+                                    <Typography variant="h6" mb={2}>Haftalık Ruh Hali Analizi</Typography>
+                                    <Typography>{weeklyAnalysis}</Typography>
+                                </Grid>
+                            )}
                         </Grid>
-                    )
-                )}
-                {!loading && weeklyAnalyses.length === 0 && (
-                    <Typography>Henüz haftalık analiz yapılmamış.</Typography>
-                )}
-            </Grid>
+                        <Grid container justifyContent={"center"} mt={4} gap={2}>
+                            <Grid size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }}>
+                            <Typography variant="h6">Haftalık Analizler</Typography>
+                            </Grid>
+                            <Grid size={{xs:12}}>  
+                                {!canAnalyze && (
+                                    <Typography color="error">Haftalık analiz için yeterli giriş yapılmadı.</Typography>
+                                )}
+                            </Grid>
+                            {weeklyAnalyses.length > 0 && (
+                                <Grid container justifyContent={"center"} size={{xs:12}} gap={1}>
+                                    {weeklyAnalyses.map((analysis) => (
+                                        <Grid mt={1} mb={3} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} flexDirection={"column"} padding={"20px 30px 20px 30px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"} item key={analysis.id} xs={12} sm={6} md={4}>
+                                            <Typography variant="body2" mb={1}>{new Date(analysis.date).toLocaleDateString()}</Typography>
+                                            <Typography variant="body1">{expandedAnalysis === analysis.id ? analysis.analysis : `${analysis.analysis.split(".").slice(0, 1).join(".")}...`}</Typography>
+                                            <Button onClick={() => handleToggleAnalysis(analysis.id)}>
+                                                {expandedAnalysis === analysis.id ? "Kapat" : "Tamamını Gör"}
+                                            </Button>
+                                        </Grid>
+                                    ))}
+                                </Grid>
+                            )}
+                            {!loading && weeklyAnalyses.length === 0 && (
+                                <Typography>Henüz haftalık analiz yapılmamış.</Typography>
+                            )}
+                        </Grid>
+                </>
+                    )}
         </Grid>
     );
 };
