@@ -92,75 +92,81 @@ const Diaries = () => {
   return (
     <Grid  minHeight={"calc(100vh - 50px)"} paddingBottom={7}>
     <Navbar username={username} onLogout={handleLogout} />
-    <Grid container spacing={3} direction="column" alignItems="center" py={5}>
-      <Typography variant="h4" gutterBottom>
-        Günlüklerim
-      </Typography>
-
-      {/* Loading Spinner */}
       {loading ? (
-        <CircularProgress />
-      ) : currentDiaries.length > 0 ? (
-        currentDiaries.map((diary) => (
-          <Grid size={{ xs: 11.5, sm: 10, md: 8 }}
-            key={diary._id}
-            sx={{
-              border: "1px solid gray",
-              padding: "20px",
-              borderRadius: "8px",
-              marginBottom: "20px", 
-            }}
-          >
-            <Typography fontSize={"18px"}>{new Date(diary.date).toLocaleDateString()}</Typography>
-
-            <Typography fontSize={"16px"} my={2}>
-              {diary.text}
-            </Typography>
-
-            <Box
+        <Grid container justifyContent={"center"} width={"100%"} alignItems="center" mt={5}  paddingTop={{xs:"15%", sm:"10%", md:"8%", lg:"5%"}}>
+            <Grid item size={{xs:12}} display={"flex"} justifyContent={"center"} alignItems="center">
+                <CircularProgress />
+            </Grid>
+        </Grid> 
+      ) : (
+        <Grid container spacing={3} direction="column" alignItems="center" py={5}>
+        <Typography variant="h4" gutterBottom>
+          Günlüklerim
+        </Typography>
+  
+        {/* Loading Spinner */}
+        {currentDiaries.length > 0 ? (
+          currentDiaries.map((diary) => (
+            <Grid size={{ xs: 11.5, sm: 10, md: 8 }}
+              key={diary._id}
               sx={{
-                backgroundColor: "#8000000a",
+                border: "1px solid gray",
                 padding: "20px",
-                marginTop: "20px",
                 borderRadius: "8px",
-                fontSize: "18px",
+                marginBottom: "20px", 
               }}
             >
-              {diary.mood ? (
-                diary.mood
-              ) : (
-                <Typography variant="body1" color="gray">
-                  Analiz yok.
-                </Typography>
-              )}
-            </Box>
-          </Grid>
-        ))
-      ) : (
-        <Typography fontSize={"18px"}>Henüz kaydınız yok.</Typography>
-      )}
-
-      {/* Sayfalama */}
-      <Grid display={"flex"} alignItems={"center"}>
-        <Button
-          variant="contained"
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Önceki
-        </Button>
-        <Typography fontSize={"16px"} sx={{ margin: "0 10px" }}>
-          {currentPage} / {totalPages}
-        </Typography>
-        <Button
-          variant="contained"
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          Sonraki
-        </Button>
+              <Typography fontSize={"18px"}>{new Date(diary.date).toLocaleDateString()}</Typography>
+  
+              <Typography fontSize={"16px"} my={2}>
+                {diary.text}
+              </Typography>
+  
+              <Box
+                sx={{
+                  backgroundColor: "#8000000a",
+                  padding: "20px",
+                  marginTop: "20px",
+                  borderRadius: "8px",
+                  fontSize: "18px",
+                }}
+              >
+                {diary.mood ? (
+                  diary.mood
+                ) : (
+                  <Typography variant="body1" color="gray">
+                    Analiz yok.
+                  </Typography>
+                )}
+              </Box>
+            </Grid>
+          ))
+        ) : (
+          <Typography fontSize={"18px"}>Henüz kaydınız yok.</Typography>
+        )}
+  
+        {/* Sayfalama */}
+        <Grid display={"flex"} alignItems={"center"}>
+          <Button
+            variant="contained"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Önceki
+          </Button>
+          <Typography fontSize={"16px"} sx={{ margin: "0 10px" }}>
+            {currentPage} / {totalPages}
+          </Typography>
+          <Button
+            variant="contained"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Sonraki
+          </Button>
+        </Grid>
       </Grid>
-    </Grid>
+      )}
   </Grid>
   );
 };
