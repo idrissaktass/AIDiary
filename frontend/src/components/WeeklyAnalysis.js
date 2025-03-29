@@ -21,6 +21,7 @@ const WeeklyAnalysis = () => {
     const [diaries, setDiaries] = useState([]);
     const token = localStorage.getItem("token");
     const isMobile = useMediaQuery("(max-width:900px)");
+    const isXSMobile = useMediaQuery("(max-width:450px)");
     const [selectedGraph, setSelectedGraph] = useState("happiness");
 
     useEffect(() => {
@@ -164,12 +165,13 @@ const WeeklyAnalysis = () => {
                     <Grid>
                         <LineChart
                             xAxis={[{ data: xAxisData, scaleType: "point" }]}
+                            yAxis={[{ min: 0, max: 10, tickValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
                             series={[
                                 selectedGraph === "happiness"
                                     ? { data: happinessData, label: "Mutluluk Skoru", color: "green" }
                                     : { data: stressData, label: "Stres Skoru", color: "red" }
                             ]}
-                            width={400}
+                            width={isXSMobile ? 360 : 400}
                             height={300}
                         />
                     </Grid>
@@ -179,6 +181,7 @@ const WeeklyAnalysis = () => {
                     <Grid>
                         <LineChart
                             xAxis={[{ data: xAxisData, scaleType: 'point' }]}
+                            yAxis={[{ min: 0, max: 10, tickValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
                             series={[{ data: happinessData, label: "Mutluluk Skoru", color: "green" }]}
                             width={500}
                             height={350}
@@ -187,6 +190,7 @@ const WeeklyAnalysis = () => {
                     <Grid>
                         <LineChart
                             xAxis={[{ data: xAxisData, scaleType: 'point' }]}
+                            yAxis={[{ min: 0, max: 10, tickValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
                             series={[{ data: stressData, label: "Stres Skoru", color: "red" }]}
                             width={500}
                             height={350}
