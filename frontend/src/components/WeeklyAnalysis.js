@@ -239,7 +239,7 @@ const WeeklyAnalysis = () => {
                             </Grid>
                             <Grid size={{xs:12}}>  
                                 {!canAnalyze && (
-                                    <Typography color="error">Haftalık analiz için yeterli giriş yapılmadı.</Typography>
+                                    <Typography color="error" textAlign="center">Haftalık analiz için yeterli giriş yapılmadı.</Typography>
                                 )}
                             </Grid>
                             {weeklyAnalyses.length > 0 && (
