@@ -139,7 +139,7 @@ const WeeklyAnalysis = () => {
     // Mutluluk ve stres puanlarını ayrı ayrı diziye aktarıyoruz
     const happinessData = sortedDiaries.map(diary => diary.happinessScore);
     const stressData = sortedDiaries.map(diary => diary.stressScore);
-    
+    console.log("xAxisData, happinessData, stressData", xAxisData, happinessData, stressData)
 
     return (
         <Grid bgcolor={"#de6f1814"} minHeight={"calc(100vh - 50px)"} paddingBottom={7}>
