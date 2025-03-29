@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Button, Typography, CircularProgress} from "@mui/material";
+import { Button, Typography, CircularProgress, Select, FormControl, MenuItem, InputLabel} from "@mui/material";
 import axios from "axios";
 import Navbar from "./Navbar";
 import { Grid } from '@mui/system';
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import { LineChart } from '@mui/x-charts/LineChart';
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const WeeklyAnalysis = () => {
     const [weeklyAnalysis, setWeeklyAnalysis] = useState(null);
@@ -19,6 +20,8 @@ const WeeklyAnalysis = () => {
     const [loadingAnalysis, setLoadingAnalaysis] = useState(false);
     const [diaries, setDiaries] = useState([]);
     const token = localStorage.getItem("token");
+    const isMobile = useMediaQuery("(max-width:900px)");
+    const [selectedGraph, setSelectedGraph] = useState("happiness");
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -145,23 +148,52 @@ const WeeklyAnalysis = () => {
         <Grid bgcolor={"#de6f1814"} minHeight={"calc(100vh - 50px)"} paddingBottom={7}>
             <Navbar username={username} onLogout={handleLogout} />
             <Grid container size={{ xs: 12, sm: 10, md: 8 }} display={"flex"} flexDirection={"column"} alignItems={"center"} mt={5} gap={2}>
-            <Grid size={{xs:12}}>
-                <Typography variant="h6">Mutluluk Puanı</Typography>
-                <LineChart
-                    xAxis={[{ data: xAxisData, scaleType: 'point' }]}
-                    series={[{ data: happinessData, label: "Mutluluk Skoru", color: "green" }]}
-                    width={500}
-                    height={300}
-                />
-
-                <Typography variant="h6">Stres Puanı</Typography>
-                <LineChart
-                    xAxis={[{ data: xAxisData, scaleType: 'point' }]}
-                    series={[{ data: stressData, label: "Stres Skoru", color: "red" }]}
-                    width={500}
-                    height={300}
-                />
-            </Grid>
+            <Typography variant="h6">Grafikler</Typography>
+            {isMobile ? (
+                <Grid>
+                    <FormControl>
+                        <InputLabel>Grafik Türü</InputLabel>
+                        <Select
+                            value={selectedGraph}
+                            onChange={(e) => setSelectedGraph(e.target.value)}
+                        >
+                            <MenuItem value="happiness">Mutluluk</MenuItem>
+                            <MenuItem value="stress">Stres</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <Grid>
+                        <LineChart
+                            xAxis={[{ data: xAxisData, scaleType: "point" }]}
+                            series={[
+                                selectedGraph === "happiness"
+                                    ? { data: happinessData, label: "Mutluluk Skoru", color: "green" }
+                                    : { data: stressData, label: "Stres Skoru", color: "red" }
+                            ]}
+                            width={600}
+                            height={400}
+                        />
+                    </Grid>
+                </Grid>
+            ) : (
+                <Grid size={{xs:12}} display={"flex"} justifyContent={"ccenter"} alignItems={"center"} gap={2}>
+                    <Grid>
+                        <LineChart
+                            xAxis={[{ data: xAxisData, scaleType: 'point' }]}
+                            series={[{ data: happinessData, label: "Mutluluk Skoru", color: "green" }]}
+                            width={600}
+                            height={400}
+                        />
+                    </Grid>
+                    <Grid>
+                        <LineChart
+                            xAxis={[{ data: xAxisData, scaleType: 'point' }]}
+                            series={[{ data: stressData, label: "Stres Skoru", color: "red" }]}
+                            width={600}
+                            height={400}
+                        />
+                    </Grid>
+                </Grid>
+            )}
                 <Grid my={3} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
                     <Typography variant="body1" mb={2} textAlign={"start"}>
                         Bu sayfa, son üç girişinizin analizini sunar. Ruh halinizi daha iyi anlayabilmek için yazdığınız her notu dikkate alır.
