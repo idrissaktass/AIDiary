@@ -185,7 +185,7 @@ const WeeklyAnalysis = () => {
                                 </Grid>
                             </Grid>
                         ) : (
-                            <Grid size={{xs:12}} display={"flex"} justifyContent={"ccenter"} alignItems={"center"} gap={2}>
+                            <Grid size={{xs:12}} display={"flex"} justifyContent={"center"} alignItems={"center"} gap={2}>
                                 <Grid>
                                     <LineChart
                                         xAxis={[{ data: xAxisData, scaleType: 'point' }]}
