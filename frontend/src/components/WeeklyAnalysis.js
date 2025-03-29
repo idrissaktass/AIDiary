@@ -149,7 +149,7 @@ const WeeklyAnalysis = () => {
         <Grid bgcolor={"#de6f1814"} minHeight={"calc(100vh - 50px)"} paddingBottom={7}>
             <Navbar username={username} onLogout={handleLogout} />
             {loading ? (
-                <Grid container justifyContent={"center"} width={"100%"} alignItems="center">
+                <Grid container justifyContent={"center"} width={"100%"} alignItems="center" mt={5}  paddingTop={{xs:"15%", sm:"10%", md:"8%", lg:"5%"}}>
                     <Grid item size={{xs:12}} display={"flex"} justifyContent={"center"} alignItems="center">
                         <CircularProgress />
                     </Grid>
