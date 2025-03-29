@@ -20,6 +20,7 @@ const WeeklyAnalysis = () => {
     const [loadingAnalysis, setLoadingAnalaysis] = useState(false);
     const [diaries, setDiaries] = useState([]);
     const token = localStorage.getItem("token");
+    const isMedium = useMediaQuery("(max-width:1100px)");
     const isMobile = useMediaQuery("(max-width:900px)");
     const isXSMobile = useMediaQuery("(max-width:450px)");
     const [selectedGraph, setSelectedGraph] = useState("happiness");
@@ -199,7 +200,7 @@ const WeeklyAnalysis = () => {
                                         xAxis={[{ data: xAxisData, scaleType: 'point' }]}
                                         yAxis={[{ min: 0, max: 10, tickValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
                                         series={[{ data: happinessData, label: "Mutluluk Skoru", color: "green" }]}
-                                        width={500}
+                                        width={isMedium ? 470 : 500}
                                         height={350}
                                     />
                                 </Grid>
@@ -208,7 +209,7 @@ const WeeklyAnalysis = () => {
                                         xAxis={[{ data: xAxisData, scaleType: 'point' }]}
                                         yAxis={[{ min: 0, max: 10, tickValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
                                         series={[{ data: stressData, label: "Stres Skoru", color: "red" }]}
-                                        width={500}
+                                        width={isMedium ? 470 : 500}
                                         height={350}
                                     />
                                 </Grid>
