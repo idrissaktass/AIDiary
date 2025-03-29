@@ -147,7 +147,7 @@ const WeeklyAnalysis = () => {
     return (
         <Grid bgcolor={"#de6f1814"} minHeight={"calc(100vh - 50px)"} paddingBottom={7}>
             <Navbar username={username} onLogout={handleLogout} />
-            <Grid container size={{ xs: 12, sm: 10, md: 8 }} display={"flex"} flexDirection={"column"} alignItems={"center"} mt={5} gap={2}>
+            <Grid container size={{ xs: 12, sm: 10, md: 8 }} display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"} mt={5} gap={2}>
             <Typography variant="h6">Grafikler</Typography>
             {isMobile ? (
                 <Grid>
