@@ -20,6 +20,7 @@ function AppContent() {
       <HelmetProvider>
       <Helmet>
         <title>Diary AI - Kişisel Günlük ve Ruh Hali Analizi</title>
+        <meta name="google-site-verification" content="qWuFVhUHkiJjBTNgbKDHhSduS6BoA8ZDMTkXO2N6wYg" />
         <meta name="description" content="Diary AI, günlüklerinizi analiz ederek ruh halinizi takip eder ve kişisel gelişiminize katkı sağlar." />
         <meta name="keywords" content="Diary AI, kişisel günlük, yapay zeka, ruh hali analizi, psikoloji" />
       </Helmet>
