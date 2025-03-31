@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Grid } from '@mui/system';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -26,8 +27,28 @@ const Login = () => {
     }
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Diary AI - Giriş Yap",
+    "description": "Diary AI'ye giriş yaparak ruh halinizi analiz eden ve kişisel günlüklerinizi saklayan yapay zeka destekli platforma erişebilirsiniz.",
+    "url": "https://diary-ai-0.vercel.app/login"
+  };
+
   return (
-    <Grid container justifyContent={"center"} minHeight={"calc(100vh - 50px)"}>
+      <Grid container justifyContent={"center"} minHeight={"calc(100vh - 50px)"}>
+      <Helmet>
+        <title>Giriş Yap - Diary AI</title>
+        <meta name="description" content="Diary AI'ye giriş yaparak kişisel günlüklerinizi yönetebilir ve ruh halinizi analiz edebilirsiniz." />
+        <meta name="keywords" content="Diary AI giriş, kişisel günlük, yapay zeka günlük, ruh hali analizi" />
+        <meta property="og:title" content="Giriş Yap - Diary AI" />
+        <meta property="og:description" content="Diary AI'ye giriş yaparak yapay zeka destekli günlük yönetim sistemine erişin." />
+        <meta property="og:url" content="https://diary-ai-0.vercel.app/login" />
+        <meta name="twitter:title" content="Giriş Yap - Diary AI" />
+        <meta name="twitter:description" content="Diary AI'ye giriş yaparak kişisel günlüklerinizi yönetin ve analiz edin." />
+        <link rel="canonical" href="https://diary-ai-0.vercel.app/login" />
+        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+      </Helmet>
       <Navbar/>
         <Grid mt={5} paddingTop={{xs:"15%", sm:"10%", md:"8%", lg:"5%"}}>
           <Typography variant="h4" gutterBottom>Giriş Yap</Typography>

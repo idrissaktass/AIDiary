@@ -8,6 +8,8 @@ import LandingPage from "./components/LandingPage";
 import Diaries from "./components/Diaries";
 import Footer from "./components/Footer";
 import "./App.css"
+import { Helmet, HelmetProvider } from "react-helmet-async";
+
 
 function AppContent() {
   const location = useLocation();
@@ -15,6 +17,12 @@ function AppContent() {
 
   return (
     <div className="app">
+      <HelmetProvider>
+      <Helmet>
+        <title>Diary AI - Kişisel Günlük ve Ruh Hali Analizi</title>
+        <meta name="description" content="Diary AI, günlüklerinizi analiz ederek ruh halinizi takip eder ve kişisel gelişiminize katkı sağlar." />
+        <meta name="keywords" content="Diary AI, kişisel günlük, yapay zeka, ruh hali analizi, psikoloji" />
+      </Helmet>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
@@ -25,6 +33,7 @@ function AppContent() {
       </Routes>
 
       {!hideFooterRoutes.includes(location.pathname) && <Footer/>}
+      </HelmetProvider>
     </div>
   );
 }

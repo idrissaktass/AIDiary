@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import { LineChart } from '@mui/x-charts/LineChart';
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { Helmet } from "react-helmet-async";
 
 const WeeklyAnalysis = () => {
     const [weeklyAnalysis, setWeeklyAnalysis] = useState(null);
@@ -148,6 +149,15 @@ const WeeklyAnalysis = () => {
 
     return (
         <Grid bgcolor={"#de6f1814"} minHeight={"calc(100vh - 50px)"} paddingBottom={7}>
+            <Helmet>
+            <title>Haftalık Ruh Hali Analizi | AI Diary</title>
+            <meta name="description" content="AI Diary'nin Haftalık Ruh Hali Analizi sayfasına göz atın. Duygu durumunuzu düzenli olarak takip edin ve grafikler ile analizleri görüntüleyin." />
+            <meta name="keywords" content="haftalık analiz, ruh hali, mutluluk skoru, stres skoru, duygu durumu takibi, psikolojik analiz, yapay zeka, AI Diary" />
+            <meta property="og:title" content="Haftalık Ruh Hali Analizi | AI Diary" />
+            <meta property="og:description" content="AI Diary'nin Haftalık Ruh Hali Analizi sayfasına göz atın ve duygu durumunuzu nasıl iyileştirebileceğiniz hakkında bilgi edinin." />
+            <meta property="og:image" content="URL_TO_IMAGE" /> {/* Add an image URL if applicable */}
+            <meta property="og:url" content="https://diary-ai-0.vercel.app/weekly-analysis" />
+            </Helmet>
             <Navbar username={username} onLogout={handleLogout} />
             {loading ? (
                 <Grid container justifyContent={"center"} width={"100%"} alignItems="center" mt={5}  paddingTop={{xs:"15%", sm:"10%", md:"8%", lg:"5%"}}>
@@ -190,6 +200,7 @@ const WeeklyAnalysis = () => {
                                         ]}
                                         width={isXSMobile ? 360 : 400}
                                         height={300}
+                                        alt="Mutluluk ve Stres Skoru Grafiği"
                                     />
                                 </Grid>
                             </Grid>
@@ -202,6 +213,7 @@ const WeeklyAnalysis = () => {
                                         series={[{ data: happinessData, label: "Mutluluk Skoru", color: "green" }]}
                                         width={isMedium ? 470 : 500}
                                         height={350}
+                                        alt="Mutluluk Skoru Grafiği"
                                     />
                                 </Grid>
                                 <Grid>
@@ -211,6 +223,7 @@ const WeeklyAnalysis = () => {
                                         series={[{ data: stressData, label: "Stres Skoru", color: "red" }]}
                                         width={isMedium ? 470 : 500}
                                         height={350}
+                                        alt="Stres Skoru Grafiği"
                                     />
                                 </Grid>
                             </Grid>

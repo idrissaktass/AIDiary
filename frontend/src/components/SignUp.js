@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Grid } from '@mui/system';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -57,43 +58,64 @@ const SignUp = () => {
     }
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Diary AI - Kayıt Ol",
+    "description": "Diary AI'ye kayıt olarak kişisel günlüklerinizi yönetebilir ve ruh halinizi analiz edebilirsiniz.",
+    "url": "https://diary-ai-0.vercel.app/signup"
+  };
+
+
   return (
-    <Grid container justifyContent={"center"}  minHeight={"calc(100vh - 50px)"}>
-      <Navbar />
-      <Grid mt={5} paddingTop={{xs:"15%", sm:"10%", md:"8%", lg:"5%"}}>
-        <Typography variant="h4" gutterBottom>Kayıt Ol</Typography>
-        {error && <Typography color="error" mb={2}>{error}</Typography>}
-        <TextField
-          label="Kullanıcı Adı"
-          variant="outlined"
-          fullWidth
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          style={{ marginBottom: 10 }}
-        />
-        <TextField
-          label="Email"
-          variant="outlined"
-          fullWidth
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          style={{ marginBottom: 10 }}
-        />
-        <TextField
-          label="Şifre"
-          variant="outlined"
-          fullWidth
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{ marginBottom: 20 }}
-        />
-        <Box display="flex" justifyContent="space-between">
-          <Button variant="contained" color="primary" onClick={handleSignUp}>{loading ? <CircularProgress color="white" sx={{width:"22px !important", height:"22px !important"}}/> : "Kayıt Ol" }</Button>
-          <Button color="secondary" onClick={() => navigate("/login")}>Giriş Yap</Button>
-        </Box>
+      <Grid container justifyContent={"center"}  minHeight={"calc(100vh - 50px)"}>
+      <Helmet>
+        <title>Kayıt Ol - Diary AI</title>
+        <meta name="description" content="Diary AI'ye kayıt olarak yapay zeka destekli günlük yönetim sistemine katılabilirsiniz." />
+        <meta name="keywords" content="Diary AI kayıt ol, kişisel günlük, yapay zeka günlük, ruh hali analizi" />
+        <meta property="og:title" content="Kayıt Ol - Diary AI" />
+        <meta property="og:description" content="Diary AI'ye kayıt olarak kişisel günlüklerinizi yönetin ve analiz edin." />
+        <meta property="og:url" content="https://diary-ai-0.vercel.app/signup" />
+        <meta name="twitter:title" content="Kayıt Ol - Diary AI" />
+        <meta name="twitter:description" content="Diary AI'ye kayıt olarak ruh halinizi analiz eden yapay zeka destekli günlük yönetimine başlayın." />
+        <link rel="canonical" href="https://diary-ai-0.vercel.app/signup" />
+        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+      </Helmet>
+        <Navbar />
+        <Grid mt={5} paddingTop={{xs:"15%", sm:"10%", md:"8%", lg:"5%"}}>
+          <Typography variant="h4" gutterBottom>Kayıt Ol</Typography>
+          {error && <Typography color="error" mb={2}>{error}</Typography>}
+          <TextField
+            label="Kullanıcı Adı"
+            variant="outlined"
+            fullWidth
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            style={{ marginBottom: 10 }}
+          />
+          <TextField
+            label="Email"
+            variant="outlined"
+            fullWidth
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            style={{ marginBottom: 10 }}
+          />
+          <TextField
+            label="Şifre"
+            variant="outlined"
+            fullWidth
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            style={{ marginBottom: 20 }}
+          />
+          <Box display="flex" justifyContent="space-between">
+            <Button variant="contained" color="primary" onClick={handleSignUp}>{loading ? <CircularProgress color="white" sx={{width:"22px !important", height:"22px !important"}}/> : "Kayıt Ol" }</Button>
+            <Button color="secondary" onClick={() => navigate("/login")}>Giriş Yap</Button>
+          </Box>
+        </Grid>
       </Grid>
-    </Grid>
   );
 };
 

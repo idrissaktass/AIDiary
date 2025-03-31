@@ -10,6 +10,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "./Footer";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -112,8 +113,31 @@ const Home = () => {
         setDrawerOpen(false);
     };
 
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Diary AI - Kişisel Günlük Uygulaması",
+        "description": "Diary AI, yapay zeka destekli kişisel günlük tutma uygulamasıdır. Ruh halinizi analiz eder, öneriler sunar ve geçmiş kayıtlarınızı yönetmenize yardımcı olur.",
+        "url": "https://diary-ai-0.vercel.app/home",
+        "image": "https://diary-ai-0.vercel.app/preview-image.jpg"
+    };
+
     return (
         <Grid container justifyContent={"center"} width={"100%"} minHeight={"calc(100vh - 50px)"}>
+            <Helmet>
+                <title>Diary AI - Yapay Zeka Destekli Günlük Uygulaması</title>
+                <meta name="description" content="Diary AI, yapay zeka ile günlüklerinizi analiz eden ve size özel öneriler sunan kişisel bir günlük uygulamasıdır." />
+                <meta name="keywords" content="Diary AI, kişisel günlük, yapay zeka, ruh hali analizi, günlük tutma uygulaması" />
+                <meta property="og:title" content="Diary AI - Yapay Zeka Destekli Günlük Uygulaması" />
+                <meta property="og:description" content="Diary AI, günlüklerinizi analiz eden ve size özel öneriler sunan akıllı bir günlük tutma uygulamasıdır." />
+                <meta property="og:image" content="https://diary-ai-0.vercel.app/preview-image.jpg" />
+                <meta property="og:url" content="https://diary-ai-0.vercel.app/home" />
+                <meta name="twitter:title" content="Diary AI - Yapay Zeka Destekli Günlük Uygulaması" />
+                <meta name="twitter:description" content="Günlüklerinizi yapay zeka ile analiz edin ve daha bilinçli bir yaşam sürün!" />
+                <meta name="twitter:image" content="https://diary-ai-0.vercel.app/preview-image.jpg" />
+                <link rel="canonical" href="https://diary-ai-0.vercel.app/home" />
+                <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+            </Helmet>
                 <Navbar 
                 onLogout={handleLogout} 
                 onNewDiary={handleNewDiary} 

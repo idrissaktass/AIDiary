@@ -3,6 +3,7 @@ import axios from "axios";
 import { TextField, Button, Typography, Snackbar, Alert , CircularProgress } from "@mui/material";
 import { motion } from "framer-motion";  
 import { Grid } from '@mui/system';
+import { Helmet } from "react-helmet-async";
 
 const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
   const [text, setText] = useState(selectedDiary ? selectedDiary.text : ""); 
@@ -127,6 +128,33 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
         <Typography variant="h4" gutterBottom width={"100%"} textAlign={"center"} mb={3}>
           {selectedDiary ? "Günlük Analizin" : "Anlat Bakalım"} 📝
         </Typography>
+        <Helmet>
+          <title>Günlük Yaz - AI Diary</title>
+          <meta name="description" content="Günlüklerinizi yapay zeka ile analiz edin ve ruh halinizi keşfedin!" />
+          <meta name="keywords" content="günlük, AI günlük, ruh hali analizi, yapay zeka günlüğü, mutluluk, stres analizi" />
+          <meta name="author" content="AI Diary" />
+          <meta property="og:title" content="Günlük Yaz - AI Diary" />
+          <meta property="og:description" content="Günlüklerinizi yapay zeka ile analiz edin ve ruh halinizi keşfedin!" />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={window.location.href} />
+          <meta property="og:image" content="https://ai-diary-backend-gamma.vercel.app/static/diary-image.png" />
+          
+          <script type="application/ld+json">
+          {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Article",
+              "headline": "Günlük Yaz - AI Diary",
+              "description": "Günlüklerinizi yapay zeka ile analiz edin ve ruh halinizi keşfedin!",
+              "author": {
+                  "@type": "Person",
+                  "name": "AI Diary"
+              },
+              "datePublished": new Date().toISOString(),
+              "url": window.location.href
+          })}
+          </script>
+      </Helmet>
+
 
         {!selectedDiary && !mood ? (
           <motion.div
