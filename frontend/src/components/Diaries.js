@@ -175,25 +175,27 @@ const Diaries = () => {
         )}
   
         {/* Sayfalama */}
-        <Grid display={"flex"} alignItems={"center"}>
-          <Button
-            variant="contained"
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            Önceki
-          </Button>
-          <Typography fontSize={"16px"} sx={{ margin: "0 10px" }}>
-            {currentPage} / {totalPages}
-          </Typography>
-          <Button
-            variant="contained"
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-          >
-            Sonraki
-          </Button>
-        </Grid>
+        {totalPages > 1 && (
+          <Grid display={"flex"} alignItems={"center"}>
+            <Button
+              variant="contained"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Önceki
+            </Button>
+            <Typography fontSize={"16px"} sx={{ margin: "0 10px" }}>
+              {currentPage} / {totalPages}
+            </Typography>
+            <Button
+              variant="contained"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Sonraki
+            </Button>
+          </Grid>
+        )}
       </Grid>
       )}
   </Grid>
