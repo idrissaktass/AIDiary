@@ -11,7 +11,7 @@ const Subscription = () => {
     document.body.appendChild(script);
 
     script.onload = () => {
-      window.Paddle.Setup({ vendor: "222801" });
+      window.Paddle.Setup({ vendor: 222801 });
     };
 
     return () => {
