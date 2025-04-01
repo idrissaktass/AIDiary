@@ -21,12 +21,18 @@ const Subscription = () => {
 
   const handleCheckout = () => {
     window.Paddle.Checkout.open({
-      product: "pri_01jqs4hhg49mcxq4m10v98pf8c",
+      product: "pro_01jqs4a9s1ez0t96evefdzhds0",  // Ürün ID'si
       successCallback: (data) => {
         console.log("Ödeme başarılı:", data);
       },
+      cancelCallback: (data) => {
+        console.log("Ödeme iptal edildi:", data);
+      },
+      // Token oluşturulması
+      token: "live_386726f9e177565911680c00364",  // Token burada kullanılmalı
     });
   };
+  
 
   return (
     <Grid container direction="column" minHeight="calc(100vh - 50px)" paddingBottom={7}>
