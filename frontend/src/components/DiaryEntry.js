@@ -236,7 +236,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.2 }}
             >
-              <Grid>
+              <Grid mb={6}>
                 <Typography variant="h6">
                   Recent Analysis
                 </Typography>

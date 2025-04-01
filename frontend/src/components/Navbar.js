@@ -22,10 +22,16 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
   };
 
   const handleNavigation = (path) => {
-    navigate(path);
+    if (path === "/home" && location.pathname === "/home") {
+      // Eğer zaten "/home" sayfasındaysak, sayfayı yeniden yükle
+      window.location.reload();
+    } else {
+      // Diğer sayfalara git
+      navigate(path);
+    }
     setDrawerOpenState(false);
   };
-
+  
   const handleMenuOpen = (event) => {
     if(!username) {
       handleNavigation("/login");
