@@ -50,6 +50,30 @@ const Footer = () => {
                     Diary AI
                 </Typography>
                 <Typography 
+                    onClick={() => navigate("/terms-of-service")} 
+                    fontSize={"10px"} 
+                    color="white" 
+                    sx={{ cursor: "pointer" }}
+                >
+                    Terms of Service
+                </Typography>
+                <Typography 
+                    onClick={() => navigate("/privacy-notice")}
+                    fontSize={"10px"} 
+                    color="white" 
+                    sx={{ cursor: "pointer" }}
+                >
+                    Privacy Notice
+                </Typography>
+                <Typography 
+                    onClick={() => navigate("/refund-policy")}
+                    fontSize={"10px"} 
+                    color="white" 
+                    sx={{ cursor: "pointer" }}
+                >
+                    Refund Policy
+                </Typography>
+                <Typography 
                     fontSize={"14px"} 
                     fontWeight={"400"} 
                     color="white"

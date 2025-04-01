@@ -1,0 +1,39 @@
+import React from "react";
+import { Typography, Container, Box, Paper } from "@mui/material";
+
+const PrivacyPolicy = () => {
+  return (
+    <Container maxWidth="lg" sx={{ mt: 5, mb: 5 }}>
+      <Paper sx={{ padding: 3 }}>
+        <Typography variant="h4" gutterBottom>
+          Privacy Policy
+        </Typography>
+        <Typography variant="h6" gutterBottom>
+          Information Collection
+        </Typography>
+        <Typography variant="body1" paragraph>
+          We collect personal data such as name, email, and payment details...
+        </Typography>
+
+        <Typography variant="h6" gutterBottom>
+          How We Use Information
+        </Typography>
+        <Typography variant="body1" paragraph>
+          The information we collect is used to improve our service and
+          communicate with you.
+        </Typography>
+
+        <Typography variant="h6" gutterBottom>
+          User Rights
+        </Typography>
+        <Typography variant="body1" paragraph>
+          You have the right to access, update, or delete your personal data.
+        </Typography>
+
+        {/* Add more sections here */}
+      </Paper>
+    </Container>
+  );
+};
+
+export default PrivacyPolicy;

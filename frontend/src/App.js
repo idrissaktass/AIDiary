@@ -10,6 +10,9 @@ import Footer from "./components/Footer";
 import "./App.css"
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Subscription from "./components/Subscription";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import RefundPolicy from "./components/RefundPolicy";
+import TermsOfService from "./components/TermsOfService";
 
 
 function AppContent() {
@@ -28,6 +31,9 @@ function AppContent() {
       </Helmet>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/privacy-notice" element={<PrivacyPolicy />} />
+        <Route path="/refund-policy" element={<RefundPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/subscription" element={<Subscription />} />
