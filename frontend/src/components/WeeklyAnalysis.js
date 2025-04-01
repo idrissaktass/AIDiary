@@ -234,7 +234,7 @@ const WeeklyAnalysis = () => {
                                 sx={{ width: "fit-content", backgroundColor: "#1764b0" }}
                                 variant="contained"
                                 color="primary"
-                                onClick={() => handleNavigation("/home")}
+                                onClick={() => navigate("/home")}
                                 >
                                     <Typography variant="h6">Make a Start</Typography>
                                 </Button>
