@@ -77,6 +77,9 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
                       <ListItemText primary={username} />
                     </ListItem>
                   )}
+                    <ListItem>
+                      <ListItemText onClick={() => handleNavigation("/subscription")} primary="Premium'a Geç" />
+                    </ListItem>
                   {username ? (
                     <ListItem button onClick={onLogout}>
                       <ListItemText primary="Çıkış Yap" />
@@ -106,6 +109,7 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
               {username && (
                 <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
                   <MenuItem>{username}</MenuItem>
+                  <MenuItem onClick={() => handleNavigation("/subscription")} >Premium'a Geç</MenuItem>
                   <MenuItem onClick={onLogout}>Çıkış Yap</MenuItem>
                 </Menu>
               )}

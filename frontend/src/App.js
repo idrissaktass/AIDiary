@@ -9,6 +9,7 @@ import Diaries from "./components/Diaries";
 import Footer from "./components/Footer";
 import "./App.css"
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import Subscription from "./components/Subcription";
 
 
 function AppContent() {
@@ -21,6 +22,7 @@ function AppContent() {
       <Helmet>
         <title>Diary AI - Kişisel Günlük ve Ruh Hali Analizi</title>
         <meta name="google-site-verification" content="qWuFVhUHkiJjBTNgbKDHhSduS6BoA8ZDMTkXO2N6wYg" />
+        <meta name="google-site-verification" content="qWuFVhUHkiJjBTNgbKDHhSduS6BoA8ZDMTkXO2N6wYg" />
         <meta name="description" content="Diary AI, günlüklerinizi analiz ederek ruh halinizi takip eder ve kişisel gelişiminize katkı sağlar." />
         <meta name="keywords" content="Diary AI, kişisel günlük, yapay zeka, ruh hali analizi, psikoloji" />
       </Helmet>
@@ -28,6 +30,7 @@ function AppContent() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<LandingPage />} />
+        <Route path="/subscription" element={<Subscription />} />
         <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
         <Route path="/weekly-analysis" element={<PrivateRoute><WeeklyAnalysis /></PrivateRoute>} />
         <Route path="/diaries" element={<PrivateRoute><Diaries /></PrivateRoute>} />
