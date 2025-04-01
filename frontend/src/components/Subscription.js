@@ -11,7 +11,7 @@ const Subscription = () => {
     document.body.appendChild(script);
 
     script.onload = () => {
-      window.Paddle.Setup({ vendor: YOUR_VENDOR_ID });
+      window.Paddle.Setup({ vendor: "222801" });
     };
 
     return () => {
@@ -21,7 +21,7 @@ const Subscription = () => {
 
   const handleCheckout = () => {
     window.Paddle.Checkout.open({
-      product: YOUR_PRODUCT_ID,
+      product: "pro_01jqs4a9s1ez0t96evefdzhds0",
       successCallback: (data) => {
         console.log("Ödeme başarılı:", data);
       },
