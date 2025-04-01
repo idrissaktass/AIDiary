@@ -5,31 +5,31 @@ import { Grid } from '@mui/system';
 
 const Subscription = () => {
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://cdn.paddle.com/paddle/paddle.js";
-    script.async = true;
-    document.body.appendChild(script);
+    if (!window.Paddle) {
+      const script = document.createElement("script");
+      script.src = "https://cdn.paddle.com/paddle/paddle.js";
+      script.async = true;
+      document.body.appendChild(script);
 
-    script.onload = () => {
-      window.Paddle.Setup({ vendor: 222801 });
-    };
+      script.onload = () => {
+        window.Paddle.Setup({ vendor: 222801 });
+      };
 
-    return () => {
-      document.body.removeChild(script);
-    };
+      return () => {
+        document.body.removeChild(script);
+      };
+    }
   }, []);
 
   const handleCheckout = () => {
     window.Paddle.Checkout.open({
-      product: "pro_01jqs4a9s1ez0t96evefdzhds0",  // Ürün ID'si
+      product: "pro_01jqs4a9s1ez0t96evefdzhds0",
       successCallback: (data) => {
         console.log("Ödeme başarılı:", data);
       },
       cancelCallback: (data) => {
         console.log("Ödeme iptal edildi:", data);
-      },
-      // Token oluşturulması
-      token: "live_386726f9e177565911680c00364",  // Token burada kullanılmalı
+      }
     });
   };
   
