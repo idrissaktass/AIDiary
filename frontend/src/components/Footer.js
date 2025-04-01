@@ -8,14 +8,6 @@ const Footer = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const handleHome = () => {
-        if (location.pathname === "/home") {
-          window.location.reload();
-        } else {
-          navigate("/home");
-        }
-    };
-
     const handleLanding = () => {
         navigate("/");
     };
@@ -56,15 +48,6 @@ const Footer = () => {
                     sx={{ cursor: "pointer" }}
                 >
                     Diary AI
-                </Typography>
-                <Typography 
-                    onClick={handleHome} 
-                    fontSize={"16px"} 
-                    fontWeight={"600"} 
-                    color="white" 
-                    sx={{ cursor: "pointer" }}
-                >
-                    Home
                 </Typography>
                 <Typography 
                     fontSize={"14px"} 
