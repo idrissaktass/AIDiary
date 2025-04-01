@@ -22,11 +22,12 @@ const Subscription = () => {
       };
     }
   }, []);
+  console.log("paddle",window.Paddle);
 
   const handleCheckout = () => {
     if (window.Paddle?.Checkout?.open) {
       window.Paddle.Checkout.open({
-        product: "pro_01jqs4a9s1ez0t96evefdzhds0",
+        price: "pri_01jqs4hhg49mcxq4m10v98pf8c", // Doğru price ID
         vendor: 222801,
         parent_url: "https://aidiary.online/subscription",
         displayMode: "overlay",
@@ -40,7 +41,7 @@ const Subscription = () => {
     } else {
       console.error("Paddle yüklenmedi veya Checkout fonksiyonu bulunamadı.");
     }
-  };
+  };  
 
   return (
     <Grid container direction="column" minHeight="calc(100vh - 50px)" paddingBottom={7}>
