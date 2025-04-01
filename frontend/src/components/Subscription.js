@@ -36,25 +36,24 @@ const Subscription = () => {
 
 
   const handleCheckout = () => {
-    if (!window.Paddle) {
-      console.error("Paddle yüklenmedi veya `Setup` çalıştırılmadı.");
-      return;
-    }
-  
-    window.Paddle.Checkout.open({
-      items: [{ priceId: "pri_01jqs4hhg49mcxq4m10v98pf8c", quantity: 1 }], // ✅ Doğru format!
-      settings: {
+    if (window.Paddle?.Checkout?.open) {
+      window.Paddle.Checkout.open({
+        items: [{ product_id: "pro_01jqs4a9s1ez0t96evefdzhds0", quantity: 1 }], // product_id ile deneme
+        vendor: 222801,
+        parent_url: "https://aidiary.online/subscription",
         displayMode: "overlay",
-        parentUrl: "https://aidiary.online/subscription"
-      },
-      successCallback: (data) => {
-        console.log("✅ Ödeme başarılı:", data);
-      },
-      cancelCallback: (data) => {
-        console.log("❌ Ödeme iptal edildi:", data);
-      },
-    });
+        successCallback: (data) => {
+          console.log("Ödeme başarılı:", data);
+        },
+        cancelCallback: (data) => {
+          console.log("Ödeme iptal edildi:", data);
+        },
+      });
+    } else {
+      console.error("Paddle yüklenmedi veya Checkout fonksiyonu bulunamadı.");
+    }
   };
+  
   
 
   return (
