@@ -5,7 +5,7 @@ import { Grid } from '@mui/system';
 
 const TermsOfService = () => {
   return (
-    <Grid container minHeight={"calc(100vh - 50px)"} maxWidth="lg" sx={{ mt: 5, mb: 5 }}>
+    <Grid container minHeight={"calc(100vh - 50px)"} maxWidth="lg">
         <Navbar/>
       <Paper sx={{ padding: 3 }}>
         <Typography variant="h4" gutterBottom>
