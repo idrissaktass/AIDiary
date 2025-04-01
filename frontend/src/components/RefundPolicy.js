@@ -5,7 +5,7 @@ import { Grid } from '@mui/system';
 
 const RefundPolicy = () => {
   return (
-    <Grid container minHeight={"calc(100vh - 50px)"}  maxWidth="lg">
+    <Grid container justifyContent={"center"} minHeight={"calc(100vh - 50px)"}  maxWidth="lg">
         <Navbar/>
       <Paper sx={{ padding: 3 }}>
         <Typography variant="h4" gutterBottom>
