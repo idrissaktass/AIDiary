@@ -48,19 +48,20 @@ export default async function handler(req, res) {
       const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
-          { role: 'system', content: 'Sen bir ruh hali analizcisinsin.' },
+          { role: 'system', content: 'You are a mood analyst.' },
           { 
             role: "user", 
-            content: `Bu girdinin ruh hali nedir? Bir terapist gibi sade bir dil ile ayrıntılı açıklama yap ve tavsiyeler ver, neler yapabileceğini anlat. Mümkünse analizin sonuna alıntı ekle. Eğer anlamsız bir kelime veya anlamsız cümleler yazılmışsa "Anladıysam arap olayım" yaz. Ayrıca günlüğe mutluluk puanı ve stres puanı ver ancak önce mood analizini yaz, alt satıra "Happiness Score: skor/10", ve bir alt satıra "Stress Score: skor/10" ver. Sadece şu formatta cevap ver:
-
+            content: `What is the mood of this input? Provide a detailed explanation in simple language like a therapist, and offer suggestions on what can be done. If possible, add a quote at the end of the analysis. If there are any meaningless words or sentences, reply with "Anladıysam arap olayım". Also, give a happiness score and stress score for the journal, but first write the mood analysis, then "Happiness Score: score/10" on the next line, and "Stress Score: score/10" on the line below. Respond only in the following format:
+      
             - Mood Analysis: [mood description]
             - Happiness Score: [score between 1 and 10]
             - Stress Score: [score between 1 and 10]
-            
-            İşte yazı: ${text}`
+      
+            Here is the text: ${text}`
           },
         ],
       });
+      
 
       // Extract mood analysis, happiness score, and stress score from the response
       const analysis = response.choices[0].message.content;

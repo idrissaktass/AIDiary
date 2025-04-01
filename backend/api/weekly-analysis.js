@@ -65,10 +65,11 @@ export default async function handler(req, res) {
       const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
-          { role: 'system', content: 'Sen bir ruh hali analizcisinsin.' },
-          { role: 'user', content: `Lütfen bu 3 ruh hali analizini gözden geçir ve genel bir ruh hali değerlendirmesi yap. Değerlendirmeyi sunarken bir mesaja cevap verir gibi sunma, rapor gibi yaz, örneğin "Tabii ki! İşte gözden geçirdiğim üç ruh hali analizi:" gibi cümlelerle baslama. ${moodTexts}` },
+          { role: 'system', content: 'You are a mood analyst.' },
+          { role: 'user', content: `Please review these 3 mood analyses and provide a general mood evaluation. When presenting the evaluation, avoid responding like a message, instead write it like a report, for example, do not start with phrases like "Sure! Here's the review of the three mood analyses:" ${moodTexts}` },
         ],
       });
+      
 
       // Save weekly analysis
       const newWeeklyAnalysis = new WeeklyAnalysis({
