@@ -177,7 +177,7 @@ const WeeklyAnalysis = () => {
                             </Typography>
                         </Grid>
                         <Typography variant="h6">Graphs</Typography>
-                        {isMobile ? (
+                        {isMobile && diaries.length > 0 ? (
                             <Grid>
                                 <FormControl>
                                     <InputLabel>Graph Type</InputLabel>
@@ -204,7 +204,7 @@ const WeeklyAnalysis = () => {
                                     />
                                 </Grid>
                             </Grid>
-                        ) : (
+                        ) : diaries.length > 0 ? (
                             <Grid size={{xs:12}} display={"flex"} justifyContent={"center"} alignItems={"center"} gap={2}>
                                 <Grid>
                                     <LineChart
@@ -227,6 +227,18 @@ const WeeklyAnalysis = () => {
                                     />
                                 </Grid>
                             </Grid>
+                        ): (
+                            <Grid size = {{xs:12}} display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"}>
+                                <Typography color="error" textAlign="center">Not enough entries for graphs.</Typography>
+                                <Button
+                                sx={{ width: "fit-content", backgroundColor: "#1764b0" }}
+                                variant="contained"
+                                color="primary"
+                                onClick={() => handleNavigation("/home")}
+                                >
+                                    <Typography variant="h6">Make a Start</Typography>
+                                </Button>
+                            </Grid>
                         )}
                         <Button
                             sx={{ width: "fit-content", backgroundColor: "#1764b0" }}
@@ -245,15 +257,15 @@ const WeeklyAnalysis = () => {
                                 <Typography>{weeklyAnalysis}</Typography>
                             </Grid>
                         )}
-                    </Grid>
-                    <Grid container justifyContent={"center"} mt={4} gap={2}>
-                        <Grid size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }}>
-                            <Typography variant="h6">Weekly Analyses</Typography>
-                        </Grid>
                         <Grid size={{xs:12}}>  
                             {!canAnalyze && (
                                 <Typography color="error" textAlign="center">Not enough entries to perform a weekly analysis.</Typography>
                             )}
+                        </Grid>
+                    </Grid>
+                    <Grid container justifyContent={"center"} mt={4} gap={2}>
+                        <Grid size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }}>
+                            <Typography variant="h6">Weekly Analyses</Typography>
                         </Grid>
                         {weeklyAnalyses.length > 0 && (
                             <Grid container justifyContent={"center"} size={{xs:12}} gap={1}>
