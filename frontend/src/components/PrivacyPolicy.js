@@ -7,7 +7,7 @@ const PrivacyPolicy = () => {
   return (
     <Grid container justifyContent={"center"} minHeight={"calc(100vh - 50px)"}>
         <Navbar/>
-      <Paper sx={{ padding: 3 }}>
+      <Paper sx={{ padding: 3, marginBottom: 3  }}>
         <Typography variant="h4" gutterBottom>
           Privacy Policy
         </Typography>
