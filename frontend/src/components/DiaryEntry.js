@@ -80,7 +80,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
       }, 500);
     } catch (error) {
       console.error("Axios error:", error);
-      alert("Bir hata oluştu!");
+      alert("An error occurred!");
       setLoading(false);
     }
   };
@@ -108,12 +108,12 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
         setText("");
       }
       console.log('Entered the serverless')
-      setSnackbarMessage("Günlük başarıyla kaydedildi!");
+      setSnackbarMessage("Diary saved successfully!");
       setSeverity("success");
       setOpenSnackbar(true);
     } catch (error) {
       console.error("Axios error:", error);
-      setSnackbarMessage("Bir hata oluştu!");
+      setSnackbarMessage("An error occurred!");
       setSeverity("error");
       setOpenSnackbar(true);
     } finally {
@@ -126,15 +126,15 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
     <Grid container mt={5} size={{xs:11.5, sm:10, md:9}}>
       <Grid display={"flex"} flexDirection={"column"} width={"100%"}>
         <Typography variant="h4" gutterBottom width={"100%"} textAlign={"center"} mb={3}>
-          {selectedDiary ? "Günlük Analizin" : "Anlat Bakalım"} 📝
+          {selectedDiary ? "Your Diary Analysis" : "Tell Me What Happened"} 📝
         </Typography>
         <Helmet>
-          <title>Günlük Yaz - AI Diary</title>
-          <meta name="description" content="Günlüklerinizi yapay zeka ile analiz edin ve ruh halinizi keşfedin!" />
-          <meta name="keywords" content="günlük, AI günlük, ruh hali analizi, yapay zeka günlüğü, mutluluk, stres analizi" />
+          <title>Write Diary - AI Diary</title>
+          <meta name="description" content="Analyze your diaries with AI and discover your mood!" />
+          <meta name="keywords" content="diary, AI diary, mood analysis, AI journal, happiness, stress analysis" />
           <meta name="author" content="AI Diary" />
-          <meta property="og:title" content="Günlük Yaz - AI Diary" />
-          <meta property="og:description" content="Günlüklerinizi yapay zeka ile analiz edin ve ruh halinizi keşfedin!" />
+          <meta property="og:title" content="Write Diary - AI Diary" />
+          <meta property="og:description" content="Analyze your diaries with AI and discover your mood!" />
           <meta property="og:type" content="website" />
           <meta property="og:url" content={window.location.href} />
           <meta property="og:image" content="https://ai-diary-backend-gamma.vercel.app/static/diary-image.png" />
@@ -143,8 +143,8 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
           {JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Article",
-              "headline": "Günlük Yaz - AI Diary",
-              "description": "Günlüklerinizi yapay zeka ile analiz edin ve ruh halinizi keşfedin!",
+              "headline": "Write Diary - AI Diary",
+              "description": "Analyze your diaries with AI and discover your mood!",
               "author": {
                   "@type": "Person",
                   "name": "AI Diary"
@@ -165,7 +165,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
           >
             <TextField 
               sx={{zIndex:"0", backgroundColor:"white", boxShadow:"0px 5px 10px rgba(0, 0, 0, 0.16)", borderRadius:"3px"}}
-              label="Bugün neler oldu?"
+              label="What happened today?"
               multiline
               fullWidth
               rows={5}
@@ -194,13 +194,13 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
           >
             <Grid bgcolor={"#8000000a"} padding={"30px"} mt={2} textAlign={"start"}>
               <Typography variant="body1">
-                Ruh Halin: {mood}
+                Your Mood: {mood}
               </Typography>
               <Typography variant="body1" mt={1}>
-                Mutluluk Skoru: {happinessScore}/10
+                Happiness Score: {happinessScore}/10
               </Typography>
               <Typography variant="body1" mt={1}>
-                Stres Skoru: {stressScore}/10
+                Stress Score: {stressScore}/10
               </Typography>
             </Grid>
           </motion.div>
@@ -209,14 +209,14 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
         
         <Grid display={"flex"} gap={2} my={5} justifyContent={"center"} width={"100%"}>
               {!mood && (
-                <Button startIcon={<img src="/assets/premium.svg" alt="Premium" style={{ width: 20, height: 20 }} />}
+                <Button startIcon={<Box component="img" src="/assets/premium.svg" alt="Premium" style={{ width: 20, height: 20 }} />}
                 variant="contained" color="primary" sx={{backgroundColor:"#1764b0"}} disabled={!text || loading} onClick={analyzeMood} >
-                  {loading ? "Yükleniyor..." : "Analiz Et"}
+                  {loading ? "Loading..." : "Analyze"}
                 </Button>
               )}
               {!selectedDiary && (
                   <Button variant="contained" color="secondary" sx={{backgroundColor:"#de7618"}}  disabled={!text || loading || saving} onClick={saveDiary}>
-                      {saving ? "Kaydediliyor..." : "Kaydet"}
+                      {saving ? "Saving..." : "Save"}
                   </Button>
               )}
           </Grid>
@@ -238,7 +238,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
             >
               <Grid>
                 <Typography variant="h6">
-                  Son Analiz
+                  Recent Analysis
                 </Typography>
                 <Grid bgcolor={"gray"} width={"100%"} height={"1px"} mt={1}></Grid>
                 <Typography variant="body1" bgcolor={"#8000000a"} padding={"30px"} mt={3}>

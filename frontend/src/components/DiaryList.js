@@ -14,8 +14,8 @@ const DiaryList = ({ handleDiaryClick, entries }) => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": "AI Günlükleri",
-    "description": "Yapay zeka destekli günlüklerinizi keşfedin ve analiz edin.",
+    "name": "AI Diaries",
+    "description": "Explore and analyze your AI-powered diaries.",
     "url": window.location.href,
     "blogPost": entries.map(entry => ({
       "@type": "BlogPosting",
@@ -23,7 +23,7 @@ const DiaryList = ({ handleDiaryClick, entries }) => {
       "datePublished": new Date(entry.date).toISOString(),
       "author": {
         "@type": "Person",
-        "name": "AI Diary Kullanıcısı"
+        "name": "AI Diary User"
       }
     }))
   };
@@ -31,16 +31,16 @@ const DiaryList = ({ handleDiaryClick, entries }) => {
   return (
       <Container maxWidth="sm" style={{ marginTop: 80 }}>
       <Helmet>
-        <title>Günlük Arşivi | AI Diary</title>
-        <meta name="description" content="Yapay zeka destekli günlük arşivinize göz atın ve geçmiş analizlerinizi inceleyin." />
-        <meta property="og:title" content="Günlük Arşivi | AI Diary" />
-        <meta property="og:description" content="Yapay zeka destekli günlüklerinizi görüntüleyin ve analizleri keşfedin." />
+        <title>Diary Archive | AI Diary</title>
+        <meta name="description" content="Browse your AI-powered diary archive and review past analyses." />
+        <meta property="og:title" content="Diary Archive | AI Diary" />
+        <meta property="og:description" content="View your AI-powered diaries and discover your analyses." />
         <meta property="og:url" content={window.location.href} />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
         <Typography variant="h5" gutterBottom>
-          Geçmiş Günlükler
+          Past Diaries
         </Typography>
         <List>
           {entries.length > 0 ? (
@@ -57,12 +57,12 @@ const DiaryList = ({ handleDiaryClick, entries }) => {
               >
                 <ListItemText
                   primary={`${entry.text?.split(' ').slice(0, 3).join(' ')}...`}
-                  secondary={`Ruh Hali: ${entry.mood ? entry.mood.split(' ').slice(0, 3).join(' ') : 'Belirtilmemiş'} | ${new Date(entry.date).toLocaleDateString()}`}
+                  secondary={`Mood: ${entry.mood ? entry.mood.split(' ').slice(0, 3).join(' ') : 'Not specified'} | ${new Date(entry.date).toLocaleDateString()}`}
                 />
               </ListItem>
             ))
           ) : (
-            <Typography>Henüz kaydınız yok.</Typography>
+            <Typography>You don't have any entries yet.</Typography>
           )}
         </List>
       </Container>

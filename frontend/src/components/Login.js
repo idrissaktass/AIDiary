@@ -21,7 +21,7 @@ const Login = () => {
       localStorage.setItem("token", res.data.token);
       navigate("/home");
     } catch (err) {
-      setError("Giriş başarısız!");
+      setError("Login failed!");
     } finally {
       setLoading(false);
     }
@@ -30,31 +30,31 @@ const Login = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Diary AI - Giriş Yap",
-    "description": "Diary AI'ye giriş yaparak ruh halinizi analiz eden ve kişisel günlüklerinizi saklayan yapay zeka destekli platforma erişebilirsiniz.",
+    "name": "Diary AI - Login",
+    "description": "Login to Diary AI to access the AI-powered platform that analyzes your mood and stores your personal diary.",
     "url": "https://aidiary.online/login"
   };
 
   return (
       <Grid container justifyContent={"center"} minHeight={"calc(100vh - 50px)"}>
       <Helmet>
-        <title>Giriş Yap - Diary AI</title>
-        <meta name="description" content="Diary AI'ye giriş yaparak kişisel günlüklerinizi yönetebilir ve ruh halinizi analiz edebilirsiniz." />
-        <meta name="keywords" content="Diary AI giriş, kişisel günlük, yapay zeka günlük, ruh hali analizi" />
-        <meta property="og:title" content="Giriş Yap - Diary AI" />
-        <meta property="og:description" content="Diary AI'ye giriş yaparak yapay zeka destekli günlük yönetim sistemine erişin." />
+        <title>Login - Diary AI</title>
+        <meta name="description" content="Log in to Diary AI to manage your personal diary and analyze your mood." />
+        <meta name="keywords" content="Diary AI login, personal diary, AI diary, mood analysis" />
+        <meta property="og:title" content="Login - Diary AI" />
+        <meta property="og:description" content="Log in to access the AI-powered diary management system." />
         <meta property="og:url" content="https://aidiary.online/login" />
-        <meta name="twitter:title" content="Giriş Yap - Diary AI" />
-        <meta name="twitter:description" content="Diary AI'ye giriş yaparak kişisel günlüklerinizi yönetin ve analiz edin." />
+        <meta name="twitter:title" content="Login - Diary AI" />
+        <meta name="twitter:description" content="Log in to manage and analyze your personal diary with Diary AI." />
         <link rel="canonical" href="https://aidiary.online/login" />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
       <Navbar/>
         <Grid mt={5} paddingTop={{xs:"15%", sm:"10%", md:"8%", lg:"5%"}}>
-          <Typography variant="h4" gutterBottom>Giriş Yap</Typography>
+          <Typography variant="h4" gutterBottom>Login</Typography>
         {error && <Typography color="error">{error}</Typography>}
         <TextField
-          label="Kullanıcı Adı"
+          label="Username"
           variant="outlined"
           fullWidth
           value={username}
@@ -62,7 +62,7 @@ const Login = () => {
           style={{ marginBottom: 10 }}
         />
         <TextField
-          label="Şifre"
+          label="Password"
           variant="outlined"
           fullWidth
           type="password"
@@ -71,8 +71,8 @@ const Login = () => {
           style={{ marginBottom: 20 }}
         />
         <Box display="flex" justifyContent="space-between">
-          <Button variant="contained" color="primary" onClick={handleLogin}>{loading ? <CircularProgress color="white" sx={{width:"22px !important", height:"22px !important"}}/> : "Giriş Yap" }</Button>
-          <Button color="secondary" onClick={() => navigate("/signup")}>Kayıt Ol</Button>
+          <Button variant="contained" color="primary" onClick={handleLogin}>{loading ? <CircularProgress color="white" sx={{width:"22px !important", height:"22px !important"}}/> : "Login" }</Button>
+          <Button color="secondary" onClick={() => navigate("/signup")}>Sign Up</Button>
         </Box>
         </Grid>
     </Grid>

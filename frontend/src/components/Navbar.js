@@ -28,7 +28,7 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
 
   const handleMenuOpen = (event) => {
     if(!username) {
-      handleNavigation("/login")
+      handleNavigation("/login");
     }
     setAnchorEl(event.currentTarget);
   };
@@ -59,17 +59,17 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
               <Drawer anchor="right" open={drawerOpenState} onClose={toggleDrawer(false)}>
                 <List>
                   <ListItem button onClick={() => handleNavigation("/home")}>
-                    <ListItemText primary="Anlat Bakalım" />
+                    <ListItemText primary="Tell Me" />
                   </ListItem>
                   <ListItem button onClick={() => handleNavigation("/weekly-analysis")}>
-                    <ListItemText primary="Haftalık Analiz" />
+                    <ListItemText primary="Weekly Analysis" />
                   </ListItem>
                   <ListItem button onClick={() => handleNavigation("/diaries")}>
-                    <ListItemText primary="Anlattıklarım" />
+                    <ListItemText primary="My Diaries" />
                   </ListItem>
                   {location.pathname === "/home" && (
                     <ListItem button onClick={() => { onToggleDrawer(!drawerOpen); setDrawerOpenState(false); }}>
-                      <ListItemText primary="Geçmiş" />
+                      <ListItemText primary="History" />
                     </ListItem>
                   )}
                   {username && (
@@ -77,16 +77,16 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
                       <ListItemText primary={username} />
                     </ListItem>
                   )}
-                    <ListItem>
-                      <ListItemText onClick={() => handleNavigation("/subscription")} primary="Premium'a Geç" />
-                    </ListItem>
+                  {/* <ListItem>
+                    <ListItemText onClick={() => handleNavigation("/subscription")} primary="Go Premium" />
+                  </ListItem> */}
                   {username ? (
                     <ListItem button onClick={onLogout}>
-                      <ListItemText primary="Çıkış Yap" />
+                      <ListItemText primary="Logout" />
                     </ListItem>
                   ) : (
                     <ListItem button onClick={() => handleNavigation("/login")}>
-                      <ListItemText primary="Giriş Yap" />
+                      <ListItemText primary="Login" />
                     </ListItem>
                   )}
                 </List>
@@ -95,13 +95,13 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
           ) : (
             <>
               <Button color="inherit" sx={{ textTransform: "none" }} onClick={() => handleNavigation("/home")}>
-                <Typography variant="h6">Anlat Bakalım</Typography>
+                <Typography variant="h6">Tell Me</Typography>
               </Button>
               <Button color="inherit" sx={{ textTransform: "none" }} onClick={() => handleNavigation("/weekly-analysis")}>
-                <Typography variant="h6">Haftalık Analiz</Typography>
+                <Typography variant="h6">Weekly Analysis</Typography>
               </Button>
               <Button color="inherit" sx={{ textTransform: "none" }} onClick={() => handleNavigation("/diaries")}>
-                <Typography variant="h6">Anlattıklarım</Typography>
+                <Typography variant="h6">My Diaries</Typography>
               </Button>
               <IconButton color="inherit" onClick={handleMenuOpen}>
                 <AccountCircleIcon />
@@ -109,8 +109,8 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
               {username && (
                 <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
                   <MenuItem>{username}</MenuItem>
-                  <MenuItem onClick={() => handleNavigation("/subscription")} >Premium'a Geç</MenuItem>
-                  <MenuItem onClick={onLogout}>Çıkış Yap</MenuItem>
+                  {/* <MenuItem onClick={() => handleNavigation("/subscription")}>Go Premium</MenuItem> */}
+                  <MenuItem onClick={onLogout}>Logout</MenuItem>
                 </Menu>
               )}
             </>

@@ -18,40 +18,39 @@ const SignUp = () => {
   const handleSignUp = async () => {
     setLoading(true);
     if (username.length < 6) {
-      setError("Kullanıcı adı en az 6 karakter olmalı.");
+      setError("Username must be at least 6 characters.");
       setLoading(false);
       return;
     }
 
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (!emailRegex.test(email)) {
-      setError("Geçerli bir email adresi girin.");
+      setError("Please enter a valid email address.");
       setLoading(false);
       return;
     }
 
     if (password.length < 6) {
-      setError("Şifre en az 6 karakter olmalı.");
+      setError("Password must be at least 6 characters.");
       setLoading(false);
       return;
     }
 
     try {
       await axios.post("https://ai-diary-backend-gamma.vercel.app/api/signup", { username, email, password });
-      alert("Kayıt başarılı, lütfen giriş yapın.")
+      alert("Registration successful, please log in.");
       navigate("/login");
-    }  catch (err) {
+    } catch (err) {
       if (err.response && err.response.data && err.response.data.error) {
-        if (err.response.data.error === "email zaten var") {
-          setError("Bu email zaten kullanılıyor.");
-        } else if (err.response.data.error === "username zaten var") {
-          setError("Bu kullanıcı adı zaten kullanılıyor.");
-        }
-         else {
+        if (err.response.data.error === "email already exists") {
+          setError("This email is already in use.");
+        } else if (err.response.data.error === "username already exists") {
+          setError("This username is already in use.");
+        } else {
           setError(err.response.data.error);
         }
       } else {
-        setError("Kayıt sırasında bir hata oluştu.");
+        setError("An error occurred during registration.");
       }
     } finally {
       setLoading(false);
@@ -61,32 +60,31 @@ const SignUp = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Diary AI - Kayıt Ol",
-    "description": "Diary AI'ye kayıt olarak kişisel günlüklerinizi yönetebilir ve ruh halinizi analiz edebilirsiniz.",
+    "name": "Diary AI - Sign Up",
+    "description": "Sign up for Diary AI to manage your personal diaries and analyze your mood.",
     "url": "https://aidiary.online/signup"
   };
 
-
   return (
-      <Grid container justifyContent={"center"}  minHeight={"calc(100vh - 50px)"}>
+      <Grid container justifyContent={"center"} minHeight={"calc(100vh - 50px)"}>
       <Helmet>
-        <title>Kayıt Ol - Diary AI</title>
-        <meta name="description" content="Diary AI'ye kayıt olarak yapay zeka destekli günlük yönetim sistemine katılabilirsiniz." />
-        <meta name="keywords" content="Diary AI kayıt ol, kişisel günlük, yapay zeka günlük, ruh hali analizi" />
-        <meta property="og:title" content="Kayıt Ol - Diary AI" />
-        <meta property="og:description" content="Diary AI'ye kayıt olarak kişisel günlüklerinizi yönetin ve analiz edin." />
+        <title>Sign Up - Diary AI</title>
+        <meta name="description" content="Sign up for Diary AI to join the AI-powered diary management system." />
+        <meta name="keywords" content="Diary AI sign up, personal diary, AI diary, mood analysis" />
+        <meta property="og:title" content="Sign Up - Diary AI" />
+        <meta property="og:description" content="Sign up to manage and analyze your personal diaries with Diary AI." />
         <meta property="og:url" content="https://aidiary.online/signup" />
-        <meta name="twitter:title" content="Kayıt Ol - Diary AI" />
-        <meta name="twitter:description" content="Diary AI'ye kayıt olarak ruh halinizi analiz eden yapay zeka destekli günlük yönetimine başlayın." />
+        <meta name="twitter:title" content="Sign Up - Diary AI" />
+        <meta name="twitter:description" content="Sign up for Diary AI to start managing your mood with AI-powered diary management." />
         <link rel="canonical" href="https://aidiary.online/signup" />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
         <Navbar />
         <Grid mt={5} paddingTop={{xs:"15%", sm:"10%", md:"8%", lg:"5%"}}>
-          <Typography variant="h4" gutterBottom>Kayıt Ol</Typography>
+          <Typography variant="h4" gutterBottom>Sign Up</Typography>
           {error && <Typography color="error" mb={2}>{error}</Typography>}
           <TextField
-            label="Kullanıcı Adı"
+            label="Username"
             variant="outlined"
             fullWidth
             value={username}
@@ -102,7 +100,7 @@ const SignUp = () => {
             style={{ marginBottom: 10 }}
           />
           <TextField
-            label="Şifre"
+            label="Password"
             variant="outlined"
             fullWidth
             type="password"
@@ -111,8 +109,10 @@ const SignUp = () => {
             style={{ marginBottom: 20 }}
           />
           <Box display="flex" justifyContent="space-between">
-            <Button variant="contained" color="primary" onClick={handleSignUp}>{loading ? <CircularProgress color="white" sx={{width:"22px !important", height:"22px !important"}}/> : "Kayıt Ol" }</Button>
-            <Button color="secondary" onClick={() => navigate("/login")}>Giriş Yap</Button>
+            <Button variant="contained" color="primary" onClick={handleSignUp}>
+              {loading ? <CircularProgress color="white" sx={{width:"22px !important", height:"22px !important"}} /> : "Sign Up"}
+            </Button>
+            <Button color="secondary" onClick={() => navigate("/login")}>Log In</Button>
           </Box>
         </Grid>
       </Grid>

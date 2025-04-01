@@ -10,12 +10,12 @@ const Subscription = () => {
     const loadPaddle = () => {
       if (window.Paddle) {
         window.Paddle.Setup({ vendor: 222801 }); 
-        setPaddle(window.Paddle);  // Paddle'ı state'e kaydet
-        console.log("✅ Paddle başarıyla yüklendi!");
+        setPaddle(window.Paddle);  // Save Paddle to state
+        console.log("✅ Paddle loaded successfully!");
       }
     };
 
-    // Eğer window.Paddle mevcut değilse, script'i yükle
+    // If window.Paddle is not available, load the script
     if (!window.Paddle) {
       const script = document.createElement("script");
       script.src = "https://cdn.paddle.com/paddle/paddle.js";
@@ -23,16 +23,16 @@ const Subscription = () => {
       document.body.appendChild(script);
 
       script.onload = () => {
-        loadPaddle(); // Paddle yüklendiğinde setup çağrılacak
+        loadPaddle(); // Call setup when Paddle is loaded
       };
 
       return () => {
         document.body.removeChild(script);
       };
     } else {
-      loadPaddle(); // Zaten yüklenmişse tekrar çağır
+      loadPaddle(); // Call again if it's already loaded
     }
-  }, []); // sadece bir kez yüklemek için []
+  }, []); // Load only once []
 
   const handleCheckout = () => {
     if (paddle?.Checkout?.open) {
@@ -42,14 +42,14 @@ const Subscription = () => {
         parent_url: "https://aidiary.online/subscription",
         displayMode: "overlay",
         successCallback: (data) => {
-          console.log("Ödeme başarılı:", data);
+          console.log("Payment successful:", data);
         },
         cancelCallback: (data) => {
-          console.log("Ödeme iptal edildi:", data);
+          console.log("Payment canceled:", data);
         },
       });
     } else {
-      console.error("Paddle yüklenmedi veya Checkout fonksiyonu bulunamadı.");
+      console.error("Paddle is not loaded or the Checkout function is missing.");
     }
   };
 
@@ -64,10 +64,10 @@ const Subscription = () => {
               <Typography variant="h5" gutterBottom>
                 Free Plan
               </Typography>
-              <Typography>- Günlük yazma</Typography>
-              <Typography>- Günlüklerini kaydetme</Typography>
+              <Typography>- Write a journal</Typography>
+              <Typography>- Save your journals</Typography>
               <Button variant="contained" fullWidth sx={{ marginTop: 2 }}>
-                Ücretsiz
+                Free
               </Button>
             </CardContent>
           </Card>
@@ -78,13 +78,13 @@ const Subscription = () => {
           <Card variant="outlined">
             <CardContent>
               <Typography variant="h5" gutterBottom>
-                Premium Plan - 89,90 TL/ay
+                Premium Plan - $6.49/month
               </Typography>
-              <Typography>- Günlük yazma</Typography>
-              <Typography>- Günlüklerini kaydetme</Typography>
-              <Typography>- Günlüğünüzü AI ile analiz etme</Typography>
-              <Typography>- Analizleri kaydetme</Typography>
-              <Typography>- Mutluluk ve stres durumlarınızı takip etme</Typography>
+              <Typography>- Write a journal</Typography>
+              <Typography>- Save your journals</Typography>
+              <Typography>- Analyze your journal with AI</Typography>
+              <Typography>- Save analyses</Typography>
+              <Typography>- Track your happiness and stress levels</Typography>
               <Button
                 variant="contained"
                 fullWidth
@@ -92,7 +92,7 @@ const Subscription = () => {
                 sx={{ marginTop: 2 }}
                 onClick={handleCheckout}
               >
-                Satın Al
+                Buy Now
               </Button>
             </CardContent>
           </Card>
