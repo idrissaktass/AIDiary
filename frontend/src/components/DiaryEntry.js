@@ -209,7 +209,8 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
         
         <Grid display={"flex"} gap={2} my={5} justifyContent={"center"} width={"100%"}>
               {!mood && (
-                <Button variant="contained" color="primary" sx={{backgroundColor:"#1764b0"}} disabled={!text || loading} onClick={analyzeMood}>
+                <Button startIcon={<img src="/assets/premium.svg" alt="Premium" style={{ width: 20, height: 20 }} />}
+                variant="contained" color="primary" sx={{backgroundColor:"#1764b0"}} disabled={!text || loading} onClick={analyzeMood}>
                   {loading ? "Yükleniyor..." : "Analiz Et"}
                 </Button>
               )}
