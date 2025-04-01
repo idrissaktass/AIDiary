@@ -49,6 +49,7 @@ const Footer = () => {
                 >
                     Diary AI
                 </Typography>
+                <Grid display="flex" gap={1}>
                 <Typography 
                     onClick={() => navigate("/terms-of-service")} 
                     fontSize={"10px"} 
@@ -73,8 +74,9 @@ const Footer = () => {
                 >
                     Refund Policy
                 </Typography>
+                </Grid>
                 <Typography 
-                    fontSize={"14px"} 
+                    fontSize={{xs:"10px", sm:"12px", md:"14px"}} 
                     fontWeight={"400"} 
                     color="white"
                 >
