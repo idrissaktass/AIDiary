@@ -9,13 +9,13 @@ import Diaries from "./components/Diaries";
 import Footer from "./components/Footer";
 import "./App.css"
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import Subscription from "./components/Subcription";
+import Subscription from "./components/Subscription";
 
 
 function AppContent() {
   const location = useLocation();
   const hideFooterRoutes = ["/"];
-
+ 
   return (
     <div className="app">
       <HelmetProvider>
