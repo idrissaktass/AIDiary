@@ -228,12 +228,12 @@ const WeeklyAnalysis = () => {
                                 </Grid>
                             </Grid>
                         ): (
-                            <Grid size = {{xs:12}} display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"}>
+                            <Grid mb={5} size = {{xs:12}} display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"}>
                                 <Typography color="error" textAlign="center">Not enough entries for graphs.</Typography>
                                 <Button
                                 sx={{ width: "fit-content", backgroundColor: "#1764b0" }}
                                 variant="contained"
-                                color="primary"
+                                color="secondary"
                                 onClick={() => navigate("/home")}
                                 >
                                     <Typography variant="h6">Make a Start</Typography>
