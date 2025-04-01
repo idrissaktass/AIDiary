@@ -12,7 +12,9 @@ const Subscription = () => {
       document.body.appendChild(script);
 
       script.onload = () => {
-        window.Paddle.Setup({ vendor: 222801 });
+        if (window.Paddle) {
+          window.Paddle.Setup({ vendor: 222801 });
+        }
       };
 
       return () => {
@@ -22,21 +24,23 @@ const Subscription = () => {
   }, []);
 
   const handleCheckout = () => {
-    window.Paddle.Checkout.open({
-      product: "pro_01jqs4a9s1ez0t96evefdzhds0",  // Güncel Product ID olduğundan emin olun
-      vendor: 222801,  // Gerçek Vendor ID'nizi kontrol edin
-      parent_url: "https://aidiary.online/subscription",  // URL’yi kontrol edin
-      displayMode: "overlay",  // Popup modda açıldığından emin olun
-      successCallback: (data) => {
-        console.log("Ödeme başarılı:", data);
-      },
-      cancelCallback: (data) => {
-        console.log("Ödeme iptal edildi:", data);
-      }
-    });
+    if (window.Paddle?.Checkout?.open) {
+      window.Paddle.Checkout.open({
+        product: "pro_01jqs4a9s1ez0t96evefdzhds0",
+        vendor: 222801,
+        parent_url: "https://aidiary.online/subscription",
+        displayMode: "overlay",
+        successCallback: (data) => {
+          console.log("Ödeme başarılı:", data);
+        },
+        cancelCallback: (data) => {
+          console.log("Ödeme iptal edildi:", data);
+        },
+      });
+    } else {
+      console.error("Paddle yüklenmedi veya Checkout fonksiyonu bulunamadı.");
+    }
   };
-  
-  
 
   return (
     <Grid container direction="column" minHeight="calc(100vh - 50px)" paddingBottom={7}>
