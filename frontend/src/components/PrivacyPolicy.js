@@ -1,9 +1,11 @@
 import React from "react";
 import { Typography, Container, Box, Paper } from "@mui/material";
+import Navbar from "./Navbar";
 
 const PrivacyPolicy = () => {
   return (
-    <Container maxWidth="lg" sx={{ mt: 5, mb: 5 }}>
+    <Container minHeight={"calc(100vh - 50px)"} maxWidth="lg" sx={{ mt: 5, mb: 5 }}>
+        <Navbar/>
       <Paper sx={{ padding: 3 }}>
         <Typography variant="h4" gutterBottom>
           Privacy Policy
