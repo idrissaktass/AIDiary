@@ -38,7 +38,7 @@ const Subscription = () => {
   const handleCheckout = () => {
     if (window.Paddle?.Checkout?.open) {
       window.Paddle.Checkout.open({
-        items: [{ product_id: "pro_01jqs4a9s1ez0t96evefdzhds0", quantity: 1 }], // product_id ile deneme
+        items: [{ product_id: pro_01jqs4a9s1ez0t96evefdzhds0, quantity: 1 }], // product_id ile deneme
         vendor: 222801,
         parent_url: "https://aidiary.online/subscription",
         displayMode: "overlay",
