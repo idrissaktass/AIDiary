@@ -6,6 +6,13 @@ import { Grid } from '@mui/system';
 const Subscription = () => {
   console.log("paddle",window.Paddle.Environment);
   useEffect(() => {
+    const loadPaddle = () => {
+      if (window.Paddle) {
+        window.Paddle.Setup({ vendor: 222801 }); 
+        console.log("✅ Paddle başarıyla yüklendi!");
+      }
+    };
+  
     if (!window.Paddle) {
       const script = document.createElement("script");
       script.src = "https://cdn.paddle.com/paddle/paddle.js";
@@ -13,39 +20,42 @@ const Subscription = () => {
       document.body.appendChild(script);
   
       script.onload = () => {
-        if (window.Paddle) {
-          window.Paddle.Setup({ vendor: 222801 }); 
-          console.log("Paddle yüklendi!");
-        }
+        loadPaddle(); // Paddle yüklendiğinde setup çağrılacak
       };
   
       return () => {
         document.body.removeChild(script);
       };
+    } else {
+      loadPaddle(); // Zaten yüklenmişse tekrar çağır
     }
   }, []);
+  
   
   console.log(window.Paddle);
 
 
   const handleCheckout = () => {
-    if (window.Paddle?.Checkout?.open) {
-      window.Paddle.Checkout.open({
-        items: [{ priceId: "pri_01jqs4hhg49mcxq4m10v98pf8c", quantity: 1 }], // Yeni format!
-        vendor: 222801,
-        parent_url: "https://aidiary.online/subscription",
-        displayMode: "overlay",
-        successCallback: (data) => {
-          console.log("Ödeme başarılı:", data);
-        },
-        cancelCallback: (data) => {
-          console.log("Ödeme iptal edildi:", data);
-        },
-      });
-    } else {
-      console.error("Paddle yüklenmedi veya Checkout fonksiyonu bulunamadı.");
+    if (!window.Paddle) {
+      console.error("Paddle yüklenmedi veya `Setup` çalıştırılmadı.");
+      return;
     }
-  };  
+  
+    window.Paddle.Checkout.open({
+      items: [{ priceId: "pri_01jqs4hhg49mcxq4m10v98pf8c", quantity: 1 }], // ✅ Doğru format!
+      settings: {
+        displayMode: "overlay",
+        parentUrl: "https://aidiary.online/subscription"
+      },
+      successCallback: (data) => {
+        console.log("✅ Ödeme başarılı:", data);
+      },
+      cancelCallback: (data) => {
+        console.log("❌ Ödeme iptal edildi:", data);
+      },
+    });
+  };
+  
 
   return (
     <Grid container direction="column" minHeight="calc(100vh - 50px)" paddingBottom={7}>
