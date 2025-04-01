@@ -4,30 +4,34 @@ import Navbar from "./Navbar";
 import { Grid } from '@mui/system';
 
 const Subscription = () => {
+  console.log("paddle",window.Paddle.Environment);
   useEffect(() => {
     if (!window.Paddle) {
       const script = document.createElement("script");
       script.src = "https://cdn.paddle.com/paddle/paddle.js";
       script.async = true;
       document.body.appendChild(script);
-
+  
       script.onload = () => {
         if (window.Paddle) {
-          window.Paddle.Setup({ vendor: 222801 });
+          window.Paddle.Setup({ vendor: 222801 }); 
+          console.log("Paddle yüklendi!");
         }
       };
-
+  
       return () => {
         document.body.removeChild(script);
       };
     }
   }, []);
-  console.log("paddle",window.Paddle);
+  
+  console.log(window.Paddle);
+
 
   const handleCheckout = () => {
     if (window.Paddle?.Checkout?.open) {
       window.Paddle.Checkout.open({
-        price: "pri_01jqs4hhg49mcxq4m10v98pf8c", // Doğru price ID
+        items: [{ priceId: "pri_01jqs4hhg49mcxq4m10v98pf8c", quantity: 1 }], // Yeni format!
         vendor: 222801,
         parent_url: "https://aidiary.online/subscription",
         displayMode: "overlay",
