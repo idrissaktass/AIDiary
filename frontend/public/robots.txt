@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://diary-ai-0.vercel.app/sitemap.xml
+Sitemap: https://aidiary.online/sitemap.xml

@@ -32,7 +32,7 @@ const Login = () => {
     "@type": "WebPage",
     "name": "Diary AI - Giriş Yap",
     "description": "Diary AI'ye giriş yaparak ruh halinizi analiz eden ve kişisel günlüklerinizi saklayan yapay zeka destekli platforma erişebilirsiniz.",
-    "url": "https://diary-ai-0.vercel.app/login"
+    "url": "https://aidiary.online/login"
   };
 
   return (
@@ -43,10 +43,10 @@ const Login = () => {
         <meta name="keywords" content="Diary AI giriş, kişisel günlük, yapay zeka günlük, ruh hali analizi" />
         <meta property="og:title" content="Giriş Yap - Diary AI" />
         <meta property="og:description" content="Diary AI'ye giriş yaparak yapay zeka destekli günlük yönetim sistemine erişin." />
-        <meta property="og:url" content="https://diary-ai-0.vercel.app/login" />
+        <meta property="og:url" content="https://aidiary.online/login" />
         <meta name="twitter:title" content="Giriş Yap - Diary AI" />
         <meta name="twitter:description" content="Diary AI'ye giriş yaparak kişisel günlüklerinizi yönetin ve analiz edin." />
-        <link rel="canonical" href="https://diary-ai-0.vercel.app/login" />
+        <link rel="canonical" href="https://aidiary.online/login" />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
       <Navbar/>

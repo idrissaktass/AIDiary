@@ -118,8 +118,8 @@ const Home = () => {
         "@type": "WebPage",
         "name": "Diary AI - Kişisel Günlük Uygulaması",
         "description": "Diary AI, yapay zeka destekli kişisel günlük tutma uygulamasıdır. Ruh halinizi analiz eder, öneriler sunar ve geçmiş kayıtlarınızı yönetmenize yardımcı olur.",
-        "url": "https://diary-ai-0.vercel.app/home",
-        "image": "https://diary-ai-0.vercel.app/preview-image.jpg"
+        "url": "https://aidiary.online/home",
+        "image": "https://aidiary.online/preview-image.jpg"
     };
 
     return (
@@ -130,12 +130,12 @@ const Home = () => {
                 <meta name="keywords" content="Diary AI, kişisel günlük, yapay zeka, ruh hali analizi, günlük tutma uygulaması" />
                 <meta property="og:title" content="Diary AI - Yapay Zeka Destekli Günlük Uygulaması" />
                 <meta property="og:description" content="Diary AI, günlüklerinizi analiz eden ve size özel öneriler sunan akıllı bir günlük tutma uygulamasıdır." />
-                <meta property="og:image" content="https://diary-ai-0.vercel.app/preview-image.jpg" />
-                <meta property="og:url" content="https://diary-ai-0.vercel.app/home" />
+                <meta property="og:image" content="https://aidiary.online/preview-image.jpg" />
+                <meta property="og:url" content="https://aidiary.online/home" />
                 <meta name="twitter:title" content="Diary AI - Yapay Zeka Destekli Günlük Uygulaması" />
                 <meta name="twitter:description" content="Günlüklerinizi yapay zeka ile analiz edin ve daha bilinçli bir yaşam sürün!" />
-                <meta name="twitter:image" content="https://diary-ai-0.vercel.app/preview-image.jpg" />
-                <link rel="canonical" href="https://diary-ai-0.vercel.app/home" />
+                <meta name="twitter:image" content="https://aidiary.online/preview-image.jpg" />
+                <link rel="canonical" href="https://aidiary.online/home" />
                 <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
             </Helmet>
                 <Navbar 

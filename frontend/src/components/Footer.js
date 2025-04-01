@@ -24,8 +24,8 @@ const Footer = () => {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Diary AI",
-        "url": "https://diary-ai-0.vercel.app",
-        "logo": "https://diary-ai-0.vercel.app/logo.png",
+        "url": "https://aidiary.online",
+        "logo": "https://aidiary.online/logo.png",
         "sameAs": [
             "https://facebook.com/DiaryAI",
             "https://twitter.com/DiaryAI",

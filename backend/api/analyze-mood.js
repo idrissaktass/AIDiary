@@ -10,7 +10,7 @@ const openai = new OpenAI({
 
 // CORS configuration
 const cors = Cors({
-  origin: 'https://diary-ai-0.vercel.app',
+  origin: 'https://aidiary.online',
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -86,7 +86,7 @@ export default async function handler(req, res) {
       res.status(500).json({ error: 'AI request failed.' });
     }
   } else if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Origin', 'https://diary-ai-0.vercel.app');
+    res.setHeader('Access-Control-Allow-Origin', 'https://aidiary.online');
     res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, PUT, PATCH, POST, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.status(204).end(); // No content for OPTIONS method

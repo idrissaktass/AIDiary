@@ -12,8 +12,8 @@ const LandingPage = () => {
         "@type": "WebPage",
         "name": "Diary AI - Yapay Zeka Destekli Günlük Uygulaması",
         "description": "Diary AI, günlüklerinizi analiz eden ve ruh halinizi takip etmenize yardımcı olan yapay zeka destekli kişisel günlük uygulamasıdır.",
-        "url": "https://diary-ai-0.vercel.app",
-        "image": "https://diary-ai-0.vercel.app/preview-image.jpg"
+        "url": "https://aidiary.online",
+        "image": "https://aidiary.online/preview-image.jpg"
     };
     return(
         <>
@@ -23,12 +23,12 @@ const LandingPage = () => {
                 <meta name="keywords" content="Diary AI, yapay zeka günlük, kişisel günlük, ruh hali takibi, mod analizi" />
                 <meta property="og:title" content="Diary AI - Yapay Zeka Destekli Günlük Uygulaması" />
                 <meta property="og:description" content="Günlüklerinizi yapay zeka ile analiz edin ve ruh halinizi takip edin!" />
-                <meta property="og:image" content="https://diary-ai-0.vercel.app/preview-image.jpg" />
-                <meta property="og:url" content="https://diary-ai-0.vercel.app" />
+                <meta property="og:image" content="https://aidiary.online/preview-image.jpg" />
+                <meta property="og:url" content="https://aidiary.online" />
                 <meta name="twitter:title" content="Diary AI - Yapay Zeka Destekli Günlük Uygulaması" />
                 <meta name="twitter:description" content="Ruh halinizi analiz edin, kişisel günlüklerinizi yönetin!" />
-                <meta name="twitter:image" content="https://diary-ai-0.vercel.app/preview-image.jpg" />
-                <link rel="canonical" href="https://diary-ai-0.vercel.app" />
+                <meta name="twitter:image" content="https://aidiary.online/preview-image.jpg" />
+                <link rel="canonical" href="https://aidiary.online" />
                 <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
             </Helmet>
             <div className="video-background">

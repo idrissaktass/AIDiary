@@ -63,7 +63,7 @@ const SignUp = () => {
     "@type": "WebPage",
     "name": "Diary AI - Kayıt Ol",
     "description": "Diary AI'ye kayıt olarak kişisel günlüklerinizi yönetebilir ve ruh halinizi analiz edebilirsiniz.",
-    "url": "https://diary-ai-0.vercel.app/signup"
+    "url": "https://aidiary.online/signup"
   };
 
 
@@ -75,10 +75,10 @@ const SignUp = () => {
         <meta name="keywords" content="Diary AI kayıt ol, kişisel günlük, yapay zeka günlük, ruh hali analizi" />
         <meta property="og:title" content="Kayıt Ol - Diary AI" />
         <meta property="og:description" content="Diary AI'ye kayıt olarak kişisel günlüklerinizi yönetin ve analiz edin." />
-        <meta property="og:url" content="https://diary-ai-0.vercel.app/signup" />
+        <meta property="og:url" content="https://aidiary.online/signup" />
         <meta name="twitter:title" content="Kayıt Ol - Diary AI" />
         <meta name="twitter:description" content="Diary AI'ye kayıt olarak ruh halinizi analiz eden yapay zeka destekli günlük yönetimine başlayın." />
-        <link rel="canonical" href="https://diary-ai-0.vercel.app/signup" />
+        <link rel="canonical" href="https://aidiary.online/signup" />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
         <Navbar />

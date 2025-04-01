@@ -156,7 +156,7 @@ const WeeklyAnalysis = () => {
             <meta property="og:title" content="Haftalık Ruh Hali Analizi | AI Diary" />
             <meta property="og:description" content="AI Diary'nin Haftalık Ruh Hali Analizi sayfasına göz atın ve duygu durumunuzu nasıl iyileştirebileceğiniz hakkında bilgi edinin." />
             <meta property="og:image" content="URL_TO_IMAGE" /> {/* Add an image URL if applicable */}
-            <meta property="og:url" content="https://diary-ai-0.vercel.app/weekly-analysis" />
+            <meta property="og:url" content="https://aidiary.online/weekly-analysis" />
             </Helmet>
             <Navbar username={username} onLogout={handleLogout} />
             {loading ? (
