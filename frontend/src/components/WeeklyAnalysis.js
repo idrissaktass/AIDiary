@@ -99,7 +99,7 @@ const WeeklyAnalysis = () => {
     const handleLogout = () => {
         localStorage.removeItem("token");
         setIsLoggedIn(false);
-        navigate("/login");
+        navigate("/");
     };
 
     const handleToggleAnalysis = (id) => {

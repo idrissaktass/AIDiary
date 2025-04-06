@@ -10,7 +10,7 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
   const isMobile = useMediaQuery("(max-width:900px)");
   const navigate = useNavigate();
   const location = useLocation();
-  const isHomePage = ["/home", "/signup", "/login"].includes(location.pathname);
+  const isHomePage = ["/home", "/", "/"].includes(location.pathname);
   const [drawerOpenState, setDrawerOpenState] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -34,7 +34,7 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
   
   const handleMenuOpen = (event) => {
     if(!username) {
-      handleNavigation("/login");
+      handleNavigation("/");
     }
     setAnchorEl(event.currentTarget);
   };
@@ -90,7 +90,7 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
                       <ListItemText primary="Logout" />
                     </ListItem>
                   ) : (
-                    <ListItem button onClick={() => handleNavigation("/login")}>
+                    <ListItem button onClick={() => handleNavigation("/")}>
                       <ListItemText primary="Login" />
                     </ListItem>
                   )}

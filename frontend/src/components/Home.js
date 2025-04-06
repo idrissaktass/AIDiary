@@ -79,7 +79,7 @@ const Home = () => {
     const handleLogout = () => {
         localStorage.removeItem("token");
         setIsLoggedIn(false);
-        navigate("/login");
+        navigate("/");
     };
 
     const toggleDrawer = (open) => {
