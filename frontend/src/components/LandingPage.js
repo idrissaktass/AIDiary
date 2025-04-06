@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Features from "./Features"
 import Footer from "./Footer";
+import axios from "axios";
 
 const LandingPage = () => {
     const navigate = useNavigate();
