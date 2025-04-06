@@ -34,7 +34,6 @@ const LandingPage = () => {
             <div className="video-background">
                 <video className="video-1" autoPlay loop muted>
                     <source src="/assets/background.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
                 </video>
             </div>
             <Grid container height={"70vh"} alignItems={"center"} ml={{xs:1, md:5, lg:15}} mr={{xs:1, md:"unset"}} color={"white"}>

@@ -48,7 +48,6 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
       <div className="video-navbar">
         <video className="video-nav" autoPlay loop muted>
           <source src="/assets/background.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
       </div>
       <Container maxWidth="xl">
