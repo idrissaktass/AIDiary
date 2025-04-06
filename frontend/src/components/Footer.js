@@ -9,7 +9,7 @@ const Footer = () => {
     const location = useLocation();
 
     const handleLanding = () => {
-        navigate("/");
+        navigate("/home");
     };
 
     const structuredData = {

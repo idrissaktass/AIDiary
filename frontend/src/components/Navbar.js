@@ -52,7 +52,7 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
       </div>
       <Container maxWidth="xl">
         <Toolbar sx={{ color: "white" }}>
-          <Typography onClick={() => handleNavigation("/")} fontSize="24px" fontWeight="800" color="#de7618" sx={{ flexGrow: 1, cursor: "pointer" }}>
+          <Typography onClick={() => handleNavigation("/home")} fontSize="24px" fontWeight="800" color="#de7618" sx={{ flexGrow: 1, cursor: "pointer" }}>
             Diary AI
           </Typography>
 
