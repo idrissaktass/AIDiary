@@ -9,7 +9,6 @@ import Diaries from "./components/Diaries";
 import Footer from "./components/Footer";
 import "./App.css"
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import Subscription from "./components/Subscription";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import RefundPolicy from "./components/RefundPolicy";
 import TermsOfService from "./components/TermsOfService";
@@ -36,7 +35,6 @@ function AppContent() {
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<LandingPage />} />
-        <Route path="/subscription" element={<Subscription />} />
         <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
         <Route path="/weekly-analysis" element={<PrivateRoute><WeeklyAnalysis /></PrivateRoute>} />
         <Route path="/diaries" element={<PrivateRoute><Diaries /></PrivateRoute>} />
