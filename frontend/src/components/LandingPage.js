@@ -157,7 +157,7 @@ const LandingPage = () => {
             </AppBar>
             <Grid minHeight={"100vh"} bgcolor={"white"}>
                 <Grid height={{xs:"65vh", sm:"100vh"}} position={"relative"}>
-                    <Box component={"img"} src="/assets/meditate.jpg" width={"100%"} height={"100%"} sx={{ objectFit: "cover" }}  position={"absolute"} top={0}/>
+                    <Box component={"img"} src="/assets/meditate.jpg" alt="diary-ai" width={"100%"} height={"100%"} sx={{ objectFit: "cover" }}  position={"absolute"} top={0}/>
                 </Grid>
                 <Grid container width={"100%"} alignItems={"center"} minHeight={"97%"} color={"white"} justifyContent={{xs:"space-around", sm:"center", md:"space-around"}} padding={{xs:"10px", lg:"50px", xl:"100px"}}
                     position="absolute"
