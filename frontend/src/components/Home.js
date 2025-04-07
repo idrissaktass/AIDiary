@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import DiaryEntry from "./DiaryEntry";
 import DiaryList from "./DiaryList";
 import Login from "./Login";
