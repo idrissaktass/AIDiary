@@ -79,6 +79,26 @@ const MemoizedDiaries = React.memo(({ diaries }) => (
 ));
 
 const Diaries = () => {
+  <Helmet>
+  <title>My Diaries - AI Diary</title>
+  <meta name="description" content="View your AI-assisted diaries and discover the analyses." />
+  <meta name="keywords" content="diary, artificial intelligence, mood analysis, personal development, AI diary, diary analysis, writing diary, diary, ai, ai diary, diary ai" />
+  <script type="application/ld+json">
+  {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "My Diaries - AI Diary",
+      "description": "View your AI-assisted diaries and discover the analyses.",
+      "author": {
+          "@type": "Person",
+          "name": username
+      },
+      "datePublished": new Date().toISOString(),
+      "url": window.location.href
+  })}
+  </script>
+  </Helmet>
+  
   const [diaries, setDiaries] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -163,24 +183,6 @@ const Diaries = () => {
 
   return (
     <Grid minHeight={"calc(100vh - 50px)"} paddingBottom={7}>
-      <Helmet>
-        <title>My Diaries - AI Diary</title>
-        <meta name="description" content="View your AI-assisted diaries and discover the analyses." />
-        <script type="application/ld+json">
-        {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Blog",
-            "name": "My Diaries - AI Diary",
-            "description": "View your AI-assisted diaries and discover the analyses.",
-            "author": {
-                "@type": "Person",
-                "name": username
-            },
-            "datePublished": new Date().toISOString(),
-            "url": window.location.href
-        })}
-        </script>
-      </Helmet>
     <Navbar username={username} onLogout={handleLogout} />
       {loading ? (
         <Grid container spacing={3} direction="column" alignItems="center" py={5}>
@@ -194,12 +196,6 @@ const Diaries = () => {
         <Typography variant="h4" component="h1" gutterBottom>
           My Diaries
         </Typography>
-        <Helmet>
-            <title>My Diaries - AI Diary</title>
-            <meta name="description" content="View your AI-assisted diaries and discover the analyses." />
-            <meta name="keywords" content="diary, artificial intelligence, mood analysis, personal development, AI diary, diary analysis, writing diary, diary, ai, ai diary, diary ai" />
-        </Helmet>
-          
         {currentDiaries.length > 0 ? (
           <MemoizedDiaries diaries={currentDiaries} />
         ) : (
