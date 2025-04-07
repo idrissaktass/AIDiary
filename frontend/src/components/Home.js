@@ -26,10 +26,10 @@ const Home = () => {
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token) {
-        fetchEntries(token);
-        fetchUserInfo(token);
+            fetchEntries(token);
+            fetchUserInfo(token);
         } else {
-        setIsLoggedIn(false);
+            setIsLoggedIn(false);
         }
     }, []);
 
@@ -99,7 +99,7 @@ const Home = () => {
     if (isLoggedIn === null) {
         return (
         <Container style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
-            <CircularProgress />
+            <CircularProgress aria-live="polite" />
         </Container>
         );
     }
@@ -138,39 +138,43 @@ const Home = () => {
                 <link rel="canonical" href="https://aidiary.online/home" />
                 <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
             </Helmet>
-                <Navbar 
+
+            <Navbar 
                 onLogout={handleLogout} 
                 onNewDiary={handleNewDiary} 
                 onToggleDrawer={toggleDrawer} 
                 drawerOpen={drawerOpen} 
                 username={username}
-                />
+                aria-label="Open Navigation Drawer"
+            />
 
-                <Grid container justifyContent={{xs:"center", sm:"center", md:"start", lg:"center"}} width={"100%"}>
-                    <Grid size={{xs:12, sm:11, md:8.5, lg:8.5}} display={"flex"} justifyContent={"center"} paddingTop={{xs:"15%", sm:"10%", md:"8%", lg:"5%"}}>
-                        {selectedDiary ? (
-                            <DiaryEntry token={localStorage.getItem("token")} selectedDiary={selectedDiary} />
-                        ) : (
-                            <DiaryEntry token={localStorage.getItem("token")} handleDiarySave={handleDiarySave} /> 
-                        )}
+            <Grid container justifyContent={{xs:"center", sm:"center", md:"start", lg:"center"}} width={"100%"}>
+                <Grid size={{xs:12, sm:11, md:8.5, lg:8.5}} display={"flex"} justifyContent={"center"} paddingTop={{xs:"15%", sm:"10%", md:"8%", lg:"5%"}}>
+                    {selectedDiary ? (
+                        <DiaryEntry token={localStorage.getItem("token")} selectedDiary={selectedDiary} />
+                    ) : (
+                        <DiaryEntry token={localStorage.getItem("token")} handleDiarySave={handleDiarySave} /> 
+                    )}
                 </Grid>
-                    <Drawer
+
+                <Drawer
                     sx={{
-                    zIndex:"0",
-                    width: mdScreen ? 300 : 350,
-                    flexShrink: 0,
-                    '& .MuiDrawer-paper': {
-                        boxShadow:"0px 5px 10px rgba(0, 0, 0, 0.16)",
+                        zIndex: "0",
                         width: mdScreen ? 300 : 350,
-                        boxSizing: 'border-box',
-                        display:  "block", 
-                        position: "absolute",
-                        display: (matches && !drawerOpen) ? "none" : "unset"
-                    },
+                        flexShrink: 0,
+                        '& .MuiDrawer-paper': {
+                            boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.16)",
+                            width: mdScreen ? 300 : 350,
+                            boxSizing: 'border-box',
+                            display: "block", 
+                            position: "absolute",
+                            display: (matches && !drawerOpen) ? "none" : "unset"
+                        },
                     }}
                     variant="persistent"
                     anchor="right"
                     open={drawerOpen || !matches} 
+                    aria-labelledby="diary-list-drawer"
                 >
                     {matches && (
                         <Button
@@ -183,21 +187,20 @@ const Home = () => {
                                 border: "none",
                                 cursor: "pointer",
                             }}
+                            aria-label="Close drawer"
                         >
                             <Typography sx={{backgroundColor:"#ad1f1f", padding:"1px 5px 1px 5px", borderRadius:"3px"}} fontSize={"15px"} color={"white"}>X</Typography>
                         </Button>
                     )}
                     {loadingEntries ? (
                         <Grid container justifyContent="center" alignItems="center" style={{ height: "100%" }}>
-                            <CircularProgress />
+                            <CircularProgress aria-live="polite" />
                         </Grid>
                     ) : (
                         <DiaryList handleDiaryClick={handleDiaryClick} entries={entries} />
                     )}
                 </Drawer>
-
-                </Grid>
-
+            </Grid>
         </Grid>
     );
 };
