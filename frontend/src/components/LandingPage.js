@@ -3,10 +3,46 @@ import React, {useState} from "react";
 import { Box, Grid, height } from '@mui/system';
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
 import Features from "./Features"
 import Footer from "./Footer";
+import { keyframes } from '@emotion/react';
 import axios from "axios";
+import "./LandingPage.css";
 
+const generateStars = (count = 30) => {
+    const colors = ["#ffe066", "#ffd6e0", "#c5f6fa", "red", "blue", "orange", "green"];
+    const stars = [];
+  
+    for (let i = 0; i < count; i++) {
+      const size = Math.random() * 15 + 10; // 10px - 25px
+      const left = Math.random() * 100;
+      const top = Math.random() * 100;
+      const duration = Math.random() * 3 + 2;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+  
+      stars.push(
+        <svg
+          key={i}
+          className="star"
+          style={{
+            left: `${left}%`,
+            top: `${top}%`,
+            width: `${size}px`,
+            height: `${size}px`,
+            animationDuration: `${duration}s`,
+            fill: "yellow",
+          }}
+          viewBox="0 0 24 24"
+        >
+          <path d="M12 2l2.9 6.1L22 9.3l-5 4.9L18.2 22 12 18.4 5.8 22l1-7.8-5-4.9 7.1-1.2z" />
+        </svg>
+      );
+    }
+  
+    return stars;
+  };
+  
 const LandingPage = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
@@ -111,9 +147,12 @@ const LandingPage = () => {
                 <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
             </Helmet>
             <AppBar sx={{background:"linear-gradient(to right,rgb(10, 19, 31), #294d71, #101e2d)", boxShadow:"none"}}>
-                <Toolbar sx={{display:"flex", gap:"20px", justifyContent:"end", color:"white", paddingBlock:"2px", maxWidth:"80%"}}>
-                    <Typography onClick={handleHome} sx={{cursor:"pointer"}}>HOME</Typography>
-                    <Typography onClick={handleFeatures} sx={{cursor:"pointer"}}>FEATURES</Typography>
+                <Toolbar sx={{display:"flex", color:"white", justifyContent:"space-between", paddingBlock:"2px", width:"80%", alignSelf:"center"}}>
+                    <Typography color="#de7618" fontSize={"26px"} fontWeight={"700"}>DIARY AI</Typography>
+                    <Grid display={"flex"} gap={"20px"}>
+                        <Typography onClick={handleHome} sx={{cursor:"pointer"}}>HOME</Typography>
+                        <Typography onClick={handleFeatures} sx={{cursor:"pointer"}}>FEATURES</Typography>
+                    </Grid>
                 </Toolbar>
             </AppBar>
             <Grid minHeight={"100vh"} bgcolor={"white"}>
@@ -126,7 +165,18 @@ const LandingPage = () => {
                     left={0}
                     zIndex={1}>
                         <Grid size={{xs:12, md:5.5}} textAlign={"start"} mt={{xs:0, sm:5, md:0}} height={{xs:"40vh", sm:"unset"}} alignItems={{xs:"end", sm:"center"}} display={"flex"}>
-                            <Grid display={"flex"} flexDirection={"column"} width={{xs:"100%", lg:"80%"}} gap={{xs:"20px", sm:3}} padding={{xs:"0px", sm:"30px"}} alignItems={"center"} justifyContent={"center"}>
+                            <Grid position={"relative"} display={"flex"} flexDirection={"column"} width={{xs:"100%", lg:"80%"}} gap={{xs:"20px", sm:3}} padding={{xs:"0px", sm:"30px"}} alignItems={"center"} justifyContent={"center"}>
+                            <Box
+                                position="absolute"
+                                top={0}
+                                left={0}
+                                width="100%"
+                                height="100%"
+                                zIndex={1}
+                                sx={{ pointerEvents: "none" }}
+                            >
+                                {generateStars(20)}
+                            </Box>
                             <Typography width={"100%"} fontWeight={"600"} textAlign={"start"} fontSize={{xs:"30px", sm:"60px"}} lineHeight={{xs:"40px", sm:"75px"}} fontFamily={"var(--nerf-heading-font)"}>
                                 CREATE YOUR SAFE SPACE
                             </Typography>
@@ -163,7 +213,7 @@ const LandingPage = () => {
                                     style={{ marginBottom: 20 }}
                                     />
                                     <Box display="flex" justifyContent="space-between">
-                                    <Button variant="contained" color="primary" onClick={handleLogin}>{loading ? <CircularProgress color="white" sx={{width:"22px !important", height:"22px !important"}}/> : "Login" }</Button>
+                                    <Button variant="contained" color="primary" sx={{backgroundColor:"#de7618"}}  onClick={handleLogin}>{loading ? <CircularProgress color="white" sx={{width:"22px !important", height:"22px !important"}}/> : "Login" }</Button>
                                     <Button color="secondary" onClick={() => { setIsSignUp(true); }}>Sign Up</Button>
                                     </Box>
                                 </Grid>

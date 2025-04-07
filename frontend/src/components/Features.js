@@ -116,7 +116,7 @@ const Features = () => {
                             </Typography>
                         </motion.div>
                     )}
-                    <Button variant="contained" color="primary" onClick={handleTryNowClick}>
+                    <Button variant="contained" color="primary" sx={{backgroundColor:"#de7618", padding:"10px"}} onClick={handleTryNowClick}>
                         TRY NOW
                     </Button>
                 </Grid>
