@@ -193,7 +193,7 @@ const LandingPage = () => {
                         <Grid size={{xs:12, md:5.5}} display={"flex"} justifyContent={"end"} mt={{xs:0, sm:20, md:0}}>
                             {isSignUp === false ? (
                                 <Grid bgcolor={"white"} p={"25px"} width={{xs:"100%", sm:"60%", md:"75%"}} borderRadius={"10px"} boxShadow={"0px 5px 10px #80808087"}>
-                                    <Typography fontSize={{xs:"26px", sm:"34px"}} color="#de7618" mb={3}>Login</Typography>
+                                    <Typography fontSize={{xs:"26px", sm:"34px"}} color="#de7618" mb={3}>Login, free for now.</Typography>
                                     {error && <Typography color="error">{error}</Typography>}
                                     <TextField
                                     label="Username"
