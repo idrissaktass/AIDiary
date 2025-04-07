@@ -135,7 +135,7 @@ const Home = () => {
                 <meta name="twitter:title" content="Diary AI - AI-Powered Diary Application" />
                 <meta name="twitter:description" content="Analyze your mood, manage your personal diary!" />
                 <meta name="twitter:image" content="https://aidiary.online/preview-image.jpg" />
-                <link rel="canonical" href="https://aidiary.online" />
+                <link rel="canonical" href="https://aidiary.online/home" />
                 <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
             </Helmet>
                 <Navbar 
