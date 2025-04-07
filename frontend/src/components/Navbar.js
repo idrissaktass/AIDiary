@@ -58,7 +58,7 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
 
           {isMobile ? (
             <>
-              <IconButton color="inherit" onClick={toggleDrawer(true)}>
+              <IconButton color="inherit" onClick={toggleDrawer(true)} aria-label="Menuicon">
                 <MenuIcon />
               </IconButton>
               <Drawer anchor="right" open={drawerOpenState} onClose={toggleDrawer(false)}>
@@ -108,7 +108,7 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
               <Button color="inherit" sx={{ textTransform: "none" }} onClick={() => handleNavigation("/diaries")}>
                 <Typography variant="h6">My Diaries</Typography>
               </Button>
-              <IconButton color="inherit" onClick={handleMenuOpen}>
+              <IconButton color="inherit" onClick={handleMenuOpen} aria-label="Account">
                 <AccountCircleIcon />
               </IconButton>
               {username && (
