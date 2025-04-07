@@ -125,17 +125,17 @@ const Home = () => {
     return (
         <Grid container justifyContent={"center"} width={"100%"} minHeight={"calc(100vh - 50px)"}>
             <Helmet>
-                <title>Diary AI - Yapay Zeka Destekli Günlük Uygulaması</title>
-                <meta name="description" content="Diary AI, yapay zeka ile günlüklerinizi analiz eden ve size özel öneriler sunan kişisel bir günlük uygulamasıdır." />
-                <meta name="keywords" content="Diary AI, kişisel günlük, yapay zeka, ruh hali analizi, günlük tutma uygulaması" />
-                <meta property="og:title" content="Diary AI - Yapay Zeka Destekli Günlük Uygulaması" />
-                <meta property="og:description" content="Diary AI, günlüklerinizi analiz eden ve size özel öneriler sunan akıllı bir günlük tutma uygulamasıdır." />
+                <h1>Diary AI - AI-Powered Diary Application</h1>
+                <meta name="description" content="Analyze your mood and manage your personal diary with AI using Diary AI." />
+                <meta name="keywords" content="Diary AI, AI diary, personal diary, mood tracking, mood analysis, diary, ai diary, diary ai, ai, diary, journal" />
+                <meta property="og:title" content="Diary AI - AI-Powered Diary Application" />
+                <meta property="og:description" content="Analyze your diaries with AI and track your mood!" />
                 <meta property="og:image" content="https://aidiary.online/preview-image.jpg" />
-                <meta property="og:url" content="https://aidiary.online/home" />
-                <meta name="twitter:title" content="Diary AI - Yapay Zeka Destekli Günlük Uygulaması" />
-                <meta name="twitter:description" content="Günlüklerinizi yapay zeka ile analiz edin ve daha bilinçli bir yaşam sürün!" />
+                <meta property="og:url" content="https://aidiary.online" />
+                <meta name="twitter:title" content="Diary AI - AI-Powered Diary Application" />
+                <meta name="twitter:description" content="Analyze your mood, manage your personal diary!" />
                 <meta name="twitter:image" content="https://aidiary.online/preview-image.jpg" />
-                <link rel="canonical" href="https://aidiary.online/home" />
+                <link rel="canonical" href="https://aidiary.online" />
                 <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
             </Helmet>
                 <Navbar 

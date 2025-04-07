@@ -150,9 +150,9 @@ const WeeklyAnalysis = () => {
     return (
         <Grid bgcolor={"#de6f1814"} minHeight={"calc(100vh - 50px)"} paddingBottom={7}>
             <Helmet>
-                <title>Weekly Mood Analysis | AI Diary</title>
+                <h1>Weekly Mood Analysis | AI Diary</h1>
                 <meta name="description" content="Check out the Weekly Mood Analysis page of AI Diary. Track your mood regularly and view graphs and analyses." />
-                <meta name="keywords" content="weekly analysis, mood, happiness score, stress score, mood tracking, psychological analysis, artificial intelligence, AI Diary" />
+                <meta name="keywords" content="weekly analysis, mood, happiness score, stress score, mood tracking, psychological analysis, artificial intelligence, AI Diary, diary ai, ai diary, ai, diary, journal" />
                 <meta property="og:title" content="Weekly Mood Analysis | AI Diary" />
                 <meta property="og:description" content="Check out AI Diary's Weekly Mood Analysis page and learn how to improve your mood." />
                 <meta property="og:image" content="URL_TO_IMAGE" /> {/* Add an image URL if applicable */}

@@ -133,9 +133,9 @@ const LandingPage = () => {
     return(
         <>
             <Helmet>
-                <title>Diary AI - AI-Powered Diary Application</title>
+                <h1>Diary AI - AI-Powered Diary Application</h1>
                 <meta name="description" content="Analyze your mood and manage your personal diary with AI using Diary AI." />
-                <meta name="keywords" content="Diary AI, AI diary, personal diary, mood tracking, mood analysis" />
+                <meta name="keywords" content="Diary AI, AI diary, personal diary, mood tracking, mood analysis, diary, ai diary, diary ai, ai, diary, journal" />
                 <meta property="og:title" content="Diary AI - AI-Powered Diary Application" />
                 <meta property="og:description" content="Analyze your diaries with AI and track your mood!" />
                 <meta property="og:image" content="https://aidiary.online/preview-image.jpg" />

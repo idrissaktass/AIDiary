@@ -163,9 +163,9 @@ const Diaries = () => {
           My Diaries
         </Typography>
         <Helmet>
-            <title>My Diaries - AI Diary</title>
+            <h1>My Diaries - AI Diary</h1>
             <meta name="description" content="View your AI-assisted diaries and discover the analyses." />
-            <meta name="keywords" content="diary, artificial intelligence, mood analysis, personal development, AI diary, diary analysis, writing diary" />
+            <meta name="keywords" content="diary, artificial intelligence, mood analysis, personal development, AI diary, diary analysis, writing diary, diary, ai, ai diary, diary ai" />
         </Helmet>
           
         {currentDiaries.length > 0 ? (
