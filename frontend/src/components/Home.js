@@ -48,7 +48,7 @@ const Home = () => {
                 setIsLoggedIn(false);
             }
         } catch (error) {
-            console.error("Kullanıcı bilgisi alınırken hata oluştu:", error);
+            console.error("Error fetching user data:", error);
             setIsLoggedIn(false);
         }
     };
@@ -70,6 +70,7 @@ const Home = () => {
             }
         } catch (error) {
             console.error("Error fetching diary entries:", error);
+            alert("Something went wrong while fetching diary entries. Please try again later.");
         } finally {
             setLoadingEntries(false); 
         }
@@ -86,10 +87,10 @@ const Home = () => {
         setDrawerOpen(open);
     };
 
-    const handleDiaryClick = (entry) => {
+    const handleDiaryClick = useCallback((entry) => {
         setSelectedDiary(entry);
         setDrawerOpen(false);
-    };
+    }, []);   
 
     const handleNewDiary = () => {
         setSelectedDiary(null); 
