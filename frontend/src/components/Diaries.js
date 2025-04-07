@@ -6,6 +6,36 @@ import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import { Helmet } from "react-helmet-async";
+import { Skeleton } from "@mui/material";
+
+const MemoizedDiarySkeletons = React.memo(({ count }) => (
+  <>
+    {Array.from({ length: count }).map((_, index) => (
+      <Grid
+        key={index}
+        size={{ xs: 11.5, sm: 10, md: 8 }}
+        sx={{
+          border: "1px solid gray",
+          padding: "20px",
+          borderRadius: "8px",
+          marginBottom: "20px",
+          minHeight: "120px",
+        }}
+      >
+        <Skeleton variant="text" width="40%" height={30} />
+        <Skeleton variant="text" width="100%" height={60} sx={{ my: 2 }} />
+        <Skeleton
+          variant="rectangular"
+          height={80}
+          sx={{
+            borderRadius: "8px",
+            marginTop: "20px",
+          }}
+        />
+      </Grid>
+    ))}
+  </>
+));
 
 const MemoizedDiaries = React.memo(({ diaries }) => (
   <>
@@ -16,7 +46,8 @@ const MemoizedDiaries = React.memo(({ diaries }) => (
           border: "1px solid gray",
           padding: "20px",
           borderRadius: "8px",
-          marginBottom: "20px", 
+          marginBottom: "20px",
+          minHeight: "120px" 
         }}
       >
         <Typography fontSize={"18px"}>{new Date(diary.date).toLocaleDateString()}</Typography>
@@ -152,11 +183,12 @@ const Diaries = () => {
       </Helmet>
     <Navbar username={username} onLogout={handleLogout} />
       {loading ? (
-        <Grid container justifyContent={"center"} width={"100%"} alignItems="center" mt={5}  paddingTop={{xs:"15%", sm:"10%", md:"8%", lg:"5%"}}>
-            <Grid item size={{xs:12}} display={"flex"} justifyContent={"center"} alignItems="center">
-                <CircularProgress />
-            </Grid>
-        </Grid> 
+        <Grid container spacing={3} direction="column" alignItems="center" py={5}>
+          <Typography variant="h4" component="h1" gutterBottom>
+            My Diaries
+          </Typography>
+          <MemoizedDiarySkeletons count={5} />
+        </Grid>
       ) : (
         <Grid container spacing={3} direction="column" alignItems="center" py={5}>
         <Typography variant="h4" component="h1" gutterBottom>
