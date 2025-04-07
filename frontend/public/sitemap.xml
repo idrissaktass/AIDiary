@@ -6,16 +6,6 @@
        <priority>1.0</priority>
    </url>
    <url>
-       <loc>https://aidiary.online/login</loc>
-       <lastmod>2024-03-31</lastmod>
-       <priority>0.8</priority>
-   </url>
-   <url>
-       <loc>https://aidiary.online/signup</loc>
-       <lastmod>2024-03-31</lastmod>
-       <priority>0.8</priority>
-   </url>
-   <url>
        <loc>https://aidiary.online/weekly-analysis</loc>
        <lastmod>2024-03-31</lastmod>
        <priority>0.7</priority>
