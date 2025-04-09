@@ -23,6 +23,8 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
     if (selectedDiary) {
       setText(selectedDiary.text);
       setMood(selectedDiary.mood || "");
+      setHappinessScore(selectedDiary.happinessScore || null);
+      setStressScore(selectedDiary.stressScore || null);
     } else {
       setText("");
       setMood("");
@@ -92,7 +94,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
       console.log('try')
       const res = await axios.post(
         "https://ai-diary-backend-gamma.vercel.app/api/save-diary",
-        { text, mood, happinessScore, stressScore, token, userId: selectedDiary ? selectedDiary.userId : null },
+        { text, mood, happinessScore, stressScore, additionalEmotions, token, userId: selectedDiary ? selectedDiary.userId : null },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -196,12 +198,16 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
               <Typography variant="body1">
                 Your Mood: {mood}
               </Typography>
-              <Typography variant="body1" mt={1}>
+              {happinessScore && (
+              <Typography variant="body1" bgcolor={"#f0e68c"} padding={"20px"} mt={2} textAlign={"start"}>
                 Happiness Score: {happinessScore}/10
               </Typography>
-              <Typography variant="body1" mt={1}>
-                Stress Score: {stressScore}/10
-              </Typography>
+              )}
+              {stressScore && (
+                <Typography variant="body1" bgcolor={"#f0e68c"} padding={"20px"} mt={2} textAlign={"start"}>
+                  Stress Score: {stressScore}/10
+                </Typography>
+              )}
             </Grid>
           </motion.div>
         )}

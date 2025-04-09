@@ -36,7 +36,7 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
-    const { text, mood, happinessScore, stressScore, token } = req.body;
+    const { text, mood, happinessScore, stressScore, additionalEmotions, token } = req.body;
 
     if (!token) {
       return res.status(403).send('Token is required.');
@@ -48,11 +48,24 @@ export default async function handler(req, res) {
 
       const decoded = jwt.verify(token, "12ksdfm230r4r9k3049k2w4prf");
 
+      function parseEmotions(emotionsString) {
+        const emotions = {};
+        emotionsString.split(',').forEach(pair => {
+          const [key, value] = pair.split(':').map(item => item.trim());
+          if (key && !isNaN(value)) {
+            emotions[key] = parseInt(value, 10); // Convert value to integer
+          }
+        });
+        return emotions;
+      }
+      const additionalEmotionsObject = parseEmotions(additionalEmotions);
+
       const newDiary = new Diary({
         text,
         mood,
-        happinessScore, // Mutluluk skoru
-        stressScore,    // Stres skoru
+        happinessScore,
+        stressScore,
+        additionalEmotions: additionalEmotionsObject, // Save as object
         userId: decoded.userId,
       });
 

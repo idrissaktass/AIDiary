@@ -6,7 +6,13 @@ const DiarySchema = new mongoose.Schema({
   happinessScore: { type: Number, min: 0, max: 10 },
   stressScore: { type: Number, min: 0, max: 10 },
   date: { type: Date, default: Date.now },
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  additionalEmotions: { 
+    type: Object, 
+    of: Number,  // A map where keys are emotions and values are their respective scores
+    required: false 
+  },
+
 });
 
 module.exports = mongoose.model("Diary", DiarySchema);

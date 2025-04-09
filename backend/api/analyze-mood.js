@@ -44,43 +44,48 @@ export default async function handler(req, res) {
     try {
       const decoded = jwt.verify(token, "12ksdfm230r4r9k3049k2w4prf");
 
-      // OpenAI request to analyze mood, happiness, and stress
       const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
           { role: 'system', content: 'You are a mood analyst.' },
           { 
             role: "user", 
-            content: `What is the mood of this input? Provide a detailed explanation in simple language like a therapist, and offer suggestions on what can be done. If possible, add a quote at the end of the analysis. If there are any meaningless words or sentences, reply with "Anladıysam arap olayım". Also, give a happiness score and stress score for the journal, but first write the mood analysis, then "Happiness Score: score/10" on the next line, and "Stress Score: score/10" on the line below. Respond only in the following format:
+            content: `What is the mood of this input? Provide a detailed explanation in simple language like a therapist, and offer suggestions on what can be done. If possible, add a quote at the end of the analysis. If there are any meaningless words or sentences, reply with "Anladıysam arap olayım". Also, give a happiness score and stress score for the journal, but first write the mood analysis, then "Happiness Score: score/10" on the next line, and "Stress Score: score/10" and the additional emotions with their respective scores (from 1 to 10). Respond only in the following format:
       
             - Mood Analysis: [mood description]
             - Happiness Score: [score between 1 and 10]
             - Stress Score: [score between 1 and 10]
-      
+            - Additional Emotions: [emotion: score, emotion2: score, ...]
             Here is the text: ${text}`
           },
         ],
-      });
+      });  
       
 
-      // Extract mood analysis, happiness score, and stress score from the response
       const analysis = response.choices[0].message.content;
 
       // Match for the happiness and stress scores
       const happinessScoreMatch = analysis.match(/Happiness Score: (\d+)/);
       const stressScoreMatch = analysis.match(/Stress Score: (\d+)/);
-
+      const emotionsMatch = analysis.match(/Additional Emotions: (.+)/);
+  
       const happinessScore = happinessScoreMatch ? parseInt(happinessScoreMatch[1]) : null;
       const stressScore = stressScoreMatch ? parseInt(stressScoreMatch[1]) : null;
-
-      // If the mood analysis contains scores inside, extract them out and clean the analysis
-      const cleanAnalysis = analysis.replace(/- Mood Analysis: /, '').replace(/Happiness Score: \d+\/10/, '').replace(/Stress Score: \d+\/10/, '').trim();
-
+      const additionalEmotions = emotionsMatch ? emotionsMatch[1].trim() : null;
+  
+      // Clean the analysis
+      let cleanAnalysis = analysis.replace(/- Mood Analysis: /, '').trim();
+      cleanAnalysis = cleanAnalysis.replace(/Happiness Score: \d+\/10/, '').replace(/Stress Score: \d+\/10/, '').replace(/Additional Emotions: .+/, '').trim();
+  
+      // Remove unnecessary bullet points and newlines
+      cleanAnalysis = cleanAnalysis.replace(/-\s*/g, '').replace(/\n+/g, ' ').trim();
+  
       // Return the cleaned mood analysis and separate scores
       res.json({ 
         mood_analysis: cleanAnalysis, 
         happiness_score: happinessScore, 
-        stress_score: stressScore
+        stress_score: stressScore,
+        additional_emotions: additionalEmotions
       });
 
     } catch (error) {
