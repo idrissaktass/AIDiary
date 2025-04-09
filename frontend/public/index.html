@@ -60,7 +60,7 @@
   </head>
   <body>
     <div id="root"></div>
-    <div id="bmc-container" style="position: fixed; top: 80px; left: 20px;">
+    <div style="display: none;">
       <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" 
         data-name="bmc-button" 
         data-slug="aidiary" 
@@ -72,13 +72,6 @@
         data-font-color="#000000" 
         data-coffee-color="#ffffff"></script>
     </div>
-
-    <script>
-      // Sayfa URL'sine göre Buy Me A Coffee butonunun gizlenmesi
-      if (window.location.pathname === "/") {
-        document.getElementById('bmc-container').style.display = 'none';
-      }
-    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
