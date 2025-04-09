@@ -22,7 +22,9 @@ const AIChat = () => {
   }, [messages]);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (aiMessageCount.length > 3) {
+      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   }, [messages, messageLoading]);
 
   const fetchUserInfo = async (token) => {
