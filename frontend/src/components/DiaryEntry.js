@@ -18,13 +18,15 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
   const [loadingRecentMood, setLoadingRecentMood] = useState(false);
   const [happinessScore, setHappinessScore] = useState(null);
   const [stressScore, setStressScore] = useState(null);
-  
+  const [additionalEmotions, setAdditionalEmotions] = useState("");
+
   useEffect(() => {
     if (selectedDiary) {
       setText(selectedDiary.text);
       setMood(selectedDiary.mood || "");
       setHappinessScore(selectedDiary.happinessScore || null);
       setStressScore(selectedDiary.stressScore || null);
+      setAdditionalEmotions(selectedDiary.additionalEmotions || "");
     } else {
       setText("");
       setMood("");
@@ -77,6 +79,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
         setMood(res.data.mood_analysis);  
         setHappinessScore(res.data.happiness_score);  
         setStressScore(res.data.stress_score);  
+        setAdditionalEmotions(selectedDiary.additionalEmotions || "");
         setShowMood(true); 
         setLoading(false);  
       }, 500);
