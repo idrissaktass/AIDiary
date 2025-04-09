@@ -66,6 +66,9 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
                   <ListItem button onClick={() => handleNavigation("/home")}>
                     <ListItemText primary="Tell Me" />
                   </ListItem>
+                  <ListItem button onClick={() => handleNavigation("/ai-chat")}>
+                    <ListItemText primary="Chat AI" />
+                  </ListItem>
                   <ListItem button onClick={() => handleNavigation("/weekly-analysis")}>
                     <ListItemText primary="Weekly Analysis" />
                   </ListItem>
@@ -101,6 +104,9 @@ const Navbar = ({ onLogout, onNewDiary, onToggleDrawer, drawerOpen, username }) 
             <>
               <Button color="inherit" sx={{ textTransform: "none" }} onClick={() => handleNavigation("/home")}>
                 <Typography variant="h6">Tell Me</Typography>
+              </Button>
+              <Button color="inherit" sx={{ textTransform: "none" }} onClick={() => handleNavigation("/ai-chat")}>
+                <Typography variant="h6">Chat AI</Typography>
               </Button>
               <Button color="inherit" sx={{ textTransform: "none" }} onClick={() => handleNavigation("/weekly-analysis")}>
                 <Typography variant="h6">Weekly Analysis</Typography>

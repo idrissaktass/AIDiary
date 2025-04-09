@@ -10,8 +10,13 @@
        <lastmod>2024-03-31</lastmod>
        <priority>0.7</priority>
    </url>
-      <url>
+    <url>
        <loc>https://aidiary.online/diaries</loc>
+       <lastmod>2024-03-31</lastmod>
+       <priority>0.7</priority>
+   </url>
+      <url>
+       <loc>https://aidiary.online/ai-chat</loc>
        <lastmod>2024-03-31</lastmod>
        <priority>0.7</priority>
    </url>

@@ -12,6 +12,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import RefundPolicy from "./components/RefundPolicy";
 import TermsOfService from "./components/TermsOfService";
+import AIChat from "./components/AIChat";
 
 
 function AppContent() {
@@ -38,6 +39,7 @@ function AppContent() {
         <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
         <Route path="/weekly-analysis" element={<PrivateRoute><WeeklyAnalysis /></PrivateRoute>} />
         <Route path="/diaries" element={<PrivateRoute><Diaries /></PrivateRoute>} />
+        <Route path="/ai-chat" element={<PrivateRoute><AIChat /></PrivateRoute>} />
       </Routes>
 
       {!hideFooterRoutes.includes(location.pathname) && <Footer/>}

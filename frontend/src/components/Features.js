@@ -7,18 +7,22 @@ const Features = () => {
     const [tellMe, setTellMe ] = useState(true);
     const [weekly, setWeekly ] = useState(false);
     const [graphs, setGraphs ] = useState(false);
+    const [chat, setChat ] = useState(false);
 
     const handleClick = (feature) => {
         setTellMe(false);
         setWeekly(false);
         setGraphs(false);
-    
+        setChat(false);
+
         if (feature === 'tellMe') {
           setTellMe(true);
         } else if (feature === 'weekly') {
           setWeekly(true);
         } else if (feature === 'graphs') {
           setGraphs(true);
+        } else if (feature === 'chat') {
+          setChat(true);
         }
       };
 
@@ -38,6 +42,8 @@ const Features = () => {
                     color={tellMe ? "white" : "black"} onClick={() => handleClick('tellMe')} style={{ cursor: "pointer" }} bgcolor={tellMe ? "#de7618" : "unset"}>TELL ME</Typography>
                     <Typography p={"15px"}  height={"fit-content"}
                     color={weekly ? "white" : "black"} onClick={() => handleClick('weekly')} style={{ cursor: "pointer" }} bgcolor={weekly ? "#de7618" : "unset"}>WEEKLY ANALYSIS</Typography>
+                   <Typography p={"15px"}  height={"fit-content"}
+                    color={chat ? "white" : "black"} onClick={() => handleClick('chat')} style={{ cursor: "pointer" }} bgcolor={chat ? "#de7618" : "unset"}>Chat AI</Typography>
                     <Typography p={"15px"}  height={"fit-content"}
                     color={graphs ? "white" : "black"} onClick={() => handleClick('graphs')} style={{ cursor: "pointer" }} bgcolor={graphs ? "#de7618" : "unset"}>GRAPHS</Typography>
                 </Grid>
@@ -65,6 +71,18 @@ const Features = () => {
                         >
                             <Grid width={"100%"} height={{xs:"400px", md:"600px"}} position={"relative"}>
                                 <Box component={"img"} src="/mental.jpg" alt="Weekly Analysis" width={"100%"} height={"100%"} 
+                                sx={{objectFit:"cover"}} position={"absolute"} top={0} left={0}/>
+                            </Grid>
+                        </motion.div>
+                    )}
+                    {chat && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1 }}
+                        >
+                            <Grid width={"100%"} height={{xs:"400px", md:"600px"}} position={"relative"}>
+                                <Box component={"img"} src="/chat.png" alt="Chat AI" width={"100%"} height={"100%"} 
                                 sx={{objectFit:"cover"}} position={"absolute"} top={0} left={0}/>
                             </Grid>
                         </motion.div>
@@ -102,6 +120,17 @@ const Features = () => {
                         >
                             <Typography fontSize={{xs:"20px", md:"24px", xl:"28px"}} textAlign={{xs:"center", md:"start"}}>
                                 Every week, take a moment to review your progress and receive a comprehensive weekly analysis. Based on your daily entries throughout the week, our AI will generate a personalized report, summarizing key insights and providing advice to help you move forward. All of your weekly analyses will be saved, so you can revisit them anytime.
+                            </Typography>
+                        </motion.div>
+                    )}
+                    {chat && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1 }}
+                        >
+                            <Typography fontSize={{xs:"20px", md:"24px", xl:"28px"}} textAlign={{xs:"center", md:"start"}}>
+                                This chat is designed to help analyze your mental health and track your mood over time. By engaging with the AI and sharing your thoughts, you’ll receive personalized insights, emotional support, and suggestions to improve your well-being based on your responses.
                             </Typography>
                         </motion.div>
                     )}

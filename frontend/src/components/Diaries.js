@@ -160,7 +160,7 @@ const Diaries = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
     navigate("/");
-};
+  };
 
   return (
     <Grid minHeight={"calc(100vh - 50px)"} paddingBottom={7}>
