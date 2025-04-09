@@ -43,7 +43,7 @@ const Features = () => {
                     <Typography p={"15px"}  height={"fit-content"}
                     color={weekly ? "white" : "black"} onClick={() => handleClick('weekly')} style={{ cursor: "pointer" }} bgcolor={weekly ? "#de7618" : "unset"}>WEEKLY ANALYSIS</Typography>
                    <Typography p={"15px"}  height={"fit-content"}
-                    color={chat ? "white" : "black"} onClick={() => handleClick('chat')} style={{ cursor: "pointer" }} bgcolor={chat ? "#de7618" : "unset"}>Chat AI</Typography>
+                    color={chat ? "white" : "black"} onClick={() => handleClick('chat')} style={{ cursor: "pointer" }} bgcolor={chat ? "#de7618" : "unset"}>CHAT AI</Typography>
                     <Typography p={"15px"}  height={"fit-content"}
                     color={graphs ? "white" : "black"} onClick={() => handleClick('graphs')} style={{ cursor: "pointer" }} bgcolor={graphs ? "#de7618" : "unset"}>GRAPHS</Typography>
                 </Grid>
