@@ -192,7 +192,7 @@ const Diaries = () => {
           <MemoizedDiarySkeletons count={5} />
         </Grid>
       ) : (
-        <Grid container spacing={3} direction="column" alignItems="center" py={5}>
+        <Grid container spacing={3} direction="column" alignItems="center" pt={{xs:"20px", md:"40px"}} pb={"40px"}>
             <Button 
               onClick={() => window.open("https://buymeacoffee.com/aidiary", "_blank")}
               sx={{

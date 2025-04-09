@@ -96,7 +96,7 @@ const AIChat = () => {
       <Button 
         onClick={() => window.open("https://buymeacoffee.com/aidiary", "_blank")}
         sx={{
-            mt: {xs:"5px", md:"unset"},
+            mt: {xs:"15px", md:"unset"},
             position: {xs:"unset", md:'absolute'}, 
             top: "80px", 
             left: '20px', 

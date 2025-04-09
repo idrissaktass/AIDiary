@@ -167,7 +167,7 @@ const WeeklyAnalysis = () => {
                 </Grid> 
             ) : (
                 <>
-                    <Grid container size={{ xs: 12, sm: 10, md: 8 }} display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"} mt={5} gap={2}>
+                    <Grid container size={{ xs: 12, sm: 10, md: 8 }} display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"} mt={{xs:"20px", md:"40px"}} gap={2}>
                         <Button 
                         onClick={() => window.open("https://buymeacoffee.com/aidiary", "_blank")}
                         sx={{
