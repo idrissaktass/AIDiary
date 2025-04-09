@@ -23,12 +23,13 @@ function AppContent() {
     <div className="app">
       <HelmetProvider>
       <Helmet>
-        <title>Diary AI - Kişisel Günlük ve Ruh Hali Analizi</title>
+        <title>Diary AI - Personal Journal and Mood Analysis</title>
         <meta name="google-site-verification" content="qWuFVhUHkiJjBTNgbKDHhSduS6BoA8ZDMTkXO2N6wYg" />
         <meta name="google-site-verification" content="qWuFVhUHkiJjBTNgbKDHhSduS6BoA8ZDMTkXO2N6wYg" />
-        <meta name="description" content="Diary AI, günlüklerinizi analiz ederek ruh halinizi takip eder ve kişisel gelişiminize katkı sağlar." />
-        <meta name="keywords" content="Diary AI, kişisel günlük, yapay zeka, ruh hali analizi, psikoloji" />
+        <meta name="description" content="Diary AI analyzes your journals to track your mood and contribute to your personal development." />
+        <meta name="keywords" content="Diary AI, personal journal, artificial intelligence, mood analysis, psychology, ai diary, diary ai, ai, diary, journal, weekly analysis, stress, stress level" />
       </Helmet>
+
       <Routes>
         {/* <Route path="/login" element={<Login />} /> */}
         <Route path="/privacy-notice" element={<PrivacyPolicy />} />
