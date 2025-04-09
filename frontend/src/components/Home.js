@@ -153,7 +153,7 @@ const Home = () => {
                 <Button 
                     onClick={() => window.open("https://buymeacoffee.com/aidiary", "_blank")}
                     sx={{
-                        mt: {xs:"20px", md:"unset"},
+                        mt: {xs:"60px", md:"unset"},
                         position: {xs:"unset", md:'absolute'}, 
                         top: "80px", 
                         left: '20px', 
@@ -169,7 +169,7 @@ const Home = () => {
                         buy me a coffee
                         </Typography>
                 </Button>
-                <Grid size={{xs:12, sm:11, md:8.5, lg:8.5}} display={"flex"} justifyContent={"center"} paddingTop={{xs:"15%", sm:"10%", md:"8%", lg:"5%"}}>
+                <Grid size={{xs:12, sm:11, md:8.5, lg:8.5}} display={"flex"} justifyContent={"center"} paddingTop={{xs:"4%", md:"8%", lg:"5%"}}>
                     {selectedDiary ? (
                         <DiaryEntry token={localStorage.getItem("token")} selectedDiary={selectedDiary} />
                     ) : (

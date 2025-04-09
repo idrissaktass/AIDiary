@@ -92,9 +92,11 @@ const AIChat = () => {
   return (
     <Grid minHeight={"100vh"}>
       <Navbar username={username} onLogout={handleLogout} />
+      <Grid width={"100%"} display={"flex"} justifyContent="center">
       <Button 
         onClick={() => window.open("https://buymeacoffee.com/aidiary", "_blank")}
         sx={{
+            mt: {xs:"5px", md:"unset"},
             position: {xs:"unset", md:'absolute'}, 
             top: "80px", 
             left: '20px', 
@@ -110,6 +112,7 @@ const AIChat = () => {
             buy me a coffee
             </Typography>
     </Button>
+      </Grid>
       <Grid container direction="column" alignItems="center">
         <Grid item size={{ xs: 11.5, sm: 10, md: 8, lg: 5 }} display={"flex"} alignItems={"center"} flexDirection={"column"} justifyContent={"center"} paddingTop={{ xs: "10%", sm: "3%", md: "2%" }}>
           <Typography fontSize={{ xs: "18px", }} align="center" mb={4}>

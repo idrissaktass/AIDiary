@@ -186,7 +186,14 @@ const Diaries = () => {
     <Navbar username={username} onLogout={handleLogout} />
       {loading ? (
         <Grid container spacing={3} direction="column" alignItems="center" py={5}>
-          <Button 
+          <Typography variant="h4" component="h1" gutterBottom>
+            My Diaries
+          </Typography>
+          <MemoizedDiarySkeletons count={5} />
+        </Grid>
+      ) : (
+        <Grid container spacing={3} direction="column" alignItems="center" py={5}>
+            <Button 
               onClick={() => window.open("https://buymeacoffee.com/aidiary", "_blank")}
               sx={{
                   position: {xs:"unset", md:'absolute'}, 
@@ -204,13 +211,6 @@ const Diaries = () => {
                   buy me a coffee
                   </Typography>
           </Button>
-          <Typography variant="h4" component="h1" gutterBottom>
-            My Diaries
-          </Typography>
-          <MemoizedDiarySkeletons count={5} />
-        </Grid>
-      ) : (
-        <Grid container spacing={3} direction="column" alignItems="center" py={5}>
         <Typography variant="h4" component="h1" gutterBottom>
           My Diaries
         </Typography>
