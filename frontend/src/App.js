@@ -13,13 +13,12 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import RefundPolicy from "./components/RefundPolicy";
 import TermsOfService from "./components/TermsOfService";
 import AIChat from "./components/AIChat";
-import { Button, Typography } from "@mui/material";
+
 
 function AppContent() {
   const location = useLocation();
   const hideFooterRoutes = ["/"];
-  const showButton = location.pathname !== "/";
-
+ 
   return (
     <div className="app">
       <HelmetProvider>
@@ -42,29 +41,6 @@ function AppContent() {
         <Route path="/diaries" element={<PrivateRoute><Diaries /></PrivateRoute>} />
         <Route path="/ai-chat" element={<PrivateRoute><AIChat /></PrivateRoute>} />
       </Routes>
-      
-        {showButton && (
-          <Button 
-          onClick={() => window.open("https://buymeacoffee.com/aidiary", "_blank")}
-          sx={{
-            position: 'absolute', 
-            top: {xs:"unset", md:"80px"}, 
-            left: '20px', 
-            bottom : {xs:"80px", md:"unset"},
-            zIndex: 1000,
-            padding: '5px 10px 5px 10px',
-            backgroundColor: '#ffdd00',
-            border: 'none',
-            borderRadius: '10px',
-            cursor: 'pointer'
-          }}>
-            <img src="/coffee-icon.png" width={"35px"} height={"auto"}/>
-            <Typography className="coffee" sx={{ color: 'black', fontFamily: "'Cookie', cursive", textTransform:"lowercase" ,fontWeight: "450", fontSize:{xs:"22px", lg:"28px"} }}>
-              buy me a coffee
-            </Typography>
-
-          </Button>
-        )}
 
       {!hideFooterRoutes.includes(location.pathname) && <Footer/>}
       </HelmetProvider>

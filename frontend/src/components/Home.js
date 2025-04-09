@@ -150,6 +150,26 @@ const Home = () => {
             />
 
             <Grid container justifyContent={{xs:"center", sm:"center", md:"start", lg:"center"}} width={"100%"}>
+            <Button 
+                onClick={() => window.open("https://buymeacoffee.com/aidiary", "_blank")}
+                sx={{
+                    position: 'absolute', 
+                    top: {xs:"unset", md:"80px"}, 
+                    left: '20px', 
+                    bottom : {xs:"80px", md:"unset"},
+                    zIndex: 1000,
+                    padding: '5px 10px 5px 10px',
+                    backgroundColor: '#ffdd00',
+                    border: 'none',
+                    borderRadius: '10px',
+                    cursor: 'pointer'
+                }}>
+                    <img src="/coffee-icon.png" width={"35px"} height={"auto"}/>
+                    <Typography className="coffee" sx={{ color: 'black', fontFamily: "'Cookie', cursive", textTransform:"lowercase" ,fontWeight: "450", fontSize:{xs:"22px", lg:"28px"} }}>
+                    buy me a coffee
+                    </Typography>
+
+                </Button>
                 <Grid size={{xs:12, sm:11, md:8.5, lg:8.5}} display={"flex"} justifyContent={"center"} paddingTop={{xs:"15%", sm:"10%", md:"8%", lg:"5%"}}>
                     {selectedDiary ? (
                         <DiaryEntry token={localStorage.getItem("token")} selectedDiary={selectedDiary} />
