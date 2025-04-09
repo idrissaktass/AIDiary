@@ -186,25 +186,23 @@ const Diaries = () => {
     <Navbar username={username} onLogout={handleLogout} />
       {loading ? (
         <Grid container spacing={3} direction="column" alignItems="center" py={5}>
-                    <Button 
-          onClick={() => window.open("https://buymeacoffee.com/aidiary", "_blank")}
-          sx={{
-            position: 'absolute', 
-            top: {xs:"unset", md:"80px"}, 
-            left: '20px', 
-            bottom : {xs:"80px", md:"unset"},
-            zIndex: 1000,
-            padding: '5px 10px 5px 10px',
-            backgroundColor: '#ffdd00',
-            border: 'none',
-            borderRadius: '10px',
-            cursor: 'pointer'
-          }}>
-            <img src="/coffee-icon.png" width={"35px"} height={"auto"}/>
-            <Typography className="coffee" sx={{ color: 'black', fontFamily: "'Cookie', cursive", textTransform:"lowercase" ,fontWeight: "450", fontSize:{xs:"22px", lg:"28px"} }}>
-              buy me a coffee
-            </Typography>
-
+          <Button 
+              onClick={() => window.open("https://buymeacoffee.com/aidiary", "_blank")}
+              sx={{
+                  position: {xs:"unset", md:'absolute'}, 
+                  top: "80px", 
+                  left: '20px', 
+                  zIndex: 1000,
+                  padding: '5px 10px 5px 10px',
+                  backgroundColor: '#ffdd00',
+                  border: 'none',
+                  borderRadius: '10px',
+                  cursor: 'pointer'
+              }}>
+                  <img src="/coffee-icon.png" width={"35px"} height={"auto"}/>
+                  <Typography className="coffee" sx={{ color: 'black', fontFamily: "'Cookie', cursive", textTransform:"lowercase" ,fontWeight: "450", fontSize:{xs:"22px", lg:"28px"} }}>
+                  buy me a coffee
+                  </Typography>
           </Button>
           <Typography variant="h4" component="h1" gutterBottom>
             My Diaries

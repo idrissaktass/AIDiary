@@ -93,25 +93,23 @@ const AIChat = () => {
     <Grid minHeight={"100vh"}>
       <Navbar username={username} onLogout={handleLogout} />
       <Button 
-          onClick={() => window.open("https://buymeacoffee.com/aidiary", "_blank")}
-          sx={{
-            position: 'absolute', 
-            top: {xs:"unset", md:"80px"}, 
+        onClick={() => window.open("https://buymeacoffee.com/aidiary", "_blank")}
+        sx={{
+            position: {xs:"unset", md:'absolute'}, 
+            top: "80px", 
             left: '20px', 
-            bottom : {xs:"80px", md:"unset"},
             zIndex: 1000,
             padding: '5px 10px 5px 10px',
             backgroundColor: '#ffdd00',
             border: 'none',
             borderRadius: '10px',
             cursor: 'pointer'
-          }}>
+        }}>
             <img src="/coffee-icon.png" width={"35px"} height={"auto"}/>
             <Typography className="coffee" sx={{ color: 'black', fontFamily: "'Cookie', cursive", textTransform:"lowercase" ,fontWeight: "450", fontSize:{xs:"22px", lg:"28px"} }}>
-              buy me a coffee
+            buy me a coffee
             </Typography>
-
-          </Button>
+    </Button>
       <Grid container direction="column" alignItems="center">
         <Grid item size={{ xs: 11.5, sm: 10, md: 8, lg: 5 }} display={"flex"} alignItems={"center"} flexDirection={"column"} justifyContent={"center"} paddingTop={{ xs: "10%", sm: "3%", md: "2%" }}>
           <Typography fontSize={{ xs: "18px", }} align="center" mb={4}>

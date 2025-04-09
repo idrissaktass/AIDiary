@@ -168,13 +168,12 @@ const WeeklyAnalysis = () => {
             ) : (
                 <>
                     <Grid container size={{ xs: 12, sm: 10, md: 8 }} display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"} mt={5} gap={2}>
-                    <Button 
+                        <Button 
                         onClick={() => window.open("https://buymeacoffee.com/aidiary", "_blank")}
                         sx={{
-                            position: 'absolute', 
-                            top: {xs:"unset", md:"80px"}, 
+                            position: {xs:"unset", md:'absolute'}, 
+                            top: "80px", 
                             left: '20px', 
-                            bottom : {xs:"80px", md:"unset"},
                             zIndex: 1000,
                             padding: '5px 10px 5px 10px',
                             backgroundColor: '#ffdd00',
@@ -186,7 +185,6 @@ const WeeklyAnalysis = () => {
                             <Typography className="coffee" sx={{ color: 'black', fontFamily: "'Cookie', cursive", textTransform:"lowercase" ,fontWeight: "450", fontSize:{xs:"22px", lg:"28px"} }}>
                             buy me a coffee
                             </Typography>
-
                         </Button>
                         <Grid my={3} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
                             <Typography variant="body1" mb={2} textAlign={"start"}>
