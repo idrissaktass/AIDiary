@@ -114,7 +114,8 @@ const AIChat = () => {
     </Button>
       </Grid>
       <Grid container direction="column" alignItems="center">
-        <Grid item size={{ xs: 11.5, sm: 10, md: 8, lg: 5 }} display={"flex"} alignItems={"center"} flexDirection={"column"} justifyContent={"center"} paddingTop={{ xs: "10%", sm: "3%", md: "2%" }}>
+        <Grid item size={{ xs: 11.5, sm: 10, md: 8, lg: 5 }} display={"flex"} alignItems={"center"} flexDirection={"column"} justifyContent={"center"} 
+        paddingTop={{ xs: "8%", sm: "3%", md: "2%" }} paddingBottom={{xs:"10%", md:"0%"}}>
           <Typography fontSize={{ xs: "18px", }} align="center" mb={4}>
             Welcome to the AI Chat! This chat is designed to help analyze your mental health and track your mood over time. 
             Engage with the AI by typing your message, and it will provide insights based on your responses.
