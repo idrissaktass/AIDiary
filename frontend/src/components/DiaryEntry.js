@@ -18,7 +18,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
   const [loadingRecentMood, setLoadingRecentMood] = useState(false);
   const [happinessScore, setHappinessScore] = useState(null);
   const [stressScore, setStressScore] = useState(null);
-  const [additionalEmotions, setAdditionalEmotions] = useState("");
+  // const [additionalEmotions, setAdditionalEmotions] = useState("");
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
@@ -28,7 +28,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
       setMood(selectedDiary.mood || "");
       setHappinessScore(selectedDiary.happinessScore || null);
       setStressScore(selectedDiary.stressScore || null);
-      setAdditionalEmotions(selectedDiary.additionalEmotions || "");
+      // setAdditionalEmotions(selectedDiary.additionalEmotions || "");
     } else {
       setText("");
       setMood("");
@@ -81,7 +81,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
         setMood(res.data.mood_analysis);  
         setHappinessScore(res.data.happiness_score);  
         setStressScore(res.data.stress_score);  
-        setAdditionalEmotions(res.data.additionalEmotions || "");
+        // setAdditionalEmotions(res.data.additionalEmotions || "");
         setShowMood(true); 
         setLoading(false);  
       }, 500);
@@ -99,7 +99,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
       console.log('try')
       const res = await axios.post(
         "https://ai-diary-backend-gamma.vercel.app/api/save-diary",
-        { text, mood, happinessScore, stressScore, additionalEmotions, token, userId: selectedDiary ? selectedDiary.userId : null },
+        { text, mood, happinessScore, stressScore, token, userId: selectedDiary ? selectedDiary.userId : null },
         {
           headers: {
             Authorization: `Bearer ${token}`,
