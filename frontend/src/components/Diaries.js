@@ -153,6 +153,7 @@ const Diaries = () => {
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setCurrentPage(newPage);
+      window.scrollTo(0, 0);
     }
   };
 
