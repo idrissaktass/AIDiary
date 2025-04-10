@@ -205,7 +205,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
               variant="outlined"
               value={text}
               onChange={(e) => setText(e.target.value)}
-              disabled={saving || entryCount >= 5} 
+              disabled={saving || entryCount >= 25} 
             />
           </motion.div>
         ) : (
