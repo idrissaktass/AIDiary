@@ -21,6 +21,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
   // const [additionalEmotions, setAdditionalEmotions] = useState("");
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
+  const [entryCount, setEntryCount] = useState(0); 
 
   useEffect(() => {
     if (selectedDiary) {
@@ -33,7 +34,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
       setText("");
       setMood("");
       fetchMostRecentMood();
-
+      fetchDiaryEntriesForToday();
     }
   }, [selectedDiary]);
 
@@ -59,7 +60,26 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
       setLoadingRecentMood(false); 
     }
   };
-  
+
+  const fetchDiaryEntriesForToday = async () => {
+    try {
+      const res = await axios.get("https://ai-diary-backend-gamma.vercel.app/api/diaries", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const today = new Date().toISOString().split("T")[0];
+      const entriesToday = res.data.filter(diary => {
+        const entryDate = new Date(diary.date).toISOString().split("T")[0];
+        return entryDate === today;
+      });
+
+      setEntryCount(entriesToday.length);
+    } catch (error) {
+      console.error("Error fetching diary entries for today:", error);
+    }
+  };
 
   const analyzeMood = async () => {
     setLoading(true);  
@@ -161,8 +181,11 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
           })}
           </script>
       </Helmet>
-
-
+          {entryCount >= 5 && (
+            <Typography variant="body2" color="error" textAlign="center" mb={2}>
+              You have reached the limit of 5 diary entries for today.
+            </Typography>
+          )}
         {!selectedDiary && !mood ? (
           <motion.div
           style={{width:"100%"}}
@@ -179,7 +202,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
               variant="outlined"
               value={text}
               onChange={(e) => setText(e.target.value)}
-              disabled={saving} 
+              disabled={saving || entryCount >= 5} 
             />
           </motion.div>
         ) : (
