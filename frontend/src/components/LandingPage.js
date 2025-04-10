@@ -51,7 +51,8 @@ const LandingPage = () => {
     const [loading, setLoading] = useState(false);
     const [isSignUp, setIsSignUp] = useState(false);
     const [email, setEmail] = useState("");
-  
+    const [isOk, setIsOk] = useState(false);
+
     const handleFeatures = () => {
         window.scrollTo({
             top: window.innerHeight - 50,
@@ -104,6 +105,7 @@ const LandingPage = () => {
         try {
           await axios.post("https://ai-diary-backend-gamma.vercel.app/api/signup", { username, email, password });
           alert("Registration successful, please log in.");
+          setIsOk(true);
           navigate("/");
         } catch (err) {
           if (err.response && err.response.data && err.response.data.error) {
@@ -191,7 +193,7 @@ const LandingPage = () => {
                             </Grid>
                         </Grid>
                         <Grid size={{xs:12, md:5.5}} display={"flex"} justifyContent={"end"} mt={{xs:0, sm:20, md:0}}>
-                            {isSignUp === false ? (
+                            {isSignUp === false || isOk ? (
                                 <Grid bgcolor={"white"} p={"25px"} width={{xs:"100%", sm:"60%", md:"75%"}} borderRadius={"10px"} boxShadow={"0px 5px 10px #80808087"}>
                                     <Typography fontSize={{xs:"26px", sm:"34px"}} color="#de7618" mb={3}>Login, it's free!</Typography>
                                     {error && <Typography color="error">{error}</Typography>}
@@ -214,7 +216,7 @@ const LandingPage = () => {
                                     />
                                     <Box display="flex" justifyContent="space-between">
                                     <Button variant="contained" color="primary" sx={{backgroundColor:"#de7618"}}  onClick={handleLogin}>{loading ? <CircularProgress color="white" sx={{width:"22px !important", height:"22px !important"}}/> : "Login" }</Button>
-                                    <Button color="secondary" onClick={() => { setIsSignUp(true); }}>Sign Up</Button>
+                                    <Button color="secondary" onClick={() => { setIsSignUp(true); isOk(false); }}>Sign Up</Button>
                                     </Box>
                                 </Grid>
                             ) : (

@@ -190,7 +190,6 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
             >
               <Typography variant="body1" bgcolor={"#0080000a"} padding={"30px"} textAlign={"start"}>
                 {text}
-                
               </Typography>
             </motion.div>
         )}
