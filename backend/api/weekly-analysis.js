@@ -52,8 +52,17 @@ export default async function handler(req, res) {
         return res.status(404).send('User not found.');
       }
 
-      // Get the user's last weekly analysis date
-      const lastAnalysisDate = user.lastWeeklyAnalysis;
+      // Check if it's the user's first weekly analysis
+      let lastAnalysisDate = user.lastWeeklyAnalysis;
+
+      if (!lastAnalysisDate) {
+        // If no last analysis date, use the first diary entry date
+        const firstDiaryEntry = await Diary.findOne({ userId: decoded.userId }).sort({ date: 1 }); // Get the first diary entry
+        if (!firstDiaryEntry) {
+          return res.status(400).send('No diary entries found for this user.');
+        }
+        lastAnalysisDate = firstDiaryEntry.date; // Use the first diary entry's date for the analysis
+      }
 
       // Fetch diary entries written after the last weekly analysis date
       const diariesSinceLastAnalysis = await Diary.find({
