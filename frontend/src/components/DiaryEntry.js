@@ -81,7 +81,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
         setMood(res.data.mood_analysis);  
         setHappinessScore(res.data.happiness_score);  
         setStressScore(res.data.stress_score);  
-        setAdditionalEmotions(selectedDiary.additionalEmotions || "");
+        setAdditionalEmotions(res.data.additionalEmotions || "");
         setShowMood(true); 
         setLoading(false);  
       }, 500);
