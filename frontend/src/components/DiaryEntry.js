@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { TextField, Button, Typography, Snackbar, Alert , CircularProgress, Box } from "@mui/material";
+import { TextField, Button, Typography, Snackbar, Alert , CircularProgress, Box, useMediaQuery, useTheme } from "@mui/material";
 import { motion } from "framer-motion";  
 import { Grid } from '@mui/system';
 import { Helmet } from "react-helmet-async";
@@ -19,6 +19,8 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
   const [happinessScore, setHappinessScore] = useState(null);
   const [stressScore, setStressScore] = useState(null);
   const [additionalEmotions, setAdditionalEmotions] = useState("");
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
   useEffect(() => {
     if (selectedDiary) {
@@ -131,7 +133,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
     <Grid container mt={5} size={{xs:11.5, sm:10, md:9}}>
       <Grid display={"flex"} flexDirection={"column"} width={"100%"}>
         <Typography variant="h4" gutterBottom width={"100%"} textAlign={"center"} mb={3}>
-          {selectedDiary ? "Your Diary Analysis" : "Tell Me What Happened"} 📝
+          {selectedDiary ? "Your Diary Analysis" : "Tell Me"} 📝
         </Typography>
         <Helmet>
           <title>Write Diary - AI Diary</title>
@@ -173,7 +175,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
               label="What happened today?"
               multiline
               fullWidth
-              rows={5}
+              rows={isMobile ? 7 : 5}
               variant="outlined"
               value={text}
               onChange={(e) => setText(e.target.value)}
@@ -188,6 +190,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
             >
               <Typography variant="body1" bgcolor={"#0080000a"} padding={"30px"} textAlign={"start"}>
                 {text}
+                
               </Typography>
             </motion.div>
         )}

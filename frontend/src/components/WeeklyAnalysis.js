@@ -247,15 +247,9 @@ const WeeklyAnalysis = () => {
                             </Grid>
                         ): (
                             <Grid mb={5} size = {{xs:12}} display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"}>
-                                <Typography color="error" textAlign="center">Not enough entries for graphs.</Typography>
-                                <Button
-                                sx={{ width: "fit-content", backgroundColor: "#1764b0" }}
-                                variant="contained"
-                                color="secondary"
-                                onClick={() => navigate("/home")}
-                                >
-                                    <Typography variant="h6">Make a Start</Typography>
-                                </Button>
+                                <Typography color="error" display={"flex"} gap={0.5} alignItems={"center"} textAlign="center">Not enough entries for graphs. 
+                                    <Typography color="primary" fontSize={"18px"} onClick={() => navigate("/home")} sx={{cursor:"pointer", textDecoration:"underline"}}>Make a Start</Typography>
+                                </Typography>
                             </Grid>
                         )}
                         <Button
@@ -299,7 +293,9 @@ const WeeklyAnalysis = () => {
                             </Grid>
                         )}
                         {!loading && weeklyAnalyses.length === 0 && (
-                            <Typography>No weekly analyses have been made yet.</Typography>
+                            <Grid size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }}>
+                                <Typography>No weekly analyses have been made yet.</Typography>
+                            </Grid>
                         )}
                     </Grid>
                 </>
