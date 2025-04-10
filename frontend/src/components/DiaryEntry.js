@@ -184,9 +184,9 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
           })}
           </script>
       </Helmet>
-          {entryCount >= 25 && (
+          {entryCount >= 3 && (
             <Typography variant="body2" color="error" textAlign="center" mb={2}>
-              You have reached the limit of 5 diary entries for today.
+              You have reached the limit of 3 diary entries for today.
             </Typography>
           )}
         {!selectedDiary && !mood ? (
@@ -205,7 +205,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
               variant="outlined"
               value={text}
               onChange={(e) => setText(e.target.value)}
-              disabled={saving || entryCount >= 25} 
+              disabled={saving || entryCount >= 3} 
             />
           </motion.div>
         ) : (

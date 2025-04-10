@@ -70,20 +70,20 @@ export default async function handler(req, res) {
         date: { $gt: lastAnalysisDate }, // Only get diaries after the last analysis date
       });
 
-      // Check if there are at least 3 diaries
-      if (diariesSinceLastAnalysis.length < 3) {
-        return res.status(400).send('Need 3 diary entries after the last weekly analysis for new analysis.');
+      // Check if there are at least 7 diaries
+      if (diariesSinceLastAnalysis.length < 7) {
+        return res.status(400).send('Need 7 diary entries after the last weekly analysis for new analysis.');
       }
 
       // Prepare mood texts for OpenAI analysis
-      const moodTexts = diariesSinceLastAnalysis.slice(0, 3).map(entry => entry.mood).join('\n');
+      const moodTexts = diariesSinceLastAnalysis.slice(0, 7).map(entry => entry.mood).join('\n');
 
       // Get analysis from OpenAI
       const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
           { role: 'system', content: 'You are a mood analyst.' },
-          { role: 'user', content: `Please review these 3 mood analyses and provide a general mood evaluation. When presenting the evaluation, avoid responding like a message, instead write it like a report, for example, do not start with phrases like "Sure! Here's the review of the three mood analyses:" ${moodTexts}` },
+          { role: 'user', content: `Please review these 7 mood analyses and provide a general mood evaluation. When presenting the evaluation, avoid responding like a message, instead write it like a report, for example, do not start with phrases like "Sure! Here's the review of the three mood analyses:" ${moodTexts}` },
         ],
       });
 
