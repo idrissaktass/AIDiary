@@ -22,6 +22,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
   const [entryCount, setEntryCount] = useState(0); 
+  const [saved, setSaved] = useState(false); 
 
   useEffect(() => {
     if (selectedDiary) {
@@ -136,6 +137,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
       }
       console.log('Entered the serverless')
       setSnackbarMessage("Diary saved successfully!");
+      setSaved(true);
       setSeverity("success");
       setOpenSnackbar(true);
     } catch (error) {
@@ -249,7 +251,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
                 </Button>
               )}
               {!selectedDiary && (
-                  <Button variant="contained" color="secondary" sx={{backgroundColor:"#de7618"}}  disabled={!text || loading || saving} onClick={saveDiary}>
+                  <Button variant="contained" color="secondary" sx={{backgroundColor:"#de7618"}}  disabled={!text || loading || saving || saved} onClick={saveDiary}>
                       {saving ? "Saving..." : "Save"}
                   </Button>
               )}
