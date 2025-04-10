@@ -129,6 +129,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
       );
       console.log('E')
       if (res.data) {
+        setSaved(true);
         handleDiarySave(res.data);
       }
       if(!mood) {
