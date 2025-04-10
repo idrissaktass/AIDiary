@@ -52,6 +52,11 @@ const LandingPage = () => {
     const [isSignUp, setIsSignUp] = useState(false);
     const [email, setEmail] = useState("");
     const [isOk, setIsOk] = useState(false);
+    const [stars, setStars] = useState([]);
+
+    useEffect(() => {
+      setStars(generateStars(30));
+    }, []);
 
     const handleFeatures = () => {
         window.scrollTo({
@@ -66,7 +71,6 @@ const LandingPage = () => {
             behavior: "smooth"
         });
     };
-
 
     const handleLogin = async () => {
     setLoading(true);
@@ -177,7 +181,7 @@ const LandingPage = () => {
                                 zIndex={1}
                                 sx={{ pointerEvents: "none" }}
                             >
-                                {generateStars(20)}
+                                 {stars}
                             </Box>
                             <Typography width={"100%"} fontWeight={"600"} textAlign={"start"} fontSize={{xs:"30px", sm:"60px"}} lineHeight={{xs:"40px", sm:"75px"}} fontFamily={"var(--nerf-heading-font)"}>
                                 CREATE YOUR SAFE SPACE
