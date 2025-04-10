@@ -1,3 +1,36 @@
+import dbConnect from '../utils/dbConnect';
+import jwt from 'jsonwebtoken';
+import User from '../models/User';
+import Diary from '../models/Diary';
+import WeeklyAnalysis from '../models/WeeklyAnalysis';
+import { OpenAI } from 'openai';
+import Cors from 'cors';
+
+// OpenAI API key and instance
+const openai = new OpenAI({
+  apiKey: "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",
+});
+
+// CORS configuration
+const cors = Cors({
+  origin: 'https://aidiary.online', // Add your frontend URL here
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+});
+
+// Helper function to run middleware
+const runMiddleware = (req, res, fn) => {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+      return resolve(result);
+    });
+  });
+};
+
 export default async function handler(req, res) {
   // Run CORS middleware
   await runMiddleware(req, res, cors);
