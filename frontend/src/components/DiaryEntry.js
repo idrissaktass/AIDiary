@@ -183,7 +183,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
           })}
           </script>
       </Helmet>
-          {entryCount >= 5 && (
+          {entryCount >= 25 && (
             <Typography variant="body2" color="error" textAlign="center" mb={2}>
               You have reached the limit of 5 diary entries for today.
             </Typography>

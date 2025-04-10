@@ -269,9 +269,9 @@ const WeeklyAnalysis = () => {
                                 <Typography>{weeklyAnalysis}</Typography>
                             </Grid>
                         )}
-                        <Grid size={{xs:12}}>  
+                        <Grid size={{xs:11.7}}>  
                             {!canAnalyze && (
-                                <Typography color="error" textAlign="center">Not enough entries to perform a weekly analysis.</Typography>
+                                <Typography color="error" textAlign="center">Not enough entries to perform a weekly analysis. There must be at least 3 diaries.</Typography>
                             )}
                         </Grid>
                     </Grid>
