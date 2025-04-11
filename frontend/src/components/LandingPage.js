@@ -108,6 +108,12 @@ const LandingPage = () => {
     
         try {
           await axios.post("https://ai-diary-backend-gamma.vercel.app/api/signup", { username, email, password });
+          // ✅ Google Ads dönüşüm tetikleme
+          if (typeof window !== "undefined" && window.gtag) {
+            window.gtag('event', 'conversion', {
+              send_to: 'AW-16969366373/5UNvCOTq_LYaEOX2z5s_'
+            });
+          }
           alert("Registration successful, please log in.");
           setIsOk(true);
           navigate("/");
@@ -158,13 +164,6 @@ const LandingPage = () => {
                         function gtag(){dataLayer.push(arguments);}
                         gtag('js', new Date());
                         gtag('config', 'G-GWGT7CM20H');
-                    `}
-                </script>
-
-                {/* Google Ads Conversion */}
-                <script>
-                    {`
-                        gtag('event', 'conversion', {'send_to': 'AW-16969366373/5UNvCOTq_LYaEOX2z5s_'});
                     `}
                 </script>
             </Helmet>
