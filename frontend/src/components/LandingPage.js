@@ -151,6 +151,22 @@ const LandingPage = () => {
                 <meta name="twitter:image" content="https://aidiary.online/preview-image.jpg" />
                 <link rel="canonical" href="https://aidiary.online" />
                 <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-GWGT7CM20H"></script>
+                <script>
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-GWGT7CM20H');
+                    `}
+                </script>
+
+                {/* Google Ads Conversion */}
+                <script>
+                    {`
+                        gtag('event', 'conversion', {'send_to': 'AW-16969366373/5UNvCOTq_LYaEOX2z5s_'});
+                    `}
+                </script>
             </Helmet>
             <AppBar sx={{background:"linear-gradient(to right,rgb(10, 19, 31), #294d71, #101e2d)", boxShadow:"none"}}>
                 <Toolbar sx={{display:"flex", color:"white", justifyContent:"space-between", paddingBlock:"2px", width:"80%", alignSelf:"center"}}>
