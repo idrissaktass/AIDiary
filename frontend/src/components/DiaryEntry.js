@@ -182,6 +182,22 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
               "datePublished": new Date().toISOString(),
               "url": window.location.href
           })}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-GWGT7CM20H"></script>
+          <script>
+              {`
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', 'G-GWGT7CM20H');
+              `}
+          </script>
+
+          {/* Google Ads Conversion */}
+          <script>
+              {`
+                  gtag('event', 'conversion', {'send_to': 'AW-16969366373/5UNvCOTq_LYaEOX2z5s_'});
+              `}
+          </script>
           </script>
       </Helmet>
           {entryCount >= 3 && (
