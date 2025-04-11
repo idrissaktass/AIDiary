@@ -182,6 +182,7 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
               "datePublished": new Date().toISOString(),
               "url": window.location.href
           })}
+          </script>
           <script async src="https://www.googletagmanager.com/gtag/js?id=G-GWGT7CM20H"></script>
           <script>
               {`
@@ -197,7 +198,6 @@ const DiaryEntry = ({ token, selectedDiary, handleDiarySave }) => {
               {`
                   gtag('event', 'conversion', {'send_to': 'AW-16969366373/5UNvCOTq_LYaEOX2z5s_'});
               `}
-          </script>
           </script>
       </Helmet>
           {entryCount >= 3 && (
