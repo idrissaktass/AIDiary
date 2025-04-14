@@ -164,8 +164,8 @@ const Home = () => {
                         borderRadius: '10px',
                         cursor: 'pointer'
                     }}>
-                        <img src="/coffee-icon.png" width={"35px"} height={"auto"}/>
-                        <Typography className="coffee" sx={{ color: 'black', fontFamily: "'Cookie', cursive", textTransform:"lowercase" ,fontWeight: "450", fontSize:{xs:"22px", lg:"28px"} }}>
+                        <img src="/coffee-icon.png" width={"25px"} height={"auto"}/>
+                        <Typography className="coffee" sx={{ color: 'black', fontFamily: "'Cookie', cursive", textTransform:"lowercase" ,fontWeight: "450", fontSize:{xs:"18px", lg:"22px"} }}>
                         buy me a coffee
                         </Typography>
                 </Button>
