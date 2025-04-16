@@ -150,7 +150,7 @@ const Home = () => {
             />
 
             <Grid container justifyContent={{xs:"center", sm:"center", md:"start", lg:"center"}} width={"100%"}>
-                <Button 
+                {/* <Button 
                     onClick={() => window.open("https://buymeacoffee.com/aidiary", "_blank")}
                     sx={{
                         mt: {xs:"80px", md:"unset"},
@@ -168,7 +168,7 @@ const Home = () => {
                         <Typography className="coffee" sx={{ color: 'black', fontFamily: "'Cookie', cursive", textTransform:"lowercase" ,fontWeight: "450", fontSize:{xs:"18px", lg:"22px"} }}>
                         buy me a coffee
                         </Typography>
-                </Button>
+                </Button> */}
                 <Grid size={{xs:12, sm:11, md:8.5, lg:8.5}} display={"flex"} justifyContent={"center"} paddingTop={{xs:"0%", md:"8%", lg:"5%"}}>
                     {selectedDiary ? (
                         <DiaryEntry token={localStorage.getItem("token")} selectedDiary={selectedDiary} />

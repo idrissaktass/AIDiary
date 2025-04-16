@@ -194,7 +194,7 @@ const Diaries = () => {
         </Grid>
       ) : (
         <Grid container spacing={3} direction="column" alignItems="center" pt={{xs:"20px", md:"40px"}} pb={"40px"}>
-            <Button 
+            {/* <Button 
               onClick={() => window.open("https://buymeacoffee.com/aidiary", "_blank")}
               sx={{
                   position: {xs:"unset", md:'absolute'}, 
@@ -211,7 +211,7 @@ const Diaries = () => {
                   <Typography className="coffee" sx={{ color: 'black', fontFamily: "'Cookie', cursive", textTransform:"lowercase" ,fontWeight: "450", fontSize:{xs:"18px", lg:"22px"} }}>
                   buy me a coffee
                   </Typography>
-          </Button>
+          </Button> */}
         <Typography variant="h4" component="h1" gutterBottom>
           My Diaries
         </Typography>

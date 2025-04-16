@@ -168,7 +168,7 @@ const WeeklyAnalysis = () => {
             ) : (
                 <>
                     <Grid container size={{ xs: 12, sm: 10, md: 8 }} display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"} mt={{xs:"20px", md:"40px"}} gap={2}>
-                        <Button 
+                        {/* <Button 
                         onClick={() => window.open("https://buymeacoffee.com/aidiary", "_blank")}
                         sx={{
                             position: {xs:"unset", md:'absolute'}, 
@@ -185,7 +185,7 @@ const WeeklyAnalysis = () => {
                             <Typography className="coffee" sx={{ color: 'black', fontFamily: "'Cookie', cursive", textTransform:"lowercase" ,fontWeight: "450", fontSize:{xs:"18px", lg:"22px"} }}>
                             buy me a coffee
                             </Typography>
-                        </Button>
+                        </Button> */}
                         <Grid my={3} size={{ xs: 11.5, sm: 10, md: 8, lg: 6.5, xl: 6 }} display={"flex"} alignItems={"center"} flexDirection={"column"} padding={"25px"} bgcolor={"white"} boxShadow={"0px 5px 10px rgba(0, 0, 0, 0.16)"} borderRadius={"2px"}>
                             <Typography variant="body1" mb={2} textAlign={"start"}>
                                 This page presents your score graphs and analysis of your last three entries. It takes every note you write into account to better understand your mood.
